@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:open": "next dev --hostname 127.0.0.1 --port 3000 & sleep 2; open http://127.0.0.1:3000",
+    "dev:stop": "lsof -tiTCP:3000 -sTCP:LISTEN | xargs -r kill",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0"
