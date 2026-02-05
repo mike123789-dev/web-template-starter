@@ -64,6 +64,14 @@ n3r.app은 기본 빌드 인자를 제공합니다.
 - Stateful로 생성하면 **Stateful Rolling Update**를 사용합니다.
 - 배포 **취소/실패** 시 구/신 리비전 팟이 섞여 남을 수 있어, 필요하면 **Cleanup**으로 stable 리비전 기준 정리가 가능합니다.
 
+### 로그에서 `tini` / `istio` 워닝이 보일 때
+
+- **`[WARN tini] Tini is not running as PID 1...`**
+  - 좀비 프로세스 정리(리핑) 관련 워닝입니다.
+  - 이 프로젝트는 `Dockerfile`에서 `tini`를 설치하고 `ENTRYPOINT ["tini","-s","--"]`로 실행해 워닝을 줄이도록 구성했습니다.
+- **Istio iptables / envoy 로그가 많이 보임**
+  - Istio sidecar(또는 init) 관련 로그입니다. n3r Logs 탭에서 컨테이너 선택/필터를 바꿔 앱 로그만 확인하세요.
+
 ### Sandbox app 생성 (dev 존)
 
 n3r 콘솔에서 Apps → Create로 들어가서 아래 값으로 생성합니다.

@@ -34,6 +34,7 @@ ENV NODE_ENV=production
 ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV TINI_SUBREAPER=1
 
 ENV N3R_BUILD_COMMIT_HASH=$N3R_BUILD_COMMIT_HASH
 ENV N3R_BUILD_COMMIT_REFERENCE=$N3R_BUILD_COMMIT_REFERENCE
@@ -41,7 +42,7 @@ ENV N3R_BUILD_NUMBER=$N3R_BUILD_NUMBER
 
 USER root
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates libcap2-bin && \
+    apt-get install -y --no-install-recommends ca-certificates libcap2-bin tini && \
     rm -rf /var/lib/apt/lists/* && \
     (getent group 500 >/dev/null || groupadd --gid 500 irteam) && \
     (getent passwd 500 >/dev/null || useradd --uid 500 --gid 500 --create-home --home-dir /home1/irteam irteam) && \
@@ -54,5 +55,6 @@ COPY --from=builder --chown=500:500 /home1/irteam/sample/.next/static ./.next/st
 EXPOSE 80
 USER irteam
 
+ENTRYPOINT ["tini", "-s", "--"]
 CMD ["node", "./server.js"]
 
