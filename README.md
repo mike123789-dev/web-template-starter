@@ -41,6 +41,10 @@ docker run --rm -p 3000:3000 web-template-starter
 docker compose up --build
 ```
 
+## Deploy (n3r)
+
+See `docs/deploy/n3r.md`.
+
 ## Project structure
 
 ```text
