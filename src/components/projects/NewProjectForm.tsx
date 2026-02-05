@@ -23,6 +23,8 @@ const DEFAULT_VALUES: FormValues = {
   description: '',
 };
 
+const API_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {};
 
@@ -61,7 +63,7 @@ export function NewProjectForm({ className }: { className?: string }) {
       setErrors({});
       setIsSubmitting(true);
       try {
-        const res = await fetch('/api/projects', {
+        const res = await fetch(`${API_BASE_PATH}/api/projects`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(values),

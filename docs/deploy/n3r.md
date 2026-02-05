@@ -5,7 +5,8 @@
 ### 전제
 
 - **컨테이너 포트**: `80`
-- **헬스 체크**: `GET /api/health` (200이면 정상)
+- **URL prefix(basePath)**: `/web-vibe-template`
+- **헬스 체크**: `GET /web-vibe-template/api/health` (200이면 정상)
 - **앱 유형 권장**: Stateless (기본 웹앱)
 
 ### 소스 저장소 권한
@@ -58,6 +59,13 @@ n3r.app은 기본 빌드 인자를 제공합니다.
 - low port(80) 바인딩을 위해 `setcap cap_net_bind_service` 적용
 - 실행 커맨드: `node server.js`
 
+### 라우팅(basePath) 설정
+
+현재 ingress가 `/web-vibe-template` prefix로 요청을 전달하고(경로 rewrite 없음), 그래서 앱도 동일한 basePath로 동작하도록 설정되어 있습니다.
+
+- `next.config.ts`에서 production 기본값으로 `basePath: "/web-vibe-template"`를 사용합니다.
+- 필요하면 n3r Build args로 `NEXT_BASE_PATH`를 지정해 basePath를 변경할 수 있습니다.
+
 ### 배포 (요약)
 
 - Stateless 앱은 보통 **Rolling Update / Blue Green / Canary(또는 Replicas Based Canary)** 전략을 사용합니다.
@@ -103,5 +111,5 @@ Linked app은 **Sandbox app에서 성공적으로 빌드된 이미지**만 배�
 
 개발 서버 또는 컨테이너 실행 후 아래 URL이 200을 반환해야 합니다.
 
-- `http://localhost:3000/api/health` (로컬은 `docker-compose.yml`에서 `3000:80`으로 포트 매핑)
+- `http://localhost:3000/web-vibe-template/api/health` (로컬은 `docker-compose.yml`에서 `3000:80`으로 포트 매핑)
 
