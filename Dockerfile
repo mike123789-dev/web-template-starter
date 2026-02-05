@@ -1,42 +1,58 @@
-ARG BASE_IMAGE="node:22.17.0-alpine"
-FROM ${BASE_IMAGE} AS base
-WORKDIR /app
+# syntax=hub.reg.navercorp.com/docker/dockerfile:1.2
 
-# Install dependencies in a separate layer for caching.
-FROM base AS deps
+ARG NODE_IMAGE="hub.reg.navercorp.com/library/node:slim"
+ARG NPM_REGISTRY="https://artifactory.navercorp.com/artifactory/npm-remote/"
+
+## Build
+FROM ${NODE_IMAGE} AS builder
+
+WORKDIR /home1/irteam/sample
+
 COPY package.json package-lock.json ./
-RUN npm ci && npm cache clean --force
 
-FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
+# uid=500(irteam), gid=500(irteam)
+RUN --mount=type=cache,target=/home1/irteam/sample/.npm,id=web-template-npm-cache,uid=500,gid=500 \
+    npm set cache /home1/irteam/sample/.npm && \
+    npm config set registry ${NPM_REGISTRY} && \
+    npm ci
+
 COPY . .
 RUN npm run build
 
-FROM base AS runner
+## Deploy
+FROM ${NODE_IMAGE} AS runner
+
+WORKDIR /
+
 ARG N3R_BUILD_COMMIT_HASH=""
 ARG N3R_BUILD_COMMIT_REFERENCE=""
 ARG N3R_BUILD_NUMBER=""
 
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
+
 ENV N3R_BUILD_COMMIT_HASH=$N3R_BUILD_COMMIT_HASH
 ENV N3R_BUILD_COMMIT_REFERENCE=$N3R_BUILD_COMMIT_REFERENCE
 ENV N3R_BUILD_NUMBER=$N3R_BUILD_NUMBER
 
-# Run as non-root for better security.
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+USER root
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends ca-certificates libcap2-bin && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd --gid 500 irteam && \
+    useradd --uid 500 --gid 500 --create-home --home-dir /home1/irteam irteam && \
+    setcap 'cap_net_bind_service=+ep' "$(readlink -f "$(which node)")"
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /home1/irteam/sample/public ./public
+COPY --from=builder /home1/irteam/sample/.next/standalone ./
+COPY --from=builder /home1/irteam/sample/.next/static ./.next/static
 
-RUN chown -R nextjs:nodejs /app
+RUN chown -R irteam:irteam /public /.next /server.js /node_modules /package.json
 
-USER nextjs
-EXPOSE 3000
+EXPOSE 80
+USER irteam
 
-CMD ["node", "server.js"]
+CMD ["node", "./server.js"]
 
