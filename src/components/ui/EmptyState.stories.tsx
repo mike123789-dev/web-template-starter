@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { EmptyState } from './EmptyState';
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'UI/EmptyState',
+  title: 'Components/UI/EmptyState',
   component: EmptyState,
   args: {
     title: 'No projects found',
@@ -18,4 +18,3 @@ export default meta;
 type Story = StoryObj<typeof EmptyState>;
 
 export const Default: Story = {};
-

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'UI/Badge',
+  title: 'Components/UI/Badge',
   component: Badge,
   args: {
     children: 'Badge',
@@ -29,4 +29,3 @@ export const Warning: Story = {
 export const Danger: Story = {
   args: { variant: 'danger', children: 'Blocked' },
 };
-

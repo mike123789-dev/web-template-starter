@@ -4,7 +4,7 @@ import { Badge } from './Badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './Card';
 
 const meta: Meta<typeof Card> = {
-  title: 'UI/Card',
+  title: 'Components/UI/Card',
   component: Card,
 };
 
@@ -36,4 +36,3 @@ export const Default: Story = {
     </Card>
   ),
 };
-
