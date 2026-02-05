@@ -1,0 +1,21 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@oss.navercorp.com:hwan-ju-jung/app-sample-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "process": "^0.11.10",
+    "prom-client": "^14.1.1"
+  }
+}
