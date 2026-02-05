@@ -13,7 +13,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "node scripts/storybook-dev.mjs",
     "build-storybook": "storybook build",
     "test:storybook": "vitest"
   },
