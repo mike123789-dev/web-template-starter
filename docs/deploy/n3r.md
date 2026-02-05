@@ -24,8 +24,8 @@ n3r에서 저장소가 목록에 보이지 않으면, 보통 아래 중 하나�
 #### 베이스 이미지 / 레지스트리
 
 - 베이스 이미지는 public 또는 프로젝트의 `n3r.registry`에 업로드한 이미지를 사용할 수 있습니다.
-- 이 프로젝트는 `docs/deploy/app-sample-nodejs-main` 레퍼런스와 동일하게, 기본값으로 내부 레지스트리의 Node 이미지를 사용합니다.
-  - `hub.reg.navercorp.com/library/node:slim`
+- 이 프로젝트는 `flowdiff`와 동일하게, 기본값으로 내부 레지스트리의 Node 이미지를 사용합니다.
+  - `snow.n3r.reg.navercorp.com/base/alpine/node:22.17.0`
 
 #### npm registry
 
@@ -50,7 +50,7 @@ n3r.app은 기본 빌드 인자를 제공합니다.
 
 `Dockerfile`은 n3r 환경과 동일한 패턴을 따릅니다.
 
-- 내부 베이스 이미지 사용: `hub.reg.navercorp.com/library/node:slim`
+- 내부 베이스 이미지 사용: `snow.n3r.reg.navercorp.com/base/alpine/node:22.17.0`
 - 멀티 스테이지 빌드: `builder` → `runner`
 - BuildKit 캐시 마운트로 `npm` 캐시를 유지 (빌드 시간 단축)
 - Next.js `output: "standalone"` 결과물을 런타임에 사용

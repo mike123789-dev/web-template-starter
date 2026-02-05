@@ -1,6 +1,6 @@
 # syntax=hub.reg.navercorp.com/docker/dockerfile:1.2
 
-ARG NODE_IMAGE="hub.reg.navercorp.com/library/node:slim"
+ARG NODE_IMAGE="snow.n3r.reg.navercorp.com/base/alpine/node:22.17.0"
 ARG NPM_REGISTRY="https://artifactory.navercorp.com/artifactory/npm-remote/"
 
 ## Build
@@ -41,12 +41,10 @@ ENV N3R_BUILD_COMMIT_REFERENCE=$N3R_BUILD_COMMIT_REFERENCE
 ENV N3R_BUILD_NUMBER=$N3R_BUILD_NUMBER
 
 USER root
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates libcap2-bin tini && \
-    rm -rf /var/lib/apt/lists/* && \
-    (getent group 500 >/dev/null || groupadd --gid 500 irteam) && \
-    (getent passwd 500 >/dev/null || useradd --uid 500 --gid 500 --create-home --home-dir /home1/irteam irteam) && \
-    setcap 'cap_net_bind_service=+ep' "$(readlink -f "$(which node)")"
+RUN apk add --no-cache ca-certificates libcap tini && \
+    addgroup -S -g 500 irteam 2>/dev/null || true && \
+    adduser -S -u 500 -G irteam -h /home1/irteam irteam 2>/dev/null || true && \
+    setcap 'cap_net_bind_service=+ep' "$(readlink -f "$(command -v node)")"
 
 COPY --from=builder --chown=500:500 /home1/irteam/sample/public ./public
 COPY --from=builder --chown=500:500 /home1/irteam/sample/.next/standalone ./
