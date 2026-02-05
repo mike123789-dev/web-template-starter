@@ -17,7 +17,9 @@ RUN --mount=type=cache,target=/home1/irteam/sample/.npm,id=web-template-npm-cach
     npm ci
 
 COPY . .
-RUN npm run build
+# `public/` 폴더는 Next.js에서 선택 사항이라 레포에 없을 수 있습니다.
+# n3r 빌드에서 `COPY --from=builder ... /public` 단계가 실패하지 않도록 항상 디렉토리를 만들어 둡니다.
+RUN mkdir -p public && npm run build
 
 ## Deploy
 FROM ${NODE_IMAGE} AS runner
