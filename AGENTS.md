@@ -13,6 +13,10 @@
 - `npm run build`: Create a production build.
 - `npm run start`: Serve the production build locally.
 - `npm run lint`: Run ESLint with zero warnings allowed.
+- `npm run test:unit`: Run Vitest unit tests.
+- `npm run test:storybook`: Run Storybook Vitest smoke tests.
+- `npm run test:e2e`: Run Playwright E2E tests.
+- `npm run test:all`: Run unit, storybook, and E2E tests in sequence.
 - `docker compose up --build`: Build and run the app in Docker.
 
 ## Coding Style & Naming Conventions
@@ -26,6 +30,7 @@
 ## Testing Guidelines
 - No test framework is configured yet. If you add tests, document the runner and add an `npm` script.
 - Place tests near their modules or under a `tests/` folder; follow the naming pattern `*.test.ts` or `*.test.tsx`.
+- If you change code, you must follow `docs/engineering/testing.md` and add the appropriate test cases aligned with that guide.
 
 ## Commit & Pull Request Guidelines
 - Commit messages are short, imperative, and unscoped (for example `Add dev stop and open scripts`). This is based on the current, small history.

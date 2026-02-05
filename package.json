@@ -16,6 +16,7 @@
     "storybook": "node scripts/storybook-dev.mjs",
     "build-storybook": "storybook build",
     "test": "npm run test:unit && npm run test:storybook",
+    "test:all": "npm run test:unit && npm run test:storybook && npm run test:e2e",
     "test:unit": "vitest --project unit",
     "test:storybook": "vitest --project storybook",
     "test:e2e": "playwright test"
