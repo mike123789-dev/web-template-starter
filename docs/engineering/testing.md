@@ -21,6 +21,9 @@
 
 - **테스트 단위**: `*.test.ts` / `*.spec.ts` (로직과 co-locate)
 - **권장 스택**: Vitest (node 환경)
+- **실행**
+  - Unit test: `npm run test:unit`
+  - (전체) `npm test`는 unit + storybook 테스트를 연속 실행한다.
 - **포인트**
   - 파싱/정렬/계산 등은 가능한 한 UI와 분리한다.
 
@@ -29,6 +32,8 @@
 목표: 실제 브라우저에서 **핵심 플로우**가 동작하는지 마지막으로 확인한다.
 
 - **권장 스택**: Playwright
+- **실행**
+  - E2E: `npm run test:e2e` (기본 포트 `3100`에서 dev 서버를 띄운 뒤 실행)
 - **포인트**
   - `next dev` 또는 `next start`로 앱을 띄운 뒤 실행한다.
   - 로그인/체크아웃 등 핵심 경로만 최소한으로 커버한다.

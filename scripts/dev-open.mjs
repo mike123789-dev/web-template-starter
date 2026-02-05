@@ -51,7 +51,6 @@ if (lockExists()) {
 
   for (let i = 0; i < MAX_TRIES; i += 1) {
     const candidate = BASE_PORT + i;
-    // eslint-disable-next-line no-await-in-loop
     if (await isPortOpen(candidate)) killPort(candidate);
   }
 
@@ -64,7 +63,6 @@ if (lockExists()) {
 
 let port = BASE_PORT;
 for (let i = 0; i < MAX_TRIES; i += 1) {
-  // eslint-disable-next-line no-await-in-loop
   if (await isPortFree(port)) break;
   port += 1;
 }

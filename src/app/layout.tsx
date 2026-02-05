@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'Web Template Starter',
     template: '%s | Web Template Starter',
   },
-  description: 'Minimal Next.js starter template with a Counter example.',
+  description: 'Minimal Next.js starter template with a small Projects dashboard.',
 };
 
 export const viewport: Viewport = {

@@ -15,7 +15,10 @@
     "lint": "eslint . --max-warnings=0",
     "storybook": "node scripts/storybook-dev.mjs",
     "build-storybook": "storybook build",
-    "test:storybook": "vitest"
+    "test": "npm run test:unit && npm run test:storybook",
+    "test:unit": "vitest --project unit",
+    "test:storybook": "vitest --project storybook",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -23,26 +26,27 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.0",
+    "@playwright/test": "^1.58.1",
+    "@storybook/addon-vitest": "^10.2.6",
+    "@storybook/nextjs-vite": "^10.2.6",
     "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
     "agent-browser": "^0.9.0",
     "autoprefixer": "latest",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.1.6",
+    "eslint-plugin-storybook": "^10.2.6",
+    "playwright": "^1.58.1",
     "postcss": "latest",
+    "storybook": "^10.2.6",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "storybook": "^10.2.6",
-    "@storybook/nextjs-vite": "^10.2.6",
-    "@chromatic-com/storybook": "^5.0.0",
-    "@storybook/addon-vitest": "^10.2.6",
     "vite": "^7.3.1",
-    "eslint-plugin-storybook": "^10.2.6",
-    "vitest": "^4.0.18",
-    "playwright": "^1.58.1",
-    "@vitest/browser-playwright": "^4.0.18",
-    "@vitest/coverage-v8": "^4.0.18"
+    "vitest": "^4.0.18"
   }
 }

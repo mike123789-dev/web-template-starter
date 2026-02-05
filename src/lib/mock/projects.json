@@ -1,0 +1,113 @@
+{
+  "projects": [
+    {
+      "id": "p-001",
+      "name": "Website refresh",
+      "description": "Update the marketing site layout, copy, and performance budget.",
+      "status": "active",
+      "owner": "Jin Park",
+      "createdAt": "2026-01-12T09:10:00.000Z",
+      "updatedAt": "2026-02-02T14:20:00.000Z",
+      "tags": ["web", "design"]
+    },
+    {
+      "id": "p-002",
+      "name": "Billing cleanup",
+      "description": "Consolidate invoices and remove legacy billing flows.",
+      "status": "paused",
+      "owner": "Mina Lee",
+      "createdAt": "2025-12-20T11:30:00.000Z",
+      "updatedAt": "2026-01-28T18:05:00.000Z",
+      "tags": ["backend", "payments"]
+    },
+    {
+      "id": "p-003",
+      "name": "Mobile onboarding",
+      "description": "Ship a simpler first-run experience with fewer steps.",
+      "status": "active",
+      "owner": "Alex Kim",
+      "createdAt": "2026-01-05T08:00:00.000Z",
+      "updatedAt": "2026-02-01T10:00:00.000Z",
+      "tags": ["mobile", "ux"]
+    },
+    {
+      "id": "p-004",
+      "name": "Docs IA",
+      "description": "Reorganize docs navigation and add search-friendly structure.",
+      "status": "archived",
+      "owner": "Sora Choi",
+      "createdAt": "2025-10-10T12:00:00.000Z",
+      "updatedAt": "2025-12-01T12:00:00.000Z",
+      "tags": ["docs"]
+    },
+    {
+      "id": "p-005",
+      "name": "Observability baseline",
+      "description": "Add health dashboards and tighten alert thresholds.",
+      "status": "active",
+      "owner": "Noah Han",
+      "createdAt": "2026-01-18T15:45:00.000Z",
+      "updatedAt": "2026-02-03T09:40:00.000Z",
+      "tags": ["infra"]
+    },
+    {
+      "id": "p-006",
+      "name": "Design tokens",
+      "description": "Standardize spacing, typography, and component primitives.",
+      "status": "paused",
+      "owner": "Yuna Song",
+      "createdAt": "2025-11-22T07:15:00.000Z",
+      "updatedAt": "2026-01-20T12:15:00.000Z",
+      "tags": ["design-system"]
+    }
+  ],
+  "activityByProjectId": {
+    "p-001": [
+      {
+        "id": "a-001",
+        "timestamp": "2026-02-02T14:20:00.000Z",
+        "message": "Landing hero updated and image sizes tuned."
+      },
+      {
+        "id": "a-002",
+        "timestamp": "2026-01-31T09:05:00.000Z",
+        "message": "Budget set: LCP under 2.5s on mobile."
+      }
+    ],
+    "p-002": [
+      {
+        "id": "a-010",
+        "timestamp": "2026-01-28T18:05:00.000Z",
+        "message": "Paused while reconciling old invoice exports."
+      }
+    ],
+    "p-003": [
+      {
+        "id": "a-020",
+        "timestamp": "2026-02-01T10:00:00.000Z",
+        "message": "Prototype approved for the new stepper flow."
+      }
+    ],
+    "p-004": [
+      {
+        "id": "a-030",
+        "timestamp": "2025-12-01T12:00:00.000Z",
+        "message": "Archived after migration to the new docs site."
+      }
+    ],
+    "p-005": [
+      {
+        "id": "a-040",
+        "timestamp": "2026-02-03T09:40:00.000Z",
+        "message": "Added uptime alerts for /api/health."
+      }
+    ],
+    "p-006": [
+      {
+        "id": "a-050",
+        "timestamp": "2026-01-20T12:15:00.000Z",
+        "message": "Token naming aligned with component library."
+      }
+    ]
+  }
+}
