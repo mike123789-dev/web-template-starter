@@ -38,18 +38,16 @@ ENV N3R_BUILD_COMMIT_REFERENCE=$N3R_BUILD_COMMIT_REFERENCE
 ENV N3R_BUILD_NUMBER=$N3R_BUILD_NUMBER
 
 USER root
-RUN apt-get update && apt-get upgrade -y && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates libcap2-bin && \
     rm -rf /var/lib/apt/lists/* && \
-    groupadd --gid 500 irteam && \
-    useradd --uid 500 --gid 500 --create-home --home-dir /home1/irteam irteam && \
+    (getent group 500 >/dev/null || groupadd --gid 500 irteam) && \
+    (getent passwd 500 >/dev/null || useradd --uid 500 --gid 500 --create-home --home-dir /home1/irteam irteam) && \
     setcap 'cap_net_bind_service=+ep' "$(readlink -f "$(which node)")"
 
-COPY --from=builder /home1/irteam/sample/public ./public
-COPY --from=builder /home1/irteam/sample/.next/standalone ./
-COPY --from=builder /home1/irteam/sample/.next/static ./.next/static
-
-RUN chown -R irteam:irteam /public /.next /server.js /node_modules /package.json
+COPY --from=builder --chown=500:500 /home1/irteam/sample/public ./public
+COPY --from=builder --chown=500:500 /home1/irteam/sample/.next/standalone ./
+COPY --from=builder --chown=500:500 /home1/irteam/sample/.next/static ./.next/static
 
 EXPOSE 80
 USER irteam

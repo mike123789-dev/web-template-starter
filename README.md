@@ -32,7 +32,7 @@ npm run start
 
 ```bash
 docker build -t web-template-starter .
-docker run --rm -p 3000:3000 web-template-starter
+docker run --rm -p 3000:80 web-template-starter
 ```
 
 ### Build + run (Docker Compose)
