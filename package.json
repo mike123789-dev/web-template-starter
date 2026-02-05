@@ -12,7 +12,10 @@
     "dev:stop": "lsof -tiTCP:3000 -sTCP:LISTEN | xargs -r kill",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings=0"
+    "lint": "eslint . --max-warnings=0",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test:storybook": "vitest"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -30,6 +33,16 @@
     "eslint-config-next": "16.1.6",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "storybook": "^10.2.6",
+    "@storybook/nextjs-vite": "^10.2.6",
+    "@chromatic-com/storybook": "^5.0.0",
+    "@storybook/addon-vitest": "^10.2.6",
+    "vite": "^7.3.1",
+    "eslint-plugin-storybook": "^10.2.6",
+    "vitest": "^4.0.18",
+    "playwright": "^1.58.1",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18"
   }
 }

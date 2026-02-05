@@ -14,3 +14,8 @@ command = "npm run dev:open"
 name = "stop"
 icon = "tool"
 command = "npm run dev:stop"
+
+[[actions]]
+name = "Run Storybook"
+icon = "tool"
+command = "npm run storybook"

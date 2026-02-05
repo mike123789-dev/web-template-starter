@@ -7,7 +7,10 @@
 목표: 브라우저/서버 의존 없이 UI 컴포넌트를 빠르게 검증한다.
 
 - **테스트 단위**: `*.stories.tsx` (컴포넌트와 co-locate)
-- **권장 스택**: Storybook + test-runner(Vitest addon 또는 @storybook/test)
+- **권장 스택**: Storybook + Vitest addon
+- **실행**
+  - Storybook: `npm run storybook`
+  - Storybook test: `npm run test:storybook`
 - **포인트**
   - 스토리의 `play()` + assertion으로 상호작용을 검증한다.
   - 외부 의존(네트워크/라우팅)은 Storybook 환경에서 mock으로 대체한다.
