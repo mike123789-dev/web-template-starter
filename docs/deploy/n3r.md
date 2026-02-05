@@ -15,6 +15,30 @@ n3r에서 저장소가 목록에 보이지 않으면, 보통 아래 중 하나�
 - n3r과 연동된 GitHub에서 **현재 사용자에게 admin 권한이 있는 저장소**인지 확인
 - 또는 n3r UI에서 **SSH 주소 + deploy key(private key)** 를 직접 입력해 연결
 
+### 빌드 (요약)
+
+- **n3r.app은 Dockerfile로만 이미지를 빌드**합니다. 앱 빌드까지 포함해 **Dockerfile에서 multi-stage build로 끝나야** 합니다.
+- 앱 갱신 시 빌드 설정이 동일하면, 이전 빌드 이미지를 재사용할 수 있습니다. (브랜치/태그가 가리키는 커밋이 바뀌면 다시 빌드됨)
+- 필요 시 **Force build** 또는 **클린 빌드**(캐시 삭제 후 빌드)로 강제 재빌드할 수 있습니다.
+
+#### 베이스 이미지 / 레지스트리
+
+- 베이스 이미지는 public 또는 프로젝트의 `n3r.registry`에 업로드한 이미지를 사용할 수 있습니다.
+- 이 프로젝트는 기본값으로 public 베이스 이미지(`node:22.17.0-alpine`)를 사용합니다.
+- n3r 내부 베이스 이미지로 맞추려면 n3r 빌드 설정의 Build args에 아래처럼 지정하세요.
+  - `BASE_IMAGE=snow.n3r.reg.navercorp.com/base/alpine/node:22.17.0`
+
+#### 빌드 인자 (Build args)
+
+n3r.app은 기본 빌드 인자를 제공합니다.
+
+- `N3R_BUILD_COMMIT_HASH`
+- `N3R_BUILD_COMMIT_REFERENCE`
+- `N3R_BUILD_NUMBER`
+
+원하면 위 값을 `Dockerfile`에서 `ARG`로 받아서 빌드 결과물에 버전 정보를 심는 방식으로 확장할 수 있습니다.
+이 프로젝트는 위 값을 최종 이미지의 환경변수(`N3R_BUILD_*`)로 보존합니다.
+
 ### Dockerfile
 
 `Dockerfile`은 n3r 환경과 동일한 패턴을 따릅니다.
@@ -24,6 +48,12 @@ n3r에서 저장소가 목록에 보이지 않으면, 보통 아래 중 하나�
 - Next.js `output: "standalone"` 결과물을 런타임에 사용
 - 런타임은 non-root(`nextjs`)로 실행
 - 실행 커맨드: `node server.js`
+
+### 배포 (요약)
+
+- Stateless 앱은 보통 **Rolling Update / Blue Green / Canary(또는 Replicas Based Canary)** 전략을 사용합니다.
+- Stateful로 생성하면 **Stateful Rolling Update**를 사용합니다.
+- 배포 **취소/실패** 시 구/신 리비전 팟이 섞여 남을 수 있어, 필요하면 **Cleanup**으로 stable 리비전 기준 정리가 가능합니다.
 
 ### Sandbox app 생성 (dev 존)
 

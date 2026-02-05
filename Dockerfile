@@ -1,4 +1,5 @@
-FROM snow.n3r.reg.navercorp.com/base/alpine/node:22.17.0 AS base
+ARG BASE_IMAGE="node:22.17.0-alpine"
+FROM ${BASE_IMAGE} AS base
 WORKDIR /app
 
 # Install dependencies in a separate layer for caching.
@@ -12,10 +13,17 @@ COPY . .
 RUN npm run build
 
 FROM base AS runner
+ARG N3R_BUILD_COMMIT_HASH=""
+ARG N3R_BUILD_COMMIT_REFERENCE=""
+ARG N3R_BUILD_NUMBER=""
+
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV N3R_BUILD_COMMIT_HASH=$N3R_BUILD_COMMIT_HASH
+ENV N3R_BUILD_COMMIT_REFERENCE=$N3R_BUILD_COMMIT_REFERENCE
+ENV N3R_BUILD_NUMBER=$N3R_BUILD_NUMBER
 
 # Run as non-root for better security.
 RUN addgroup --system --gid 1001 nodejs && \

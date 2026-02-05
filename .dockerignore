@@ -8,6 +8,17 @@ yarn-error.log*
 out
 dist
 
+.storybook
+coverage
+test-results
+playwright-report
+
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
 .git
 .DS_Store
 
