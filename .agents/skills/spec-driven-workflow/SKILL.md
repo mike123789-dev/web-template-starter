@@ -1,6 +1,6 @@
 ---
 name: spec-driven-workflow
-description: Maintain PRD-linked spec-driven documentation for this repository. Use when adding or changing product behavior, preparing implementation plans, splitting work into tasks, tracking feature progress, or mapping acceptance criteria to required tests under docs/specs.
+description: Maintain PRD-linked spec-driven documentation for this repository. Use when adding or changing product behavior, creating feature specs/plans/tasks, deciding whether task detail files are required, tracking progress, or mapping acceptance criteria to tests under docs/specs.
 ---
 
 # Spec Driven Workflow
@@ -21,25 +21,33 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 3. Update core feature docs
 - `spec.md`: problem, scenarios, scope, acceptance criteria, edge cases.
 - `plan.md`: technical approach, touched files, risks, validation strategy.
-- `tasks.md`: executable tasks with `PRD IDs` and `Required Test Command`.
+- `tasks.md`: executable tasks table with `PRD IDs`, `Required Test Command`, `Detail`, `Status`.
 - `test-matrix.md`: map each AC to at least one test command/location.
 
-4. Update progress
+4. Apply task split rules
+- Use `docs/specs/task-governance.md` to decide if `tasks/T-xxx.md` is required.
+- If required, create `tasks/T-xxx.md` and match filename with task ID in `tasks.md`.
+- Use only allowed task statuses: `Todo`, `In Progress`, `Blocked`, `Done`.
+
+5. Update progress
 - Reflect feature status and progress ratio in `docs/specs/README.md`.
 - Keep feature-local `README.md` metadata aligned with task completion.
 
-5. Gate completion
+6. Gate completion
 - Do not mark `Done` until all are true:
 - all tasks are complete,
+- each task marked `Done` satisfies task-level done criteria from `task-governance.md`,
 - every AC is mapped in `test-matrix.md`,
 - required commands passed (`npm run verify`, and `npm run build` for route/api/config impact).
 
 ## Required Guardrails
 
 - Never start implementation for a feature that still has `[NEEDS CLARIFICATION]`.
-- Never add tasks without PRD IDs.
+- Never add tasks without PRD IDs and a required test command (or explicit `N/A (reason)`).
+- Never leave `tasks.md` and `tasks/T-xxx.md` out of sync.
 - Never close a feature with unmapped acceptance criteria.
 
 ## References
 
 - Use `references/checklist.md` as a quick pre-implementation/pre-merge checklist.
+- Use `docs/specs/task-governance.md` for task split criteria and status rules.

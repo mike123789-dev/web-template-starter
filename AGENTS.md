@@ -38,7 +38,7 @@
 
 ## Spec-Driven Flow (Short)
 - Use `$spec-driven-workflow` for feature-level requirement/spec/test traceability.
-- Keep flow simple: `PRD IDs 확인 -> feature spec 문서 작성/갱신 -> tasks/test-matrix 동기화 -> 검증 게이트 통과 후 Done`.
+- Keep flow simple: `PRD IDs 확인 -> feature spec 문서 작성/갱신 -> tasks/test-matrix 동기화 -> task-governance 기준으로 상세 task 분할 -> 검증 게이트 통과 후 Done`.
 - Detailed workflow lives in `.agents/skills/spec-driven-workflow/SKILL.md`.
 
 ## Commit & Pull Request Guidelines

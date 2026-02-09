@@ -13,6 +13,7 @@
 - [ ] `docs/specs/prd.md`의 요구사항 ID를 참조했다.
 - [ ] `docs/specs/features/F-xxx-.../spec.md`가 최신 상태다.
 - [ ] `docs/specs/features/F-xxx-.../tasks.md`의 각 task에 PRD ID와 테스트 명령이 있다.
+- [ ] 상세 task 분할 여부가 `docs/specs/task-governance.md` 기준과 일치한다.
 - [ ] `docs/specs/features/F-xxx-.../test-matrix.md`에서 모든 AC가 테스트에 매핑됐다.
 
 ## 변경 유형별 필수 테스트

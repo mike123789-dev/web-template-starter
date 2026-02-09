@@ -6,6 +6,7 @@
 - [ ] 대상 기능 폴더(`docs/specs/features/F-xxx-*/`)가 있다.
 - [ ] `spec.md`에 `[NEEDS CLARIFICATION]`가 없다.
 - [ ] `tasks.md`의 각 항목에 `PRD IDs`와 `Required Test Command`가 있다.
+- [ ] `docs/specs/task-governance.md` 기준으로 상세 task 문서 필요 여부를 판단했다.
 
 ## During Implementation
 
@@ -16,6 +17,7 @@
 ## Before Done
 
 - [ ] `tasks.md` 완료율 100%
+- [ ] 상세 task 문서가 필요한 항목은 `tasks/T-xxx.md`가 존재한다.
 - [ ] `test-matrix.md`에서 모든 AC가 테스트에 매핑됨
 - [ ] `npm run verify` 통과
 - [ ] 라우트/API/설정 영향이 있으면 `npm run build` 통과
