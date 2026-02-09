@@ -52,3 +52,31 @@ Validation checks:
 - task detail link consistency
 - required cross-links (`Related Docs`)
 - status vs `[NEEDS CLARIFICATION]` consistency
+- PRD ID format/existence checks against `docs/specs/prd.md`
+- unresolved template placeholders (`<...>`) detection
+
+## 6) Mark task done (agent-safe)
+
+```bash
+npm run specs:task:done -- --feature-id F-003 --task-id T-002
+```
+
+Behavior:
+
+- marks target row in `tasks.md` as `Done`
+- syncs `tasks/T-xxx.md` status when present
+- refreshes progress board (`specs:check`)
+- runs validation gate (`specs:validate`)
+
+## 7) Update feature status (agent-safe)
+
+```bash
+npm run specs:feature:status -- --feature-id F-003 --status Verifying
+```
+
+Behavior:
+
+- syncs status for `spec.md`, `plan.md`, `tasks.md`, `test-matrix.md`, and feature `README.md`
+- blocks `Verifying/Done` when any task is not `Done`
+- blocks non-`Draft` status if Open Questions contains `[NEEDS CLARIFICATION]`
+- refreshes progress board and validates docs

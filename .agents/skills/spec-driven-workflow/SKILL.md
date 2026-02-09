@@ -1,6 +1,6 @@
 ---
 name: spec-driven-workflow
-description: Maintain PRD-linked spec-driven documentation for this repository. Use when adding or changing product behavior, creating feature specs/plans/tasks, deciding whether task detail files are required, tracking progress, or mapping acceptance criteria to tests under docs/specs.
+description: Operate and enforce the repository's PRD-linked spec workflow in docs/specs: scaffold feature docs, keep spec/plan/tasks/test-matrix in sync, update task and feature status via commands, regenerate progress, and validate AC-to-test traceability before completion.
 ---
 
 # Spec Driven Workflow
@@ -9,18 +9,37 @@ description: Maintain PRD-linked spec-driven documentation for this repository. 
 
 Keep `docs/specs` as a single source for requirements, implementation intent, progress, and test traceability.
 
-## Automation
+## When To Use
 
-- Bootstrap feature docs from templates:
+- 신규 feature 스펙 폴더를 만들거나 기존 스펙을 업데이트할 때
+- task 진행 상태를 반영하고 `progress.md`를 최신화해야 할 때
+- AC-테스트 매핑 누락/PRD ID 정합성/문서 품질을 점검할 때
+- 에이전트가 문서를 직접 편집하지 않고 명령 중심으로 상태를 반영해야 할 때
+
+## Core Commands
+
+1. Bootstrap feature docs
 - `npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"`
-- Build single progress board:
+
+2. Progress board
 - `npm run specs:progress`
-- Show current progress board:
 - `npm run specs:status`
-- Refresh + show in one command:
 - `npm run specs:check`
-- Validate SDD rules:
+
+3. Validation
 - `npm run specs:validate`
+
+4. Agent-safe status operations
+- Task done: `npm run specs:task:done -- --feature-id F-003 --task-id T-002`
+- Feature status sync: `npm run specs:feature:status -- --feature-id F-003 --status Verifying`
+
+## Agent Operating Contract
+
+- 문서 상태 변경은 수동 markdown 편집보다 명령 사용을 우선한다.
+- task 완료는 `specs:task:done`으로 처리한다.
+- feature 상태 전환은 `specs:feature:status`로 처리한다.
+- 상태 전환 후 반드시 `specs:check`, `specs:validate` 결과를 확인한다.
+- 검증 실패 상태에서 feature를 `Done`으로 두지 않는다.
 
 ## Workflow
 
@@ -50,6 +69,9 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 - For quick snapshot, run `npm run specs:check`.
 - Keep feature-local `README.md` metadata aligned with task completion.
 - Use `docs/specs/obsidian/dashboard.md` only as a view wrapper around `progress.md`.
+- Prefer command-based updates over manual markdown edits:
+- task completion: `specs:task:done`
+- feature status transitions: `specs:feature:status`
 
 6. Gate completion
 - Do not mark `Done` until all are true:
@@ -65,6 +87,17 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 - Never add tasks without PRD IDs and a required test command (or explicit `N/A (reason)`).
 - Never leave `tasks.md` and `tasks/T-xxx.md` out of sync.
 - Never close a feature with unmapped acceptance criteria.
+- Never bypass status commands when an automated command exists for the same action.
+- Never ignore `specs:validate` failure output; fix root causes before proceeding.
+
+## Validation Coverage (Current)
+
+- Required docs/frontmatter/schema compliance
+- `Related Docs` cross-link consistency
+- `[NEEDS CLARIFICATION]` and status consistency (`Open Questions` scope)
+- PRD ID format and existence check (`docs/specs/prd.md` 기준)
+- Placeholder token(`<...>`) 잔존 검사
+- task-detail 파일 동기화 및 상태 enum 검사
 
 ## References
 

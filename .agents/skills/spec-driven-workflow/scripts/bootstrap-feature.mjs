@@ -2,38 +2,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-function parseArgs(argv) {
-  const args = {};
-  for (let i = 0; i < argv.length; i += 1) {
-    const token = argv[i];
-    if (!token.startsWith('--')) continue;
-
-    if (token === '--dry-run' || token === '--force') {
-      args[token.slice(2)] = true;
-      continue;
-    }
-
-    const key = token.slice(2);
-    const value = argv[i + 1];
-    if (!value || value.startsWith('--')) {
-      throw new Error(`Missing value for --${key}`);
-    }
-    args[key] = value;
-    i += 1;
-  }
-  return args;
-}
-
-function resolveRepoRoot() {
-  const currentFile = fileURLToPath(import.meta.url);
-  return path.resolve(path.dirname(currentFile), '../../../../');
-}
-
-function formatDate() {
-  return new Date().toISOString().slice(0, 10);
-}
+import { fileExists, parseArgs, parseTaskRow, resolveRepoRoot, today } from './common.mjs';
 
 function usage() {
   return [
@@ -83,12 +52,8 @@ function replaceTaskSampleIds(content, prdIds) {
 function parseTaskRows(tasksContent) {
   const rows = [];
   for (const line of tasksContent.split('\n')) {
-    if (!line.startsWith('| T-')) continue;
-    const cols = line
-      .split('|')
-      .map((v) => v.trim())
-      .filter((v) => v.length > 0);
-    if (cols.length < 7) continue;
+    const cols = parseTaskRow(line);
+    if (!cols) continue;
 
     const [taskId, task, prdIds, , , detail, status] = cols;
     const parsedPrdIds = prdIds
@@ -107,17 +72,8 @@ function parseTaskRows(tasksContent) {
   return rows;
 }
 
-async function fileExists(targetPath) {
-  try {
-    await fs.access(targetPath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 async function main() {
-  const args = parseArgs(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2), { booleanFlags: ['dry-run', 'force'] });
   const featureId = args['feature-id'];
   const title = args.title;
   const slugInput = args.slug ?? title;
@@ -157,7 +113,7 @@ async function main() {
   const featuresDir = path.join(repoRoot, 'docs/specs/features');
   const featureFolderName = `${featureId}-${slug}`;
   const featureDir = path.join(featuresDir, featureFolderName);
-  const today = formatDate();
+  const currentDate = today();
 
   if ((await fileExists(featureDir)) && !force) {
     throw new Error(`Feature directory already exists: ${featureDir}\nUse --force to overwrite.`);
@@ -178,7 +134,7 @@ async function main() {
       .replaceAll('<Feature Title>', title)
       .replaceAll('F-xxx', featureId)
       .replaceAll('<name>', owner)
-      .replaceAll('YYYY-MM-DD', today);
+      .replaceAll('YYYY-MM-DD', currentDate);
     content = replaceLinkedPrdIds(content, prdIds);
     content = replaceSingleStatus(content, status);
     content = replaceTaskSampleIds(content, prdIds);
@@ -191,7 +147,7 @@ async function main() {
     `- Status: \`${status}\``,
     `- Owner: \`${owner}\``,
     `- Linked PRD IDs: \`${prdIds.join(', ')}\``,
-    `- Last Updated: \`${today}\``,
+    `- Last Updated: \`${currentDate}\``,
     '',
     '## Documents',
     '',
@@ -205,7 +161,7 @@ async function main() {
   const changelog = [
     `# Changelog: ${featureId} ${title}`,
     '',
-    `## ${today}`,
+    `## ${currentDate}`,
     '',
     '- Feature folder initialized via bootstrap script',
   ].join('\n');
@@ -240,7 +196,7 @@ async function main() {
       .replaceAll('F-xxx', featureId)
       .replaceAll('T-xxx', row.taskId)
       .replaceAll('<Short Title>', shortTitle)
-      .replaceAll('YYYY-MM-DD', today)
+      .replaceAll('YYYY-MM-DD', currentDate)
       .replace('status: "Todo"', `status: "${row.status}"`);
 
     const detailPrdIds = row.prdIds.length > 0 ? row.prdIds : prdIds;

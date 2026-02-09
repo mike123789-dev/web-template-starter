@@ -2,12 +2,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-function resolveRepoRoot() {
-  const currentFile = fileURLToPath(import.meta.url);
-  return path.resolve(path.dirname(currentFile), '../../../../');
-}
+import { resolveRepoRoot } from './common.mjs';
 
 async function main() {
   const repoRoot = resolveRepoRoot();

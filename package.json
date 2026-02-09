@@ -20,6 +20,8 @@
     "specs:status": "node .agents/skills/spec-driven-workflow/scripts/show-progress.mjs",
     "specs:check": "npm run specs:progress && npm run specs:status",
     "specs:validate": "node .agents/skills/spec-driven-workflow/scripts/validate-specs.mjs",
+    "specs:task:done": "node .agents/skills/spec-driven-workflow/scripts/task-done.mjs",
+    "specs:feature:status": "node .agents/skills/spec-driven-workflow/scripts/feature-status.mjs",
     "storybook": "node scripts/storybook-dev.mjs",
     "build-storybook": "storybook build",
     "test": "npm run test:unit && npm run test:storybook",

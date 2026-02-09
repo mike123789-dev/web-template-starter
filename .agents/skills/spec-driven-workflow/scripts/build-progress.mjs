@@ -2,63 +2,13 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-function resolveRepoRoot() {
-  const currentFile = fileURLToPath(import.meta.url);
-  return path.resolve(path.dirname(currentFile), '../../../../');
-}
-
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n?/);
-  if (!match) return null;
-
-  const block = match[1];
-  const result = {};
-  let activeArrayKey = null;
-
-  for (const rawLine of block.split('\n')) {
-    const line = rawLine.trimEnd();
-    if (!line.trim()) continue;
-
-    if (line.startsWith('  - ') || line.startsWith('- ')) {
-      if (!activeArrayKey) continue;
-      const value = line.replace(/^\s*-\s*/, '').replace(/^"|"$/g, '');
-      result[activeArrayKey].push(value);
-      continue;
-    }
-
-    const idx = line.indexOf(':');
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    const valueRaw = line.slice(idx + 1).trim();
-
-    if (!valueRaw) {
-      result[key] = [];
-      activeArrayKey = key;
-      continue;
-    }
-
-    activeArrayKey = null;
-    result[key] = valueRaw.replace(/^"|"$/g, '');
-  }
-
-  return result;
-}
+import { hasNeedsClarification, nowIso, parseFrontmatter, parseTaskRow, resolveRepoRoot } from './common.mjs';
 
 function parseTaskRows(tasksContent) {
   const rows = [];
   for (const line of tasksContent.split('\n')) {
-    if (!line.startsWith('| T-')) continue;
-    const cols = line
-      .split('|')
-      .map((v) => v.trim())
-      .filter((v) => v.length > 0);
-    if (cols.length < 7) continue;
+    const cols = parseTaskRow(line);
+    if (!cols) continue;
 
     const [taskId, task, , , , detail, status] = cols;
     rows.push({
@@ -109,7 +59,7 @@ async function main() {
     const totalTasks = taskRows.length;
     const doneTasks = safeStatusCount(taskRows, 'Done');
     const blockedTasks = safeStatusCount(taskRows, 'Blocked');
-    const clarification = specContent.includes('[NEEDS CLARIFICATION]') ? 'Yes' : 'No';
+    const clarification = hasNeedsClarification(specContent) ? 'Yes' : 'No';
 
     const linkedPrd = Array.isArray(specMeta.linked_prd_ids) ? specMeta.linked_prd_ids.join(', ') : '';
     summaryRows.push(

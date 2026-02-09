@@ -15,6 +15,8 @@
 
 - [ ] 코드 변경 시 `spec.md`, `plan.md`, `tasks.md`를 함께 갱신한다.
 - [ ] 기능 상태를 `Draft -> Ready -> In Progress -> Verifying -> Done` 흐름으로만 변경한다.
+- [ ] task 완료 처리는 수동 편집 대신 `npm run specs:task:done -- --feature-id ... --task-id ...`를 사용한다.
+- [ ] feature 상태 변경은 `npm run specs:feature:status -- --feature-id ... --status ...`를 사용한다.
 - [ ] `npm run specs:check`를 실행해 `docs/specs/progress.md`를 갱신하고 즉시 확인한다.
 
 ## Before Done

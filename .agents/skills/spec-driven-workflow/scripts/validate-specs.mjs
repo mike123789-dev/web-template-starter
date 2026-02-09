@@ -2,10 +2,18 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import {
+  fileExists,
+  hasNeedsClarification,
+  parseFrontmatter,
+  parseTaskRow,
+  resolveRepoRoot,
+} from './common.mjs';
 
 const FEATURE_DOC_STATUS = new Set(['Draft', 'Ready', 'In Progress', 'Verifying', 'Done']);
 const TASK_STATUS = new Set(['Todo', 'In Progress', 'Blocked', 'Done']);
+const PRD_ID_PATTERN = /^(FR|NFR)-\d{3}$/;
+const PLACEHOLDER_PATTERN = /<[^>\n]+>/;
 
 const REQUIRED_DOCS = [
   { file: 'spec.md', docType: 'spec' },
@@ -13,57 +21,6 @@ const REQUIRED_DOCS = [
   { file: 'tasks.md', docType: 'tasks' },
   { file: 'test-matrix.md', docType: 'test-matrix' },
 ];
-
-function resolveRepoRoot() {
-  const currentFile = fileURLToPath(import.meta.url);
-  return path.resolve(path.dirname(currentFile), '../../../../');
-}
-
-function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n?/);
-  if (!match) return null;
-
-  const block = match[1];
-  const result = {};
-  let activeArrayKey = null;
-
-  for (const rawLine of block.split('\n')) {
-    const line = rawLine.trimEnd();
-    if (!line.trim()) continue;
-
-    if (line.startsWith('  - ') || line.startsWith('- ')) {
-      if (!activeArrayKey) continue;
-      const value = line.replace(/^\s*-\s*/, '').replace(/^"|"$/g, '');
-      result[activeArrayKey].push(value);
-      continue;
-    }
-
-    const idx = line.indexOf(':');
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    const valueRaw = line.slice(idx + 1).trim();
-
-    if (!valueRaw) {
-      result[key] = [];
-      activeArrayKey = key;
-      continue;
-    }
-
-    activeArrayKey = null;
-    result[key] = valueRaw.replace(/^"|"$/g, '');
-  }
-
-  return result;
-}
-
-async function fileExists(targetPath) {
-  try {
-    await fs.access(targetPath);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 function requiredKeysByDocType(docType) {
   if (docType === 'task-detail') {
@@ -76,15 +33,26 @@ function validateDate(value) {
   return /^\d{4}-\d{2}-\d{2}$/.test(value);
 }
 
+function parsePrdIdsFromPrd(prdContent) {
+  return new Set([...prdContent.matchAll(/`((?:FR|NFR)-\d{3})`/g)].map((match) => match[1]));
+}
+
+function normalizeId(value) {
+  return value.replaceAll('`', '').trim();
+}
+
+function parseRowPrdIds(value) {
+  return value
+    .split(',')
+    .map((part) => normalizeId(part))
+    .filter(Boolean);
+}
+
 function parseTaskRows(tasksContent) {
   const rows = [];
   for (const line of tasksContent.split('\n')) {
-    if (!line.startsWith('| T-')) continue;
-    const cols = line
-      .split('|')
-      .map((v) => v.trim())
-      .filter((v) => v.length > 0);
-    if (cols.length < 7) continue;
+    const cols = parseTaskRow(line);
+    if (!cols) continue;
     const [taskId, task, prdIds, output, requiredTestCommand, detail, status] = cols;
     rows.push({
       taskId,
@@ -103,7 +71,23 @@ function hasAllLinks(content, links) {
   return links.every((link) => content.includes(link));
 }
 
-async function validateFeatureDir(featureDir, errors) {
+function hasTemplatePlaceholder(content) {
+  return PLACEHOLDER_PATTERN.test(content);
+}
+
+function validatePrdIds(ids, knownPrdIds, context, errors) {
+  for (const id of ids) {
+    if (!PRD_ID_PATTERN.test(id)) {
+      errors.push(`${context}: invalid PRD ID format "${id}"`);
+      continue;
+    }
+    if (!knownPrdIds.has(id)) {
+      errors.push(`${context}: unknown PRD ID "${id}" (not found in docs/specs/prd.md)`);
+    }
+  }
+}
+
+async function validateFeatureDir(featureDir, knownPrdIds, errors) {
   const folderName = path.basename(featureDir);
   const featureId = folderName.split('-').slice(0, 2).join('-');
 
@@ -144,13 +128,20 @@ async function validateFeatureDir(featureDir, errors) {
     }
     if (!Array.isArray(frontmatter.linked_prd_ids) || frontmatter.linked_prd_ids.length === 0) {
       errors.push(`${folderName}/${file}: linked_prd_ids must be a non-empty array`);
+    } else {
+      validatePrdIds(frontmatter.linked_prd_ids, knownPrdIds, `${folderName}/${file}: linked_prd_ids`, errors);
     }
     if (frontmatter.last_updated && !validateDate(frontmatter.last_updated)) {
       errors.push(`${folderName}/${file}: last_updated must be YYYY-MM-DD`);
     }
+
+    const contentWithoutFrontmatter = doc.content.replace(/^---\n[\s\S]*?\n---\n?/, '');
+    if (hasTemplatePlaceholder(contentWithoutFrontmatter)) {
+      errors.push(`${folderName}/${file}: unresolved placeholder detected (angle-bracket token)`);
+    }
   }
 
-  if (docs['spec.md']?.content.includes('[NEEDS CLARIFICATION]')) {
+  if (docs['spec.md'] && hasNeedsClarification(docs['spec.md'].content)) {
     const specFrontmatter = parseFrontmatter(docs['spec.md'].content);
     if (specFrontmatter?.status && specFrontmatter.status !== 'Draft') {
       errors.push(`${folderName}/spec.md: status must be Draft while [NEEDS CLARIFICATION] exists`);
@@ -180,6 +171,15 @@ async function validateFeatureDir(featureDir, errors) {
     for (const row of taskRows) {
       if (!TASK_STATUS.has(row.status)) {
         errors.push(`${folderName}/tasks.md: invalid task status "${row.status}" in ${row.taskId}`);
+      }
+      const rowPrdIds = parseRowPrdIds(row.prdIds);
+      if (rowPrdIds.length === 0) {
+        errors.push(`${folderName}/tasks.md: missing PRD IDs in ${row.taskId}`);
+      } else {
+        validatePrdIds(rowPrdIds, knownPrdIds, `${folderName}/tasks.md ${row.taskId}`, errors);
+      }
+      if (!row.requiredTestCommand || normalizeId(row.requiredTestCommand) === '-') {
+        errors.push(`${folderName}/tasks.md: missing required test command in ${row.taskId}`);
       }
       if (row.detail !== '-') {
         const detailPath = path.join(featureDir, row.detail);
@@ -224,6 +224,13 @@ async function validateFeatureDir(featureDir, errors) {
         }
         if (!Array.isArray(fm.linked_prd_ids) || fm.linked_prd_ids.length === 0) {
           errors.push(`${folderName}/tasks/${entry}: linked_prd_ids must be a non-empty array`);
+        } else {
+          validatePrdIds(
+            fm.linked_prd_ids,
+            knownPrdIds,
+            `${folderName}/tasks/${entry}: linked_prd_ids`,
+            errors
+          );
         }
         if (fm.last_updated && !validateDate(fm.last_updated)) {
           errors.push(`${folderName}/tasks/${entry}: last_updated must be YYYY-MM-DD`);
@@ -235,6 +242,11 @@ async function validateFeatureDir(featureDir, errors) {
         if (!hasAllLinks(detailContent, ['[[../tasks]]', '[[../spec]]', '[[../test-matrix]]'])) {
           errors.push(`${folderName}/tasks/${entry}: missing one or more required Related Docs links`);
         }
+
+        const contentWithoutFrontmatter = detailContent.replace(/^---\n[\s\S]*?\n---\n?/, '');
+        if (hasTemplatePlaceholder(contentWithoutFrontmatter)) {
+          errors.push(`${folderName}/tasks/${entry}: unresolved placeholder detected (angle-bracket token)`);
+        }
       }
     }
   }
@@ -243,6 +255,14 @@ async function validateFeatureDir(featureDir, errors) {
 async function main() {
   const repoRoot = resolveRepoRoot();
   const featuresRoot = path.join(repoRoot, 'docs/specs/features');
+  const prdPath = path.join(repoRoot, 'docs/specs/prd.md');
+  const prdContent = await fs.readFile(prdPath, 'utf8');
+  const knownPrdIds = parsePrdIdsFromPrd(prdContent);
+
+  if (knownPrdIds.size === 0) {
+    throw new Error('No PRD IDs were found in docs/specs/prd.md');
+  }
+
   const entries = await fs.readdir(featuresRoot, { withFileTypes: true });
   const featureDirs = entries
     .filter((entry) => entry.isDirectory() && /^F-\d{3}-/.test(entry.name))
@@ -251,7 +271,7 @@ async function main() {
 
   const errors = [];
   for (const featureDir of featureDirs) {
-    await validateFeatureDir(featureDir, errors);
+    await validateFeatureDir(featureDir, knownPrdIds, errors);
   }
 
   if (errors.length > 0) {
