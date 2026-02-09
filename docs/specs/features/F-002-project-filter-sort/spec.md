@@ -2,7 +2,7 @@
 doc_type: "spec"
 title: "Project Filter/Sort"
 feature_id: "F-002"
-status: "Ready"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-003"
@@ -33,6 +33,7 @@ last_updated: "2026-02-09"
 - 상태 필터(`active`, `paused`, `archived`)
 - 정렬 옵션 처리
 - 필터/정렬 쿼리 파라미터 반영
+- 적용 순서 고정: **필터 후 정렬**
 
 ## Out of Scope
 
@@ -45,6 +46,7 @@ last_updated: "2026-02-09"
 - `AC-002`: 정렬 선택 시 동일 데이터에 대해 항상 동일 순서 결과를 만든다.
 - `AC-003`: 유효하지 않은 필터/정렬 값은 기본값으로 안전하게 처리한다.
 - `AC-004`: 기본 정렬은 `updatedAt desc`이며, `sort` 파라미터가 없거나 유효하지 않을 때 적용된다.
+- `AC-005`: 동일 입력에 대해 필터/정렬 결과 순서는 항상 결정적(deterministic)이어야 한다.
 
 ## Edge/Failure Cases
 

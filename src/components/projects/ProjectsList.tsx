@@ -1,31 +1,8 @@
 import { EmptyState } from '@/components/ui/EmptyState';
-import { getProjects, type Project, type ProjectStatus } from '@/lib/projects';
+import { normalizeSortOption, normalizeStatusFilter, filterAndSortProjects } from '@/lib/projects-filter-sort';
+import { getProjects } from '@/lib/projects';
 
 import { ProjectCard } from './ProjectCard';
-
-type StatusFilter = 'all' | ProjectStatus;
-type SortOption = 'updated' | 'name';
-
-function isStatusFilter(value: unknown): value is StatusFilter {
-  return value === 'all' || value === 'active' || value === 'paused' || value === 'archived';
-}
-
-function isSortOption(value: unknown): value is SortOption {
-  return value === 'updated' || value === 'name';
-}
-
-function filterAndSortProjects(projects: Project[], options: { status: StatusFilter; sort: SortOption }) {
-  const filtered = projects.filter((project) => {
-    if (options.status === 'all') return true;
-    return project.status === options.status;
-  });
-
-  if (options.sort === 'name') {
-    return filtered.toSorted((a, b) => a.name.localeCompare(b.name));
-  }
-
-  return filtered.toSorted((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-}
 
 export async function ProjectsList({
   status,
@@ -34,8 +11,8 @@ export async function ProjectsList({
   status?: unknown;
   sort?: unknown;
 }) {
-  const resolvedStatus: StatusFilter = isStatusFilter(status) ? status : 'all';
-  const resolvedSort: SortOption = isSortOption(sort) ? sort : 'updated';
+  const resolvedStatus = normalizeStatusFilter(status);
+  const resolvedSort = normalizeSortOption(sort);
 
   const projects = await getProjects({ delayMs: 250 });
   const visible = filterAndSortProjects(projects, { status: resolvedStatus, sort: resolvedSort });
@@ -59,4 +36,3 @@ export async function ProjectsList({
     </div>
   );
 }
-

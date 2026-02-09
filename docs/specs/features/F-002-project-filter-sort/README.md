@@ -1,6 +1,6 @@
 # F-002 Project Filter/Sort
 
-- Status: `Ready`
+- Status: `Done`
 - Owner: `unassigned`
 - Linked PRD IDs: `FR-003`, `FR-004`, `NFR-002`
 - Last Updated: `2026-02-09`

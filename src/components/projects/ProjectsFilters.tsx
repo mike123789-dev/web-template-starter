@@ -5,29 +5,15 @@ import { useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { cn } from '@/lib/cn';
-
-type StatusFilter = 'all' | 'active' | 'paused' | 'archived';
-type SortOption = 'updated' | 'name';
-
-function normalizeStatus(value: string | null): StatusFilter {
-  if (value === 'active' || value === 'paused' || value === 'archived') {
-    return value;
-  }
-  return 'all';
-}
-
-function normalizeSort(value: string | null): SortOption {
-  if (value === 'name') return 'name';
-  return 'updated';
-}
+import { normalizeSortOption, normalizeStatusFilter } from '@/lib/projects-filter-sort';
 
 export function ProjectsFilters({ className }: { className?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const status = useMemo(() => normalizeStatus(searchParams.get('status')), [searchParams]);
-  const sort = useMemo(() => normalizeSort(searchParams.get('sort')), [searchParams]);
+  const status = useMemo(() => normalizeStatusFilter(searchParams.get('status')), [searchParams]);
+  const sort = useMemo(() => normalizeSortOption(searchParams.get('sort')), [searchParams]);
 
   const updateParam = useCallback(
     (key: 'status' | 'sort', value: string) => {
@@ -78,4 +64,3 @@ export function ProjectsFilters({ className }: { className?: string }) {
     </div>
   );
 }
-

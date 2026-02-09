@@ -2,7 +2,7 @@
 doc_type: "test-matrix"
 title: "Project Filter/Sort"
 feature_id: "F-002"
-status: "Ready"
+status: "Done"
 linked_prd_ids:
   - "FR-003"
   - "FR-004"
@@ -22,11 +22,12 @@ last_updated: "2026-02-09"
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |
 | --- | --- | --- | --- | --- | --- |
-| FR-003 | AC-001 | Unit | `npm run test:unit` | `src/lib/**/*.test.ts` | Planned |
-| FR-004 | AC-002 | Unit | `npm run test:unit` | `src/lib/**/*.test.ts` | Planned |
-| FR-003 | AC-003 | E2E | `npm run test:e2e` | `e2e/**/*.spec.ts` | Planned |
-| FR-004 | AC-004 | Unit/Integration | `npm run verify` | `src/components/projects/ProjectsList.tsx`, `src/components/projects/ProjectsFilters.tsx` | Planned |
-| NFR-002 | AC-001, AC-002, AC-003, AC-004 | Build | `npm run build` | N/A | Planned |
+| FR-003 | AC-001 | Unit | `npm run test:unit` | `src/lib/projects-filter-sort.test.ts` | Done |
+| FR-004 | AC-002 | Unit | `npm run test:unit` | `src/lib/projects-filter-sort.test.ts` | Done |
+| FR-003 | AC-003 | E2E | `npm run test:e2e` | `e2e/home.spec.ts` | Done |
+| FR-004 | AC-004 | Unit/Integration | `npm run verify` | `src/lib/projects-filter-sort.ts`, `src/components/projects/ProjectsList.tsx`, `src/components/projects/ProjectsFilters.tsx` | Done |
+| FR-004 | AC-005 | Unit | `npm run test:unit` | `src/lib/projects-filter-sort.test.ts` | Done |
+| NFR-002 | AC-001, AC-002, AC-003, AC-004, AC-005 | Build | `npm run build` | N/A | Planned |
 
 ## Coverage Check
 

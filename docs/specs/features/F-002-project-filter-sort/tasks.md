@@ -2,7 +2,7 @@
 doc_type: "tasks"
 title: "Project Filter/Sort"
 feature_id: "F-002"
-status: "Ready"
+status: "Done"
 linked_prd_ids:
   - "FR-003"
   - "FR-004"
@@ -23,10 +23,10 @@ last_updated: "2026-02-09"
 | ID | Task | PRD IDs | Output | Required Test Command | Detail | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | T-001 | 기본 정렬 규칙 확정 | FR-004 | spec open question 해소 | `npm run specs:validate` | `tasks/T-001.md` | Done |
-| T-002 | 필터/정렬 규칙 spec 반영 | FR-003, FR-004 | spec/plan 갱신 | `npm run verify` | `-` | Todo |
-| T-003 | 필터/정렬 로직 구현 | FR-003, FR-004 | 목록 결과 일관화 | `npm run test:unit` | `-` | Todo |
-| T-004 | 쿼리 파라미터 fallback 처리 | FR-003 | invalid 값 안전 처리 | `npm run verify` | `-` | Todo |
-| T-005 | 기능 완료 검증 | NFR-002 | 회귀 없음 확인 | `npm run test:e2e` | `-` | Todo |
+| T-002 | 필터/정렬 규칙 spec 반영 | FR-003, FR-004 | spec/plan 갱신 | `npm run verify` | `-` | Done |
+| T-003 | 필터/정렬 로직 구현 | FR-003, FR-004 | 목록 결과 일관화 | `npm run test:unit` | `-` | Done |
+| T-004 | 쿼리 파라미터 fallback 처리 | FR-003 | invalid 값 안전 처리 | `npm run verify` | `-` | Done |
+| T-005 | 기능 완료 검증 | NFR-002 | 회귀 없음 확인 | `npm run test:e2e` | `-` | Done |
 
 ## Notes
 

@@ -2,7 +2,7 @@
 doc_type: "plan"
 title: "Project Filter/Sort"
 feature_id: "F-002"
-status: "Ready"
+status: "Done"
 linked_prd_ids:
   - "FR-003"
   - "FR-004"
@@ -21,15 +21,17 @@ last_updated: "2026-02-09"
 ## Technical Approach
 
 - 쿼리 파라미터를 `page.tsx`에서 파싱하고 `ProjectsList`로 전달한다.
-- 필터/정렬 로직은 `src/lib/projects.ts` 또는 전용 helper로 분리한다.
+- 필터/정렬 로직은 전용 helper(`src/lib/projects-filter-sort.ts`)로 분리한다.
 - 잘못된 파라미터는 기본값으로 fallback한다.
 - 정렬 기본값은 `updated`이며 내부 규칙은 `updatedAt desc`로 고정한다.
+- 처리 순서는 항상 `filter -> sort`로 고정한다.
 
 ## Affected Files
 
 - `src/app/page.tsx`
 - `src/components/projects/ProjectsFilters.tsx`
 - `src/components/projects/ProjectsList.tsx`
+- `src/lib/projects-filter-sort.ts`
 - `src/lib/projects.ts`
 
 ## Risks and Mitigations
