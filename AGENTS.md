@@ -1,10 +1,10 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `src/app/` contains the Next.js App Router routes, layouts, and API handlers (for example `src/app/api/health/route.ts`).
-- `src/components/` holds reusable UI and client components (for example `src/components/counter/CounterCard.tsx`).
+- `src/app/` contains Next.js App Router routes, layouts, and API handlers (for example `src/app/api/projects/route.ts`).
+- `src/components/` holds reusable UI and client components (for example `src/components/projects/ProjectCard.tsx`).
+- `src/lib/` contains shared helpers and mock data access (for example `src/lib/projects.ts`).
 - `public/` stores static assets served at the web root.
-- `lib/` is available for shared utilities and server-side helpers.
 
 ## Build, Test, and Development Commands
 - `npm run dev`: Start the Next.js dev server on the default port.
@@ -13,6 +13,8 @@
 - `npm run build`: Create a production build.
 - `npm run start`: Serve the production build locally.
 - `npm run lint`: Run ESLint with zero warnings allowed.
+- `npm run typecheck`: Run TypeScript type checking (`tsc --noEmit`).
+- `npm run verify`: Run lint + typecheck + unit tests.
 - `npm run test:unit`: Run Vitest unit tests.
 - `npm run test:storybook`: Run Storybook Vitest smoke tests.
 - `npm run test:e2e`: Run Playwright E2E tests.
@@ -28,14 +30,15 @@
 - Prefer Tailwind CSS utility classes for styling.
 
 ## Testing Guidelines
-- No test framework is configured yet. If you add tests, document the runner and add an `npm` script.
-- Place tests near their modules or under a `tests/` folder; follow the naming pattern `*.test.ts` or `*.test.tsx`.
-- If you change code, you must follow `docs/engineering/testing.md` and add the appropriate test cases aligned with that guide.
+- Test stack is already configured: Vitest (`test:unit`), Storybook Vitest (`test:storybook`), and Playwright (`test:e2e`).
+- Place tests near their modules or under a `tests/` folder; follow `*.test.ts` or `*.test.tsx`.
+- For code changes, follow `docs/engineering/testing.md` and the change-to-test checklist in `docs/agent/dod.md`.
+- Use `npm run verify` as the minimum pre-review gate for non-trivial code changes.
 
 ## Commit & Pull Request Guidelines
 - Commit messages are short, imperative, and unscoped (for example `Add dev stop and open scripts`). This is based on the current, small history.
 - PRs should include a clear summary, link any relevant issues, and provide screenshots for UI changes.
-- Run `npm run lint` and a production build check (`npm run build`) before requesting review.
+- Run `npm run verify` and a production build check (`npm run build`) before requesting review.
 
 ## Configuration & Environment
 - Node.js version requirement: `>=20.0.0` (see `package.json`).
