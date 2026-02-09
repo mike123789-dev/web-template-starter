@@ -1,1 +1,5 @@
-{}
+{
+  "enabledCssSnippets": [
+    "sdd-progress"
+  ]
+}

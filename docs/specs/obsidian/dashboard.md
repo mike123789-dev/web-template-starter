@@ -1,3 +1,8 @@
+---
+cssclasses:
+  - sdd-progress
+---
+
 # SDD Dashboard
 
 진행상황은 `docs/specs/progress.md` 하나만 소스로 사용한다.
@@ -9,7 +14,15 @@ TABLE
   doc_type AS "Type",
   feature_id AS "Feature",
   task_id AS "Task",
-  status AS "Status",
+  choice(status = "Done", "🟩 Done",
+    choice(status = "Ready", "🟦 Ready",
+      choice(status = "In Progress", "🟨 In Progress",
+        choice(status = "Blocked", "🟥 Blocked",
+          choice(status = "Draft", "⬜ Draft", "▫ " + status)
+        )
+      )
+    )
+  ) AS "Status",
   last_updated AS "Last Updated"
 FROM ""
 WHERE contains(file.path, "specs/features/")
@@ -24,7 +37,15 @@ TABLE
   doc_type AS "Type",
   feature_id AS "Feature",
   task_id AS "Task",
-  status AS "Status",
+  choice(status = "Done", "🟩 Done",
+    choice(status = "Ready", "🟦 Ready",
+      choice(status = "In Progress", "🟨 In Progress",
+        choice(status = "Blocked", "🟥 Blocked",
+          choice(status = "Draft", "⬜ Draft", "▫ " + status)
+        )
+      )
+    )
+  ) AS "Status",
   last_updated AS "Last Updated"
 FROM ""
 WHERE contains(file.path, "specs/features/")
@@ -39,7 +60,15 @@ TABLE
   doc_type AS "Type",
   feature_id AS "Feature",
   task_id AS "Task",
-  status AS "Status",
+  choice(status = "Done", "🟩 Done",
+    choice(status = "Ready", "🟦 Ready",
+      choice(status = "In Progress", "🟨 In Progress",
+        choice(status = "Blocked", "🟥 Blocked",
+          choice(status = "Draft", "⬜ Draft", "▫ " + status)
+        )
+      )
+    )
+  ) AS "Status",
   last_updated AS "Last Updated"
 FROM ""
 WHERE contains(file.path, "specs/features/")
@@ -80,7 +109,15 @@ dv.table(
 TABLE
   doc_type AS "Type",
   feature_id AS "Feature",
-  status AS "Status",
+  choice(status = "Done", "🟩 Done",
+    choice(status = "Ready", "🟦 Ready",
+      choice(status = "In Progress", "🟨 In Progress",
+        choice(status = "Blocked", "🟥 Blocked",
+          choice(status = "Draft", "⬜ Draft", "▫ " + status)
+        )
+      )
+    )
+  ) AS "Status",
   last_updated AS "Last Updated"
 FROM ""
 WHERE contains(file.path, "specs/features/")

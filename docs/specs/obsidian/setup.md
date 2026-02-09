@@ -19,7 +19,13 @@
 - 이 저장소의 기본 진행판은 Dataview 없이도 동작한다 (`progress.md`).
 - Dataview setting `Enable JavaScript Queries`는 Dataview 대시보드를 따로 쓸 때만 활성화한다.
 
-## 4) Recommended Notes
+## 4) Status Color Snippet (Optional)
+
+- `docs/specs/progress.md`는 상태값을 `<span class="sdd-status ...">` 형태로 자동 생성한다.
+- Vault가 `docs`라면 snippet 파일은 `docs/.obsidian/snippets/sdd-progress.css`를 사용한다.
+- Obsidian > Settings > Appearance > CSS snippets에서 `sdd-progress`를 활성화한다.
+
+## 5) Recommended Notes
 
 - Progress board (single source): `progress.md`
 - Dashboard wrapper: `obsidian/dashboard.md`
@@ -28,14 +34,14 @@
 - Rules: `obsidian/frontmatter-schema.md`, `task-governance.md`, `obsidian/linking-rules.md`
 - Bootstrapping: `templates/feature-bootstrap.template.md`
 
-## 5) New Feature Routine
+## 6) New Feature Routine
 
 1. `feature-bootstrap.template.md`로 feature `README.md` 생성
 2. `spec/plan/tasks/test-matrix` 문서 생성
 3. 템플릿 삽입 후 frontmatter 채우기
 4. `npm run specs:check` 실행 후 `obsidian/dashboard.md`에서 진행상황 확인
 
-## 6) Weekly Review Routine
+## 7) Weekly Review Routine
 
 1. 주 1회 `npm run specs:check` 실행
 2. `obsidian/weekly-review.md`에 이번 주 엔트리 추가

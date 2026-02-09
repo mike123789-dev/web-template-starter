@@ -1,0 +1,65 @@
+/* docs/specs/progress.md status badges */
+.sdd-progress .sdd-status,
+.sdd-progress .sdd-flag {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.8em;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 1px solid transparent;
+}
+
+.sdd-progress .sdd-status--draft {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.sdd-progress .sdd-status--ready {
+  background: #e0f2fe;
+  color: #075985;
+  border-color: #bae6fd;
+}
+
+.sdd-progress .sdd-status--in-progress {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.sdd-progress .sdd-status--blocked {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.sdd-progress .sdd-status--done {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.sdd-progress .sdd-status--unknown {
+  background: #f5f3ff;
+  color: #5b21b6;
+  border-color: #ddd6fe;
+}
+
+.sdd-progress .sdd-flag--yes {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.sdd-progress .sdd-flag--no {
+  background: #ecfeff;
+  color: #155e75;
+  border-color: #a5f3fc;
+}
+
+.sdd-progress .sdd-flag--unknown {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #d1d5db;
+}

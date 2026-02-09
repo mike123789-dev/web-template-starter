@@ -4,6 +4,34 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { hasNeedsClarification, nowIso, parseFrontmatter, parseTaskRow, resolveRepoRoot } from './common.mjs';
 
+function renderStatusBadge(rawStatus) {
+  const status = String(rawStatus ?? '-').trim() || '-';
+  const statusIconMap = {
+    Draft: '⬜',
+    Ready: '🟦',
+    'In Progress': '🟨',
+    Blocked: '🟥',
+    Done: '🟩',
+  };
+  const statusClassMap = {
+    Draft: 'draft',
+    Ready: 'ready',
+    'In Progress': 'in-progress',
+    Blocked: 'blocked',
+    Done: 'done',
+  };
+  const icon = statusIconMap[status] ?? '▫';
+  const cls = statusClassMap[status] ?? 'unknown';
+  return `<span class="sdd-status sdd-status--${cls}">${icon} ${status}</span>`;
+}
+
+function renderFlagBadge(rawFlag) {
+  const flag = String(rawFlag ?? '-').trim() || '-';
+  const icon = flag === 'Yes' ? '❗' : flag === 'No' ? '✅' : '▫';
+  const cls = flag === 'Yes' ? 'yes' : flag === 'No' ? 'no' : 'unknown';
+  return `<span class="sdd-flag sdd-flag--${cls}">${icon} ${flag}</span>`;
+}
+
 function parseTaskRows(tasksContent) {
   const rows = [];
   for (const line of tasksContent.split('\n')) {
@@ -60,10 +88,12 @@ async function main() {
     const doneTasks = safeStatusCount(taskRows, 'Done');
     const blockedTasks = safeStatusCount(taskRows, 'Blocked');
     const clarification = hasNeedsClarification(specContent) ? 'Yes' : 'No';
+    const statusCell = renderStatusBadge(specMeta.status ?? '-');
+    const clarificationCell = renderFlagBadge(clarification);
 
     const linkedPrd = Array.isArray(specMeta.linked_prd_ids) ? specMeta.linked_prd_ids.join(', ') : '';
     summaryRows.push(
-      `| ${specMeta.feature_id ?? dirName.split('-').slice(0, 2).join('-')} | ${specMeta.title ?? dirName} | ${linkedPrd} | ${specMeta.status ?? '-'} | ${doneTasks}/${totalTasks} | ${blockedTasks} | ${clarification} | ${specMeta.last_updated ?? '-'} |`
+      `| ${specMeta.feature_id ?? dirName.split('-').slice(0, 2).join('-')} | ${specMeta.title ?? dirName} | ${linkedPrd} | ${statusCell} | ${doneTasks}/${totalTasks} | ${blockedTasks} | ${clarificationCell} | ${specMeta.last_updated ?? '-'} |`
     );
 
     for (const row of taskRows) {
@@ -79,6 +109,11 @@ async function main() {
   }
 
   const content = [
+    '---',
+    'cssclasses:',
+    '  - sdd-progress',
+    '---',
+    '',
     '# SDD Progress',
     '',
     `Generated: ${nowIso()}`,
