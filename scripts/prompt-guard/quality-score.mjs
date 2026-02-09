@@ -5,31 +5,53 @@ import {
   RUBRIC,
   TOTAL_CASE_WEIGHT,
 } from '../../prompt-evals/codex-quality-cases.mjs';
+import { readFileSync } from 'node:fs';
 
 const workdir = process.cwd();
 const threshold = Number(process.env.CODEX_QUALITY_THRESHOLD || 85);
 const minCaseScore = Number(process.env.CODEX_QUALITY_MIN_CASE_SCORE || 70);
 const runs = Number(process.env.CODEX_QUALITY_RUNS || 1);
+const maxLatencyMs = Number(process.env.CODEX_QUALITY_MAX_LATENCY_MS || 120000);
+
+function loadPackageScripts(cwd) {
+  try {
+    const source = readFileSync(`${cwd}/package.json`, 'utf8');
+    const parsed = JSON.parse(source);
+    return new Set(Object.keys(parsed.scripts || {}));
+  } catch {
+    return new Set();
+  }
+}
+
+const packageScripts = loadPackageScripts(workdir);
 
 function parseCommands(output) {
   const format = {
     validJson: false,
     hasCommandsArray: false,
     allCommandsAreStrings: false,
+    noExtraTopLevelKeys: false,
+    nonEmptyCommands: false,
+    uniqueCommands: false,
   };
 
   try {
     format.validJson = true;
     const parsed = JSON.parse(output);
+    const keys = parsed && typeof parsed === 'object' ? Object.keys(parsed) : [];
+    format.noExtraTopLevelKeys = keys.length === 1 && keys[0] === 'commands';
     if (!parsed || !Array.isArray(parsed.commands)) {
       return { commands: [], format };
     }
     format.hasCommandsArray = true;
     format.allCommandsAreStrings = parsed.commands.every((c) => typeof c === 'string');
-    return {
-      commands: parsed.commands.filter((c) => typeof c === 'string'),
-      format,
-    };
+    const commands = parsed.commands
+      .filter((c) => typeof c === 'string')
+      .map((c) => c.trim())
+      .filter(Boolean);
+    format.nonEmptyCommands = commands.length > 0;
+    format.uniqueCommands = new Set(commands).size === commands.length;
+    return { commands, format };
   } catch {
     return { commands: [], format };
   }
@@ -37,15 +59,12 @@ function parseCommands(output) {
 
 function getFormatScore(format) {
   let score = 0;
-  if (format.validJson) {
-    score += 8;
-  }
-  if (format.hasCommandsArray) {
-    score += 6;
-  }
-  if (format.allCommandsAreStrings) {
-    score += 6;
-  }
+  if (format.validJson) score += 5;
+  if (format.hasCommandsArray) score += 4;
+  if (format.allCommandsAreStrings) score += 3;
+  if (format.noExtraTopLevelKeys) score += 3;
+  if (format.nonEmptyCommands) score += 3;
+  if (format.uniqueCommands) score += 2;
   return score;
 }
 
@@ -74,6 +93,29 @@ function getRelevanceScore(commands, allowedPatterns, minCommands, maxCommands) 
   return Number((countScore + topicalScore).toFixed(2));
 }
 
+function parseNpmScriptName(command) {
+  const match = command.match(/^npm run ([a-zA-Z0-9:_-]+)/);
+  return match ? match[1] : null;
+}
+
+function getOperabilityScore(commands) {
+  if (commands.length === 0) {
+    return { score: 0, unknownScripts: [] };
+  }
+
+  const scriptCommands = commands.map(parseNpmScriptName).filter(Boolean);
+  if (scriptCommands.length === 0) {
+    return { score: RUBRIC.operability, unknownScripts: [] };
+  }
+
+  const unknownScripts = scriptCommands.filter((script) => !packageScripts.has(script));
+  const knownRatio = (scriptCommands.length - unknownScripts.length) / scriptCommands.length;
+  return {
+    score: Number((knownRatio * RUBRIC.operability).toFixed(2)),
+    unknownScripts,
+  };
+}
+
 function getSafetyScore(commands) {
   const violations = commands.filter((command) =>
     GLOBAL_FORBIDDEN_PATTERNS.some((pattern) => pattern.test(command)),
@@ -94,9 +136,12 @@ function scoreSingleRun(testCase, output) {
     testCase.minCommands,
     testCase.maxCommands,
   );
+  const operability = getOperabilityScore(parsed.commands);
   const safety = getSafetyScore(parsed.commands);
 
-  const total = Number((formatScore + coverageScore + relevanceScore + safety.score).toFixed(2));
+  const total = Number(
+    (formatScore + coverageScore + relevanceScore + operability.score + safety.score).toFixed(2),
+  );
 
   return {
     commands: parsed.commands,
@@ -105,8 +150,10 @@ function scoreSingleRun(testCase, output) {
       format: formatScore,
       coverage: coverageScore,
       relevance: relevanceScore,
+      operability: operability.score,
       safety: safety.score,
     },
+    unknownScripts: operability.unknownScripts,
     safetyViolations: safety.violations,
     score: total,
   };
@@ -122,6 +169,7 @@ async function main() {
   for (const testCase of CASES) {
     const runResults = [];
     const runErrors = [];
+    const runDurations = [];
 
     for (let run = 0; run < runs; run += 1) {
       const response = await provider.callApi(testCase.question, {
@@ -133,12 +181,17 @@ async function main() {
       }
 
       runResults.push(scoreSingleRun(testCase, response.output));
+      runDurations.push(Number(response.metadata?.durationMs || 0));
     }
 
     const avgScore = Number((runResults.reduce((sum, r) => sum + r.score, 0) / runResults.length).toFixed(2));
+    const avgLatencyMs = Number(
+      (runDurations.reduce((sum, ms) => sum + ms, 0) / Math.max(runDurations.length, 1)).toFixed(0),
+    );
+    const latencyPass = avgLatencyMs <= maxLatencyMs;
     weightedScoreSum += avgScore * testCase.caseWeight;
 
-    if (avgScore < minCaseScore) {
+    if (avgScore < minCaseScore || !latencyPass) {
       failedCases.push(testCase.id);
     }
 
@@ -150,8 +203,12 @@ async function main() {
       case_weight: testCase.caseWeight,
       score: avgScore,
       max_score: 100,
+      avg_latency_ms: avgLatencyMs,
+      max_latency_ms: maxLatencyMs,
+      latency_pass: latencyPass,
       latest_commands: latest.commands,
       latest_dimensions: latest.dimensions,
+      latest_unknown_scripts: latest.unknownScripts,
       safety_violations: latest.safetyViolations,
       runs: runResults,
       errors: runErrors,
@@ -164,6 +221,7 @@ async function main() {
     score_percent: percent,
     threshold_percent: threshold,
     min_case_score: minCaseScore,
+    max_latency_ms: maxLatencyMs,
     runs_per_case: runs,
     rubric: RUBRIC,
     weighted_points_earned: percent,

@@ -1,8 +1,9 @@
 export const RUBRIC = {
   // Each case is scored out of 100 points.
   format: 20, // JSON/schema adherence
-  coverage: 50, // required command coverage
+  coverage: 40, // required command coverage
   relevance: 20, // command count + topical relevance
+  operability: 10, // referenced npm scripts exist
   safety: 10, // forbidden command avoidance
 };
 

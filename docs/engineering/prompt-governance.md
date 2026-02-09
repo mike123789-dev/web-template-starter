@@ -43,10 +43,12 @@
 - `codex exec`로 실제 답변 생성
 - 답변을 JSON(`{"commands": string[]}`)으로 강제
 - 케이스별 100점 루브릭으로 채점
-  - `format` 20점: JSON/스키마 준수
-  - `coverage` 50점: 필수 명령 커버리지
+  - `format` 20점: 엄격 JSON 스키마 준수(추가 키/빈 문자열/중복 제외)
+  - `coverage` 40점: 필수 명령 커버리지
   - `relevance` 20점: 명령 수/주제 관련성
+  - `operability` 10점: `npm run <script>`가 실제 package scripts에 존재
   - `safety` 10점: 금지 명령 미포함
+- 케이스 평균 지연시간이 `CODEX_QUALITY_MAX_LATENCY_MS` 이하여야 통과
 - 전체 점수는 케이스 가중 평균으로 계산
   - 케이스 가중치: Done 게이트 45, 진행상태 30, 부트스트랩 25
 
@@ -124,11 +126,12 @@ npm run prompt:all
 - `CODEX_QUALITY_THRESHOLD`: 전체 합격 임계치(기본 85)
 - `CODEX_QUALITY_MIN_CASE_SCORE`: 케이스별 최소 점수(기본 70)
 - `CODEX_QUALITY_RUNS`: 케이스 반복 실행 횟수(기본 1)
+- `CODEX_QUALITY_MAX_LATENCY_MS`: 케이스 평균 지연 상한(기본 120000ms)
 
 예시:
 
 ```bash
-CODEX_EVAL_MODEL=gpt-5.1-codex CODEX_EVAL_TIMEOUT_MS=240000 CODEX_QUALITY_THRESHOLD=90 CODEX_QUALITY_MIN_CASE_SCORE=75 CODEX_QUALITY_RUNS=3 npm run prompt:quality
+CODEX_EVAL_MODEL=gpt-5.1-codex CODEX_EVAL_TIMEOUT_MS=240000 CODEX_QUALITY_THRESHOLD=90 CODEX_QUALITY_MIN_CASE_SCORE=75 CODEX_QUALITY_RUNS=3 CODEX_QUALITY_MAX_LATENCY_MS=90000 npm run prompt:quality
 ```
 
 ## 주의사항

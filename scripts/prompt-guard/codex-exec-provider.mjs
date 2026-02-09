@@ -30,6 +30,7 @@ export default class CodexExecProvider {
 
     args.push(String(prompt));
 
+    const startedAt = Date.now();
     const result = spawnSync('codex', args, {
       encoding: 'utf8',
       timeout: timeoutMs,
@@ -37,6 +38,7 @@ export default class CodexExecProvider {
       env: process.env,
       maxBuffer: 10 * 1024 * 1024,
     });
+    const durationMs = Date.now() - startedAt;
 
     let output = '';
     let error = null;
@@ -62,6 +64,7 @@ export default class CodexExecProvider {
       metadata: {
         exitCode: result.status,
         signal: result.signal,
+        durationMs,
       },
     };
   }
