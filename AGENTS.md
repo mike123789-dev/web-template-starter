@@ -10,11 +10,14 @@
 - `npm run dev`: Start the Next.js dev server on the default port.
 - `npm run dev:open`: Start dev server and open `http://127.0.0.1:3000`.
 - `npm run dev:stop`: Stop the dev server running on port 3000.
+- `npm run browser:evidence -- --name <label> [--start-dev]`: Capture browser verification screenshot and save under `docs/artifacts/browser-evidence/`.
 - `npm run build`: Create a production build.
 - `npm run start`: Serve the production build locally.
 - `npm run lint`: Run ESLint with zero warnings allowed.
 - `npm run typecheck`: Run TypeScript type checking (`tsc --noEmit`).
 - `npm run verify`: Run lint + typecheck + unit tests.
+- `npm run premerge:check`: Run pre-merge gate bundle and write `docs/artifacts/premerge-report.md`.
+- `npm run premerge:check:evidence`: Run pre-merge gates and browser evidence capture in one command.
 - `npm run test:unit`: Run Vitest unit tests.
 - `npm run test:storybook`: Run Storybook Vitest smoke tests.
 - `npm run test:e2e`: Run Playwright E2E tests.

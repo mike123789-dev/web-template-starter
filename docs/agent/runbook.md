@@ -35,6 +35,7 @@
 - 에이전트 운영 문서 변경이면 기본적으로 `npm run prompt:guard`를 실행한다.
 - `prompt-evals/**`, `scripts/prompt-guard/**`, `promptfoo*.yaml` 변경 또는 PR 최종 게이트에서는 `npm run prompt:quality`(또는 `npm run prompt:all`)를 추가 실행한다.
 - 사용자 플로우 고위험 변경이면 `browser-verifier`로 실브라우저 검증 증적을 남긴다.
+- pre-merge 게이트는 `npm run premerge:check`를 기본으로 사용하고, UI 변경이 있으면 `npm run premerge:check:evidence -- --feature-id <F-xxx>`를 우선 사용한다.
 - 필요 시 추가 검증을 실행한다(예: `npm run test:all`, `npm run build`).
 
 5. 결과 보고
@@ -55,6 +56,10 @@ PR 머지 직전 리뷰 결과는 아래 형식을 최소 기준으로 남긴다
   - <missing test or coverage gap> (recommended command: <command>)
 - Blockers:
   - <merge blocker> (owner: <person or role>, action: <next step>)
+- Browser Evidence:
+  - </absolute/path/to/screenshot.png>
+- Gate Report:
+  - </absolute/path/to/docs/artifacts/premerge-report.md>
 ```
 
 작성 규칙:
@@ -62,7 +67,8 @@ PR 머지 직전 리뷰 결과는 아래 형식을 최소 기준으로 남긴다
 - `Risks`는 심각도(`High`, `Medium`, `Low`)를 붙여 우선순위를 명확히 한다.
 - `Missing Tests`는 가능한 실행 명령까지 함께 적는다.
 - `Blockers`가 없으면 `- none`으로 명시한다.
-- 셋 중 하나라도 누락된 리뷰 결과는 pre-merge 완료로 보지 않는다.
+- `Browser Evidence`, `Gate Report`는 절대경로를 한 줄에 하나씩 기록한다.
+- 항목 중 하나라도 누락된 리뷰 결과는 pre-merge 완료로 보지 않는다.
 
 ## 실행 원칙
 

@@ -131,3 +131,7 @@ dist
 
 *storybook.log
 storybook-static
+
+# Pre-merge artifacts
+docs/artifacts/premerge-report.md
+docs/artifacts/browser-evidence/*.png

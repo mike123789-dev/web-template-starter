@@ -31,7 +31,7 @@ Produce a merge-readiness review with explicit risks, missing tests, and blocker
 5. If no blocker and all tasks are `Done`, sync feature docs status with:
    - `npm run specs:feature:status -- --feature-id <F-xxx> --status "Done"`
 6. For UI-impact changes, capture browser evidence with [`$agent-browser`](../agent-browser/SKILL.md):
-   - prefer one-shot script: `npm run browser:evidence -- --name premerge-<feature-id>`
+   - prefer one-shot script: `npm run premerge:check:evidence -- --feature-id <F-xxx>`
    - this stores a stable file under `docs/artifacts/browser-evidence/`
    - if manual run is needed, use `open -> snapshot -i -> interact -> re-snapshot -> screenshot --full` and report the resolved saved path
 7. Prioritize findings by severity and report with the required template.
@@ -56,7 +56,9 @@ Treat these as blockers by default:
 - Blockers:
   - <merge blocker> (owner: <role>, action: <next step>)
 - Browser Evidence:
-  - <screenshot path(s)>
+  - </absolute/path/to/screenshot.png>
+- Gate Report:
+  - </absolute/path/to/docs/artifacts/premerge-report.md>
 
 If there is no blocker:
 
@@ -68,6 +70,7 @@ If there is no blocker:
 - Do not assume a gate passed without explicit evidence.
 - Put concrete file references in every risk item.
 - Prefer actionable missing-test commands over generic advice.
+- `Browser Evidence` and `Gate Report` must be absolute paths, one path per line.
 
 ## References
 
