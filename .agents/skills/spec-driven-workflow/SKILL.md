@@ -20,7 +20,7 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 
 3. Update core feature docs
 - Use Obsidian-style YAML frontmatter at the top of each doc.
-- Follow the exact key/enum rules in `docs/specs/frontmatter-schema.md`.
+- Follow the exact key/enum rules in `docs/specs/obsidian/frontmatter-schema.md`.
 - `spec.md`: problem, scenarios, scope, acceptance criteria, edge cases.
 - `plan.md`: technical approach, touched files, risks, validation strategy.
 - `tasks.md`: executable tasks table with `PRD IDs`, `Required Test Command`, `Detail`, `Status`.
@@ -34,6 +34,7 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 5. Update progress
 - Reflect feature status and progress ratio in `docs/specs/README.md`.
 - Keep feature-local `README.md` metadata aligned with task completion.
+- Check `docs/specs/obsidian/dashboard.md` to verify Draft/Blocked/clarification visibility.
 
 6. Gate completion
 - Do not mark `Done` until all are true:
@@ -52,5 +53,6 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 ## References
 
 - Use `references/checklist.md` as a quick pre-implementation/pre-merge checklist.
-- Use `docs/specs/frontmatter-schema.md` as the source of truth for metadata keys.
+- Use `docs/specs/obsidian/frontmatter-schema.md` as the source of truth for metadata keys.
 - Use `docs/specs/task-governance.md` for task split criteria and status rules.
+- Use `docs/specs/obsidian/linking-rules.md` for graph-friendly cross-links.

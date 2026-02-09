@@ -48,3 +48,4 @@ Task를 `Done`으로 바꾸려면 다음을 모두 만족해야 한다.
 
 - PR 리뷰 전 `tasks.md`와 `tasks/` 폴더 간 불일치가 없어야 한다.
 - `Done` 비율과 실제 테스트 결과가 일치해야 한다.
+- 문서 링크는 `docs/specs/obsidian/linking-rules.md` 기준을 따른다.

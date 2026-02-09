@@ -12,6 +12,8 @@ const config = [
   {
     ignores: [
       'docs/deploy/app-sample-nodejs-main/**',
+      '.obsidian/**',
+      'docs/.obsidian/**',
     ],
   },
   ...nextCoreWebVitals,
@@ -20,4 +22,3 @@ const config = [
 ];
 
 export default config;
-

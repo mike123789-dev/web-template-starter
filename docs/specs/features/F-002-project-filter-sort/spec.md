@@ -13,6 +13,12 @@ last_updated: "2026-02-09"
 
 # Spec: Project Filter/Sort
 
+## Related Docs
+
+- [[plan]]
+- [[tasks]]
+- [[test-matrix]]
+
 ## Problem
 
 프로젝트 목록에서 상태 필터와 정렬 방식이 모호하면 사용자와 에이전트 모두 결과를 신뢰하기 어렵다.

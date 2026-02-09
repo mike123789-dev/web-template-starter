@@ -5,15 +5,17 @@
 - [ ] `docs/specs/prd.md`에서 관련 `FR-*`/`NFR-*`를 확인했다.
 - [ ] 대상 기능 폴더(`docs/specs/features/F-xxx-*/`)가 있다.
 - [ ] `spec.md`에 `[NEEDS CLARIFICATION]`가 없다.
-- [ ] 문서 frontmatter가 `docs/specs/frontmatter-schema.md`를 따른다.
+- [ ] 문서 frontmatter가 `docs/specs/obsidian/frontmatter-schema.md`를 따른다.
 - [ ] `tasks.md`의 각 항목에 `PRD IDs`와 `Required Test Command`가 있다.
 - [ ] `docs/specs/task-governance.md` 기준으로 상세 task 문서 필요 여부를 판단했다.
+- [ ] `docs/specs/obsidian/linking-rules.md` 기준으로 문서 간 링크를 배치했다.
 
 ## During Implementation
 
 - [ ] 코드 변경 시 `spec.md`, `plan.md`, `tasks.md`를 함께 갱신한다.
 - [ ] 기능 상태를 `Draft -> Ready -> In Progress -> Verifying -> Done` 흐름으로만 변경한다.
 - [ ] `docs/specs/README.md` 대시보드의 Progress를 최신화한다.
+- [ ] `docs/specs/obsidian/dashboard.md`에서 Blocked/NEEDS CLARIFICATION 쿼리가 확인된다.
 
 ## Before Done
 

@@ -12,6 +12,12 @@ last_updated: "2026-02-09"
 
 # Tasks: Project Create Flow
 
+## Related Docs
+
+- [[spec]]
+- [[plan]]
+- [[test-matrix]]
+
 ## Task List
 
 | ID    | Task                            | PRD IDs         | Output        | Required Test Command | Detail | Status |

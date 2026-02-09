@@ -11,6 +11,12 @@ last_updated: "YYYY-MM-DD"
 
 # Tasks: <Feature Title>
 
+## Related Docs
+
+- [[spec]]
+- [[plan]]
+- [[test-matrix]]
+
 ## Task List
 
 | ID | Task | PRD IDs | Output | Required Test Command | Detail | Status |

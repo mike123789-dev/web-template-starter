@@ -1,54 +1,41 @@
 {
   "main": {
-    "id": "cc2f69ebc2245e16",
+    "id": "9cda903e040094e9",
     "type": "split",
     "children": [
       {
-        "id": "054b790e94010bfe",
+        "id": "dde43272a421aac7",
         "type": "tabs",
         "children": [
           {
-            "id": "0f3e808143a30fb9",
+            "id": "22970d681d37be48",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "specs/obsidian/setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "695f92e465a72211",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.11.7"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.11.7"
+              "title": "setup"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "068944a8fa342fdc",
+    "id": "155c6dd9f8d4c2f3",
     "type": "split",
     "children": [
       {
-        "id": "182e25cef6837dd3",
+        "id": "709fef9bcfe510d0",
         "type": "tabs",
         "children": [
           {
-            "id": "741259972f51e91f",
+            "id": "20361e1f8fed76f0",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -61,7 +48,7 @@
             }
           },
           {
-            "id": "4e449405526791f1",
+            "id": "459573c5848f34f2",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -78,7 +65,7 @@
             }
           },
           {
-            "id": "1c0b10ed6c5f9a38",
+            "id": "2b0a8387b3a1ed72",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -94,20 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "baacf60fa5a245d8",
+    "id": "0e3410925d62a3df",
     "type": "split",
     "children": [
       {
-        "id": "62da8aeb442d1bb6",
+        "id": "95e7b4fa307aad65",
         "type": "tabs",
         "children": [
           {
-            "id": "4678cce2a43a1619",
+            "id": "bf06af3f518dfde8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "specs/dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for dashboard"
             }
           },
           {
-            "id": "a794718d96aadd94",
+            "id": "cdc55b349ab6abd9",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "specs/dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from README"
+              "title": "Outgoing links from dashboard"
             }
           },
           {
-            "id": "947bb525a0d06c33",
+            "id": "86b6efb411c92e8d",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -150,7 +137,7 @@
             }
           },
           {
-            "id": "2441349795fc0ac6",
+            "id": "78eafba5589dba9d",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -164,18 +151,18 @@
             }
           },
           {
-            "id": "ed79c058af4090a6",
+            "id": "2c2432a62e7379cf",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "specs/dashboard.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of dashboard"
             }
           }
         ]
@@ -196,17 +183,20 @@
       "bases:Create new base": false
     }
   },
-  "active": "695f92e465a72211",
+  "active": "22970d681d37be48",
   "lastOpenFiles": [
-    "docs/specs/features/F-001-project-create/test-matrix.md",
-    "docs/specs/features/F-001-project-create/tasks.md",
-    "docs/specs/frontmatter-schema.md",
-    "docs/specs/features/F-001-project-create/spec.md",
-    "docs/specs/features/F-001-project-create/changelog.md",
-    "docs/specs/task-governance.md",
-    "docs/specs/README.md",
-    "docs/specs/features/F-002-project-filter-sort/tasks/T-001.md",
-    "docs/specs/features/F-001-project-create/README.md",
-    "docs/agent/runbook.md"
+    "specs/obsidian/dashboard.md",
+    "specs/features/F-002-project-filter-sort/spec.md",
+    "specs/obsidian/frontmatter-schema.md",
+    "specs/obsidian/setup.md",
+    "specs/obsidian/linking-rules.md",
+    "specs/frontmatter-schema.md",
+    "specs/obsidian",
+    "specs/obsidian-setup.md",
+    "specs/dashboard.md",
+    "specs/decisions.md",
+    "engineering/testing.md",
+    "specs/linking-rules.md",
+    "specs/templates/feature-bootstrap.template.md"
   ]
 }

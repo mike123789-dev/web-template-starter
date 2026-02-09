@@ -12,6 +12,12 @@ last_updated: "2026-02-09"
 
 # Plan: Project Create Flow
 
+## Related Docs
+
+- [[spec]]
+- [[tasks]]
+- [[test-matrix]]
+
 ## Technical Approach
 
 - 폼 컴포넌트에서 클라이언트 입력 검증을 수행한다.

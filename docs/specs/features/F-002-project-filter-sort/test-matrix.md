@@ -12,6 +12,12 @@ last_updated: "2026-02-09"
 
 # Test Matrix: Project Filter/Sort
 
+## Related Docs
+
+- [[spec]]
+- [[plan]]
+- [[tasks]]
+
 ## Requirement to Test Mapping
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |

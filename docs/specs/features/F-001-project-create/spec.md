@@ -13,6 +13,12 @@ last_updated: "2026-02-09"
 
 # Spec: Project Create Flow
 
+## Related Docs
+
+- [[plan]]
+- [[tasks]]
+- [[test-matrix]]
+
 ## Problem
 
 새 프로젝트 생성 흐름의 입력 검증/성공 처리/오류 처리 요구사항을 명확히 문서화해 회귀를 줄인다.

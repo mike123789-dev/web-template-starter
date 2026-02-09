@@ -62,7 +62,9 @@ This repository uses PRD-linked SDD to reduce regressions when adding or changin
 
 - Workspace entry: `docs/specs/README.md`
 - PRD source of truth: `docs/specs/prd.md`
-- Metadata schema (Obsidian YAML): `docs/specs/frontmatter-schema.md`
+- Obsidian setup: `docs/specs/obsidian/setup.md`
+- Dataview dashboard: `docs/specs/obsidian/dashboard.md`
+- Metadata schema (Obsidian YAML): `docs/specs/obsidian/frontmatter-schema.md`
 - Task split rules: `docs/specs/task-governance.md`
 
 ### Feature workflow

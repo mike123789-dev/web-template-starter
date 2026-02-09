@@ -12,6 +12,12 @@ last_updated: "2026-02-09"
 
 # Plan: Project Filter/Sort
 
+## Related Docs
+
+- [[spec]]
+- [[tasks]]
+- [[test-matrix]]
+
 ## Technical Approach
 
 - 쿼리 파라미터를 `page.tsx`에서 파싱하고 `ProjectsList`로 전달한다.

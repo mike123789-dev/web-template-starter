@@ -11,6 +11,12 @@ last_updated: "YYYY-MM-DD"
 
 # Test Matrix: <Feature Title>
 
+## Related Docs
+
+- [[spec]]
+- [[plan]]
+- [[tasks]]
+
 ## Requirement to Test Mapping
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |

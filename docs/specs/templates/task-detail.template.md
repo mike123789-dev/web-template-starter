@@ -12,6 +12,12 @@ last_updated: "YYYY-MM-DD"
 
 # Task Detail: T-xxx <Short Title>
 
+## Related Docs
+
+- [[../tasks]]
+- [[../spec]]
+- [[../test-matrix]]
+
 ## Objective
 
 <이 task가 끝났을 때 달성되어야 하는 단일 목표>
