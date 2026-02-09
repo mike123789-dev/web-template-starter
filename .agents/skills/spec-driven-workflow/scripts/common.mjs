@@ -110,6 +110,12 @@ export function setFrontmatterField(content, key, value) {
   return content;
 }
 
+export function setFeatureReadmeMetadata(content, status, date) {
+  return content
+    .replace(/^- Status:\s*`[^`]*`/m, `- Status: \`${status}\``)
+    .replace(/^- Last Updated:\s*`[^`]*`/m, `- Last Updated: \`${date}\``);
+}
+
 export function parseTaskRow(line) {
   if (!line.startsWith('|')) return null;
   const cells = line

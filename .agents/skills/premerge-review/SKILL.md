@@ -30,7 +30,10 @@ Produce a merge-readiness review with explicit risks, missing tests, and blocker
 4. Check browser verification trigger for UI high-risk changes (see `docs/engineering/testing.md`).
 5. If no blocker and all tasks are `Done`, sync feature docs status with:
    - `npm run specs:feature:status -- --feature-id <F-xxx> --status "Done"`
-6. Prioritize findings by severity and report with the required template.
+6. For UI-impact changes, capture browser evidence with [`$agent-browser`](../agent-browser/SKILL.md):
+   - run `open -> snapshot -i -> interact -> re-snapshot`
+   - save at least one screenshot (for example `/tmp/premerge-<feature>.png`)
+7. Prioritize findings by severity and report with the required template.
 
 ## Blocker Criteria
 
@@ -51,6 +54,8 @@ Treat these as blockers by default:
   - <missing test or evidence gap> (recommended command: <command>)
 - Blockers:
   - <merge blocker> (owner: <role>, action: <next step>)
+- Browser Evidence:
+  - <screenshot path(s)>
 
 If there is no blocker:
 

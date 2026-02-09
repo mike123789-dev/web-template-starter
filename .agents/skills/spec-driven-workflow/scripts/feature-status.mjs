@@ -9,6 +9,7 @@ import {
   parseTaskRow,
   resolveRepoRoot,
   runNpm,
+  setFeatureReadmeMetadata,
   setFrontmatterField,
   today,
 } from './common.mjs';
@@ -87,9 +88,7 @@ async function main() {
   const readmePath = path.join(featureDir, 'README.md');
   try {
     const readme = await fs.readFile(readmePath, 'utf8');
-    const readmeUpdated = readme
-      .replace(/^- Status:\s*`[^`]*`/m, `- Status: \`${status}\``)
-      .replace(/^- Last Updated:\s*`[^`]*`/m, `- Last Updated: \`${date}\``);
+    const readmeUpdated = setFeatureReadmeMetadata(readme, status, date);
     await fs.writeFile(readmePath, readmeUpdated);
   } catch {
     // README is optional for status command

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "dde43272a421aac7",
+        "id": "3713caa49eebb3eb",
         "type": "tabs",
         "children": [
           {
-            "id": "22970d681d37be48",
+            "id": "9ce8a555ae0ece67",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -183,10 +183,18 @@
       "bases:Create new base": false
     }
   },
-  "active": "22970d681d37be48",
+  "active": "9ce8a555ae0ece67",
   "lastOpenFiles": [
-    "specs/obsidian/linking-rules.md",
+    "specs/progress.md",
+    "2026-02-09.md",
+    "Untitled.canvas",
+    "specs/decisions/ADR-001-prd-feature-co-location.md",
     "specs/obsidian/dashboard.md",
+    "specs/prd.md",
+    "specs/README.md",
+    "specs/obsidian/setup.md",
+    "specs/obsidian/frontmatter-schema.md",
+    "specs/obsidian/linking-rules.md",
     "specs/features/F-001-project-create/plan.md",
     "specs/features/F-001-project-create/changelog.md",
     "specs/features/F-001-project-create/README.md",
@@ -195,11 +203,8 @@
     "specs/features/F-001-project-create/test-matrix.md",
     "specs/features/F-003-spec-automation-workflow/test-matrix.md",
     "specs/obsidian/weekly-review.md",
-    "specs/obsidian/setup.md",
-    "specs/obsidian/frontmatter-schema.md",
     "specs/templates/weekly-review.template.md",
     "specs/decisions/ADR-002-status-workflow-fixed.md",
-    "specs/decisions/ADR-001-prd-feature-co-location.md",
     "specs/decisions/ADR-template.md",
     "specs/decisions/README.md",
     "specs/obsidian/weekly-review",
@@ -208,12 +213,7 @@
     "engineering/prompt-governance.md",
     "specs/features/F-003-spec-automation-workflow/tasks/T-002.md",
     "specs/features/F-003-spec-automation-workflow/tasks.md",
-    "specs/features/F-003-spec-automation-workflow/spec.md",
-    "specs/progress.md",
-    "specs/features/F-002-project-filter-sort/spec.md",
     "specs/features/F-003-spec-automation-workflow/tasks",
-    "specs/features/F-003-spec-automation-workflow/plan.md",
-    "specs/features/F-003-spec-automation-workflow/changelog.md",
     "specs/features/F-003-spec-automation-workflow",
     "specs/obsidian"
   ]
