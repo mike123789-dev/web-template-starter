@@ -2,6 +2,7 @@
 
 ## Before Implementation
 
+- [ ] 신규 기능이면 `npm run specs:new -- ...`로 문서 스캐폴딩을 생성했다.
 - [ ] `docs/specs/prd.md`에서 관련 `FR-*`/`NFR-*`를 확인했다.
 - [ ] 대상 기능 폴더(`docs/specs/features/F-xxx-*/`)가 있다.
 - [ ] `spec.md`에 `[NEEDS CLARIFICATION]`가 없다.
@@ -22,5 +23,6 @@
 - [ ] `tasks.md` 완료율 100%
 - [ ] 상세 task 문서가 필요한 항목은 `tasks/T-xxx.md`가 존재한다.
 - [ ] `test-matrix.md`에서 모든 AC가 테스트에 매핑됨
+- [ ] `npm run specs:validate` 통과
 - [ ] `npm run verify` 통과
 - [ ] 라우트/API/설정 영향이 있으면 `npm run build` 통과

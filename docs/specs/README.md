@@ -12,6 +12,7 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 - `obsidian/frontmatter-schema.md`: Obsidian YAML frontmatter 공통 스키마
 - `task-governance.md`: task 분할/상세 문서 규칙
 - `obsidian/linking-rules.md`: 문서 간 상호 링크 규칙
+- `sdd-playbook.md`: 운영 요약 + 자동화 명령
 - `templates/`: 기능 문서 템플릿 (`task-detail.template.md`, `feature-bootstrap.template.md` 포함)
 - `features/`: 기능별 실행 문서
 
@@ -40,5 +41,12 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 6. task 상세 문서(`tasks/T-xxx.md`) 분할 기준은 `task-governance.md`를 따른다.
 7. 문서 상호 링크는 `obsidian/linking-rules.md`를 따른다.
 8. `test-matrix.md`에서 모든 Acceptance Criteria가 테스트에 매핑되어야 `Done`이다.
-9. 비문서 변경이면 최소 `npm run verify`를 통과한다.
-10. 라우트/API/설정 변경은 `npm run build`까지 통과한다.
+9. 완료 전 `npm run specs:validate`를 실행해 문서 규칙을 검증한다.
+10. 비문서 변경이면 최소 `npm run verify`를 통과한다.
+11. 라우트/API/설정 변경은 `npm run build`까지 통과한다.
+
+## Automation Commands
+
+- Bootstrap: `npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"`
+- Validate: `npm run specs:validate`
+- Full gate: `npm run specs:validate && npm run verify`

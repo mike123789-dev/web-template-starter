@@ -9,12 +9,20 @@ description: Maintain PRD-linked spec-driven documentation for this repository. 
 
 Keep `docs/specs` as a single source for requirements, implementation intent, progress, and test traceability.
 
+## Automation
+
+- Bootstrap feature docs from templates:
+- `npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"`
+- Validate SDD rules:
+- `npm run specs:validate`
+
 ## Workflow
 
 1. Confirm requirement source
 - Read `docs/specs/prd.md` and identify requirement IDs (`FR-*`, `NFR-*`).
 
 2. Select feature scope
+- Prefer the bootstrap command for new features.
 - Create or update `docs/specs/features/F-xxx-<slug>/`.
 - Set status using fixed flow: `Draft -> Ready -> In Progress -> Verifying -> Done`.
 
@@ -41,7 +49,7 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 - all tasks are complete,
 - each task marked `Done` satisfies task-level done criteria from `task-governance.md`,
 - every AC is mapped in `test-matrix.md`,
-- required commands passed (`npm run verify`, and `npm run build` for route/api/config impact).
+- required commands passed (`npm run specs:validate`, `npm run verify`, and `npm run build` for route/api/config impact).
 
 ## Required Guardrails
 
@@ -53,6 +61,7 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 ## References
 
 - Use `references/checklist.md` as a quick pre-implementation/pre-merge checklist.
+- Use `references/commands.md` for script usage and flags.
 - Use `docs/specs/obsidian/frontmatter-schema.md` as the source of truth for metadata keys.
 - Use `docs/specs/task-governance.md` for task split criteria and status rules.
 - Use `docs/specs/obsidian/linking-rules.md` for graph-friendly cross-links.

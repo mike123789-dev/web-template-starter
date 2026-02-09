@@ -75,6 +75,13 @@ This repository uses PRD-linked SDD to reduce regressions when adding or changin
 4. Run required gates (`npm run verify`, and `npm run build` for route/api/config impact).
 5. Move status through `Draft -> Ready -> In Progress -> Verifying -> Done`.
 
+### SDD automation commands
+
+```bash
+npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"
+npm run specs:validate
+```
+
 ## Production build (local)
 
 ```bash
