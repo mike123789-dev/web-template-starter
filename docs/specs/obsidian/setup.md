@@ -23,6 +23,8 @@
 
 - Progress board (single source): `progress.md`
 - Dashboard wrapper: `obsidian/dashboard.md`
+- Weekly review log: `obsidian/weekly-review.md`
+- Decision log index: `decisions/README.md`
 - Rules: `obsidian/frontmatter-schema.md`, `task-governance.md`, `obsidian/linking-rules.md`
 - Bootstrapping: `templates/feature-bootstrap.template.md`
 
@@ -32,3 +34,10 @@
 2. `spec/plan/tasks/test-matrix` 문서 생성
 3. 템플릿 삽입 후 frontmatter 채우기
 4. `npm run specs:check` 실행 후 `obsidian/dashboard.md`에서 진행상황 확인
+
+## 6) Weekly Review Routine
+
+1. 주 1회 `npm run specs:check` 실행
+2. `obsidian/weekly-review.md`에 이번 주 엔트리 추가
+3. Blocked/Ready/Recently Updated를 기반으로 의사결정 기록
+4. 구조적 결정은 `decisions/ADR-xxx-...md`로 분리 기록

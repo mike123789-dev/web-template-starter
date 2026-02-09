@@ -18,7 +18,7 @@
 - `linked_prd_ids` (required): PRD requirement ID 배열
 - `last_updated` (required): 마지막 수정일
 - `task_id` (required only for `task-detail`): `"T-xxx"` 형식
-- `owner` (optional, typically `spec`): 담당자
+- `owner` (optional, recommended for all doc types): 담당자
 
 ## Status Enum
 

@@ -4,6 +4,7 @@ title: "T-xxx <Short Title>"
 feature_id: "F-xxx"
 task_id: "T-xxx"
 status: "Todo"
+owner: "unassigned"
 linked_prd_ids:
   - "FR-xxx"
   - "NFR-xxx"

@@ -1,5 +1,7 @@
 # Decisions Log
 
+> 이 문서는 레거시 로그다. 신규 결정 기록은 `docs/specs/decisions/` ADR 문서를 사용한다.
+
 ## D-001: PRD + Feature Specs Co-located
 
 - Date: 2026-02-09

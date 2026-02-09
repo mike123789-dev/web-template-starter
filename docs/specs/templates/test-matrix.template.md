@@ -3,6 +3,7 @@ doc_type: "test-matrix"
 title: "<Feature Title>"
 feature_id: "F-xxx"
 status: "Draft"
+owner: "unassigned"
 linked_prd_ids:
   - "FR-xxx"
   - "NFR-xxx"

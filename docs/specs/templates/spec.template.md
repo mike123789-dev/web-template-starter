@@ -3,7 +3,7 @@ doc_type: "spec"
 title: "<Feature Title>"
 feature_id: "F-xxx"
 status: "Draft"
-owner: "<name>"
+owner: "unassigned"
 linked_prd_ids:
   - "FR-xxx"
   - "NFR-xxx"

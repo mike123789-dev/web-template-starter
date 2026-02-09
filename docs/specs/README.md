@@ -6,15 +6,17 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 
 - `prd.md`: 제품 요구사항과 성공 기준
 - `glossary.md`: 공통 용어 정의
-- `decisions.md`: 주요 결정 기록
+- `decisions/`: ADR 기반 결정 기록 허브
+- `decisions.md`: 레거시 결정 로그 (참고용)
 - `progress.md`: 단일 진행판 (자동 생성)
 - `obsidian/dashboard.md`: Obsidian 뷰 래퍼 (`progress.md` 중심)
+- `obsidian/weekly-review.md`: 주간 리뷰 운영 노트
 - `obsidian/setup.md`: Obsidian 템플릿/Dataview 설정 가이드
 - `obsidian/frontmatter-schema.md`: Obsidian YAML frontmatter 공통 스키마
 - `task-governance.md`: task 분할/상세 문서 규칙
 - `obsidian/linking-rules.md`: 문서 간 상호 링크 규칙
 - `sdd-playbook.md`: 운영 요약 + 자동화 명령
-- `templates/`: 기능 문서 템플릿 (`task-detail.template.md`, `feature-bootstrap.template.md` 포함)
+- `templates/`: 기능 문서 템플릿 (`task-detail.template.md`, `feature-bootstrap.template.md`, `weekly-review.template.md` 포함)
 - `features/`: 기능별 실행 문서
 
 ## Status Workflow

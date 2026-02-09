@@ -3,6 +3,7 @@ doc_type: "tasks"
 title: "<Feature Title>"
 feature_id: "F-xxx"
 status: "Draft"
+owner: "unassigned"
 linked_prd_ids:
   - "FR-xxx"
   - "NFR-xxx"

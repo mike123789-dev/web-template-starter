@@ -20,9 +20,20 @@
 - Feature ID: `F-xxx`
 - Title: `<Feature Title>`
 - Status: `Draft`
-- Owner: `<name>`
+- Owner: `unassigned`
 - Linked PRD IDs: `FR-xxx`, `NFR-xxx`
 - Last Updated: `YYYY-MM-DD`
+
+## README Feature Hub Layout
+
+- `## Feature Hub`
+- `[[spec]]`
+- `[[plan]]`
+- `[[tasks]]`
+- `[[test-matrix]]`
+- `[[changelog]]`
+- `## Decision Log`
+- `[[../../decisions/README|Decision Index]]`
 
 ## Checklist
 

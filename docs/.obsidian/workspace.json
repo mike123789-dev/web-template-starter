@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "specs/obsidian/dashboard.md",
+                "file": "specs/obsidian/weekly-review.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dashboard"
+              "title": "weekly-review"
             }
           }
         ]
@@ -185,17 +185,25 @@
   },
   "active": "22970d681d37be48",
   "lastOpenFiles": [
-    "engineering/ai-native-engineering.md",
+    "specs/obsidian/setup.md",
+    "specs/obsidian/linking-rules.md",
+    "specs/obsidian/frontmatter-schema.md",
     "specs/obsidian/dashboard.md",
+    "specs/templates/weekly-review.template.md",
+    "specs/obsidian/weekly-review.md",
+    "specs/decisions/ADR-002-status-workflow-fixed.md",
+    "specs/decisions/ADR-001-prd-feature-co-location.md",
+    "specs/decisions/ADR-template.md",
+    "specs/decisions/README.md",
+    "specs/obsidian/weekly-review",
+    "specs/decisions",
+    "engineering/ai-native-engineering.md",
     "engineering/prompt-governance.md",
     "specs/features/F-003-spec-automation-workflow/tasks/T-002.md",
     "specs/features/F-003-spec-automation-workflow/tasks.md",
     "specs/features/F-003-spec-automation-workflow/spec.md",
     "specs/progress.md",
-    "specs/obsidian/frontmatter-schema.md",
     "specs/features/F-002-project-filter-sort/spec.md",
-    "specs/obsidian/setup.md",
-    "specs/obsidian/linking-rules.md",
     "specs/features/F-003-spec-automation-workflow/tasks",
     "specs/features/F-003-spec-automation-workflow/test-matrix.md",
     "specs/features/F-003-spec-automation-workflow/plan.md",
@@ -207,9 +215,6 @@
     "specs/obsidian",
     "specs/obsidian-setup.md",
     "specs/dashboard.md",
-    "specs/decisions.md",
-    "engineering/testing.md",
-    "specs/linking-rules.md",
-    "specs/templates/feature-bootstrap.template.md"
+    "specs/decisions.md"
   ]
 }
