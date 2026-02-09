@@ -28,7 +28,7 @@ Move a `Ready` feature to `In Progress` safely using project commands.
    - otherwise ask user to choose `feature-id`
 6. Run:
    - `npm run specs:feature:status -- --feature-id <F-xxx> --status "In Progress"`
-7. Run `npm run specs:status` and confirm the transition is reflected.
+7. Run `npm run specs:status` as a standalone command (do not parallelize it with status-change command) and confirm the transition is reflected.
 8. Recommend the next immediate task from the selected feature.
 
 ## Guardrails

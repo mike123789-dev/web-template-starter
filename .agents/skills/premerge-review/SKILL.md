@@ -25,9 +25,12 @@ Produce a merge-readiness review with explicit risks, missing tests, and blocker
    - docs-only: no mandatory code gate
    - agent docs/prompt governance: `npm run prompt:guard` (+ `prompt:quality` or `prompt:all` when required)
    - code changes: `npm run verify`
+   - `src/app/**` or `src/app/api/**` impact: `npm run test:e2e`
    - route/api/config impact: `npm run build` additional gate
 4. Check browser verification trigger for UI high-risk changes (see `docs/engineering/testing.md`).
-5. Prioritize findings by severity and report with the required template.
+5. If no blocker and all tasks are `Done`, sync feature docs status with:
+   - `npm run specs:feature:status -- --feature-id <F-xxx> --status "Done"`
+6. Prioritize findings by severity and report with the required template.
 
 ## Blocker Criteria
 

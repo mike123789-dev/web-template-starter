@@ -99,9 +99,13 @@ export function hasNeedsClarification(specContent) {
 
 export function setFrontmatterField(content, key, value) {
   const valueLiteral = `"${value}"`;
-  const regex = new RegExp(`^${key}:\\s*"[^"]*"`, 'm');
-  if (regex.test(content)) {
-    return content.replace(regex, `${key}: ${valueLiteral}`);
+  const quotedRegex = new RegExp(`^(${key}:\\s*)"[^"]*"\\s*$`, 'm');
+  if (quotedRegex.test(content)) {
+    return content.replace(quotedRegex, `$1${valueLiteral}`);
+  }
+  const unquotedRegex = new RegExp(`^(${key}:\\s*)([^\\n#]+?)\\s*$`, 'm');
+  if (unquotedRegex.test(content)) {
+    return content.replace(unquotedRegex, `$1${valueLiteral}`);
   }
   return content;
 }

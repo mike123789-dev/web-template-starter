@@ -37,6 +37,8 @@
   - E2E: `npm run test:e2e` (Playwright 설정의 `webServer`가 기본 포트 `3100`에서 dev 서버를 자동으로 띄운 뒤 실행)
 - **포인트**
   - 일반적으로 별도 서버 수동 실행 없이 `npm run test:e2e`만 실행하면 된다.
+  - 로컬에서 `next dev`를 이미 띄운 상태라면 먼저 `npm run dev:stop` 실행 후 E2E를 시작하는 것을 권장한다.
+  - `.next/dev/lock` 충돌이 나면 실행 중인 `next dev` 프로세스를 종료한 뒤(`npm run dev:stop`), `npm run test:e2e`를 재실행한다.
   - 로그인/체크아웃 등 핵심 사용자 경로만 최소한으로 커버한다.
 
 ## 4) Browser Agent Validation (UI 고위험 변경 시)

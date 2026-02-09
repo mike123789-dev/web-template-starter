@@ -15,6 +15,7 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "verify": "npm run lint && npm run typecheck && npm run test:unit",
+    "premerge:check": "npm run specs:check && npm run specs:validate && npm run verify && npm run dev:stop && npm run test:e2e && npm run build",
     "specs:new": "node .agents/skills/spec-driven-workflow/scripts/bootstrap-feature.mjs",
     "specs:progress": "node .agents/skills/spec-driven-workflow/scripts/build-progress.mjs",
     "specs:status": "node .agents/skills/spec-driven-workflow/scripts/show-progress.mjs",

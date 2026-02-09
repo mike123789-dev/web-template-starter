@@ -2,12 +2,12 @@
 doc_type: test-matrix
 title: Project Create Flow
 feature_id: F-001
-status: In Progress
+status: "Done"
 linked_prd_ids:
   - FR-001
   - FR-002
   - NFR-001
-last_updated: 2026-02-09
+last_updated: "2026-02-09"
 ---
 
 # Test Matrix: Project Create Flow
