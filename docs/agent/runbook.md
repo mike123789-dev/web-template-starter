@@ -12,7 +12,7 @@
 
 1. 범위 확인
 - 요구사항과 변경 대상 파일을 확정한다.
-- 관련 문서(`AGENTS.md`, `docs/engineering/testing.md`, `docs/agent/dod.md`)를 먼저 확인한다.
+- 관련 문서(`AGENTS.md`, `docs/specs/README.md`, `docs/engineering/testing.md`, `docs/agent/dod.md`)를 먼저 확인한다.
 
 2. 변경 분류
 - 아래 중 하나 이상으로 분류한다.
@@ -22,8 +22,10 @@
 - App Router 페이지/레이아웃 변경
 - API 라우트 변경
 - 의존성/빌드/설정 변경
+- 신규 기능/기능 확장 변경
 
 3. 구현
+- 신규 기능/기능 확장은 `docs/specs/features/F-xxx-.../` 문서를 먼저 작성한다.
 - 최소 범위로 수정하고, 기존 동작 회귀를 우선 방지한다.
 - 변경이 커지면 중간 단위로 나눠 확인한다.
 

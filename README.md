@@ -48,6 +48,12 @@ npm run test:e2e
 npm run test:all
 ```
 
+## Spec-driven docs
+
+- PRD and feature specs live in `docs/specs/`.
+- Start from `docs/specs/README.md`.
+- For feature work, use `docs/specs/features/F-xxx-*/`.
+
 ## Production build (local)
 
 ```bash

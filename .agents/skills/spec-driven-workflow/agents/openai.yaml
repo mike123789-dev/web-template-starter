@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec Driven Workflow"
+  short_description: "Manage PRD-linked feature specs and test traceability"
+  default_prompt: "Use $spec-driven-workflow to define or update PRD-linked specs, tasks, and test matrix for this feature."

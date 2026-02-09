@@ -33,7 +33,13 @@
 - Test stack is already configured: Vitest (`test:unit`), Storybook Vitest (`test:storybook`), and Playwright (`test:e2e`).
 - Place tests near their modules or under a `tests/` folder; follow `*.test.ts` or `*.test.tsx`.
 - For code changes, follow `docs/engineering/testing.md` and the change-to-test checklist in `docs/agent/dod.md`.
+- For new features or behavior changes, create or update specs under `docs/specs/features/F-xxx-*/` and map AC to tests in `test-matrix.md`.
 - Use `npm run verify` as the minimum pre-review gate for non-trivial code changes.
+
+## Spec-Driven Flow (Short)
+- Use `$spec-driven-workflow` for feature-level requirement/spec/test traceability.
+- Keep flow simple: `PRD IDs 확인 -> feature spec 문서 작성/갱신 -> tasks/test-matrix 동기화 -> 검증 게이트 통과 후 Done`.
+- Detailed workflow lives in `.agents/skills/spec-driven-workflow/SKILL.md`.
 
 ## Commit & Pull Request Guidelines
 - Commit messages are short, imperative, and unscoped (for example `Add dev stop and open scripts`). This is based on the current, small history.
