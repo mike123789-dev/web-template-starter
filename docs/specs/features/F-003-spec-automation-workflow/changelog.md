@@ -3,3 +3,6 @@
 ## 2026-02-09
 
 - Feature folder initialized via bootstrap script
+- Replaced template placeholders in `spec/plan/tasks/test-matrix` with actionable content
+- Removed `Blocked` task state and cleared `[NEEDS CLARIFICATION]` marker
+- Fixed PRD traceability mismatch (`NFR-001` -> `NFR-003`) in F-003 docs

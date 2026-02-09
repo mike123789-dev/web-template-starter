@@ -2,7 +2,7 @@
 doc_type: "spec"
 title: "Project Filter/Sort"
 feature_id: "F-002"
-status: "Draft"
+status: "Ready"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-003"
@@ -44,6 +44,7 @@ last_updated: "2026-02-09"
 - `AC-001`: 상태 필터 값이 유효하면 해당 상태 프로젝트만 노출한다.
 - `AC-002`: 정렬 선택 시 동일 데이터에 대해 항상 동일 순서 결과를 만든다.
 - `AC-003`: 유효하지 않은 필터/정렬 값은 기본값으로 안전하게 처리한다.
+- `AC-004`: 기본 정렬은 `updatedAt desc`이며, `sort` 파라미터가 없거나 유효하지 않을 때 적용된다.
 
 ## Edge/Failure Cases
 
@@ -52,4 +53,4 @@ last_updated: "2026-02-09"
 
 ## Open Questions
 
-- [NEEDS CLARIFICATION] 기본 정렬 우선순위(최신순 vs 이름순)
+- None (기본 정렬: `updatedAt desc`, query fallback: `sort=updated`)

@@ -11,7 +11,6 @@ const nextTypescript = require('eslint-config-next/typescript');
 const config = [
   {
     ignores: [
-      'docs/deploy/app-sample-nodejs-main/**',
       '.obsidian/**',
       'docs/.obsidian/**',
     ],

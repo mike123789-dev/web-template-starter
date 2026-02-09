@@ -2,7 +2,7 @@
 doc_type: "test-matrix"
 title: "Spec Automation Workflow"
 feature_id: "F-003"
-status: "Draft"
+status: "In Progress"
 linked_prd_ids:
   - "FR-001"
   - "FR-002"
@@ -23,12 +23,12 @@ last_updated: "2026-02-09"
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |
 | --- | --- | --- | --- | --- | --- |
-| FR-001 | AC-001 | Unit | `npm run test:unit` | `src/**/**.test.ts` | Planned |
-| FR-001 | AC-002 | Storybook | `npm run test:storybook` | `src/**/**.stories.tsx` | Planned |
-| NFR-001 | AC-003 | Build | `npm run build` | N/A | Planned |
+| FR-001, FR-002 | AC-001 | Document Validation | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/*.md` | Planned |
+| FR-002, NFR-003 | AC-002 | Progress Snapshot | `npm run specs:check` | `docs/specs/progress.md` | Planned |
+| FR-005 | AC-003 | Traceability Check | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/test-matrix.md` | Planned |
 
 ## Coverage Check
 
-- [ ] 모든 AC가 최소 1개 테스트에 매핑됐다.
-- [ ] 필수 게이트(`verify`)가 포함됐다.
-- [ ] 변경 영향이 라우트/API면 `build`가 포함됐다.
+- [x] 모든 AC가 최소 1개 테스트에 매핑됐다.
+- [x] 문서 작업 필수 게이트(`specs:check`, `specs:validate`)가 포함됐다.
+- [x] 라우트/API 변경이 없어 `build` 게이트는 현재 범위에서 제외한다.

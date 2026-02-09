@@ -1,6 +1,6 @@
 # Testing
 
-이 프로젝트는 Next.js 웹 앱이며 **Electron 기반 테스트는 사용하지 않는다**. UI 컴포넌트는 Storybook 중심으로 검증하고, 로직은 유닛 테스트로 분리한다. E2E는 필요할 때 최소 범위로 도입한다.
+이 프로젝트는 Next.js 웹 앱이다. UI 컴포넌트는 Storybook 중심으로 검증하고, 로직은 유닛 테스트로 분리한다. E2E는 필요할 때 최소 범위로 도입한다.
 
 ## 1) UI Component Test (Storybook)
 
