@@ -1,0 +1,5 @@
+interface:
+  display_name: "Spec Progress"
+  short_description: "Check spec status, blockers, and next Ready work"
+  default_prompt: "Use $spec-progress to summarize current feature status and recommend the next Ready feature."
+

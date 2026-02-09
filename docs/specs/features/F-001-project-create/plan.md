@@ -2,7 +2,7 @@
 doc_type: "plan"
 title: "Project Create Flow"
 feature_id: "F-001"
-status: "Ready"
+status: "In Progress"
 linked_prd_ids:
   - "FR-001"
   - "FR-002"

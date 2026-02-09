@@ -42,6 +42,28 @@
 - 실행한 명령과 성공 여부
 - 남은 리스크/미실행 항목
 
+## Pre-merge 리뷰 결과 템플릿
+
+PR 머지 직전 리뷰 결과는 아래 형식을 최소 기준으로 남긴다.
+
+```md
+### Pre-merge Review
+
+- Risks:
+  - [Severity] <risk summary> (file: <path>)
+- Missing Tests:
+  - <missing test or coverage gap> (recommended command: <command>)
+- Blockers:
+  - <merge blocker> (owner: <person or role>, action: <next step>)
+```
+
+작성 규칙:
+
+- `Risks`는 심각도(`High`, `Medium`, `Low`)를 붙여 우선순위를 명확히 한다.
+- `Missing Tests`는 가능한 실행 명령까지 함께 적는다.
+- `Blockers`가 없으면 `- none`으로 명시한다.
+- 셋 중 하나라도 누락된 리뷰 결과는 pre-merge 완료로 보지 않는다.
+
 ## 실행 원칙
 
 - 비코드 문서 변경이 아니라면 `npm run verify`를 기본 검증으로 사용한다.

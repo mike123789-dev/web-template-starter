@@ -1,0 +1,5 @@
+interface:
+  display_name: "Pre-merge Review"
+  short_description: "Review merge risks, missing tests, and blockers"
+  default_prompt: "Use $premerge-review to assess merge readiness and list concrete blockers."
+

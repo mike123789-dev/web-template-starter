@@ -1,0 +1,5 @@
+interface:
+  display_name: "Start Ready Feature"
+  short_description: "Move a Ready feature into In Progress state"
+  default_prompt: "Use $start-ready-feature to pick a Ready feature and transition it to In Progress."
+
