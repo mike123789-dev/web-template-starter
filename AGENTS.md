@@ -24,6 +24,9 @@
 - `npm run specs:status`: Print current SDD progress board in terminal.
 - `npm run specs:check`: Refresh + print SDD progress board in one command.
 - `npm run specs:validate`: Validate SDD document consistency.
+- `npm run prompt:guard`: Validate prompt-governance static checks for `AGENTS.md` and skill docs.
+- `npm run prompt:quality`: Validate `codex exec` output quality for prompt-governance scenarios.
+- `npm run prompt:all`: Run static + output-quality prompt-governance checks.
 - `docker compose up --build`: Build and run the app in Docker.
 
 ## Coding Style & Naming Conventions
@@ -55,3 +58,4 @@
 ## Configuration & Environment
 - Node.js version requirement: `>=20.0.0` (see `package.json`).
 - For production containers, use the provided `Dockerfile` and `docker-compose.yml`.
+- Prompt governance runbook: `docs/engineering/prompt-governance.md`.

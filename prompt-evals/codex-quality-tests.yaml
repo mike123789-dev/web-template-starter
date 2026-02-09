@@ -1,0 +1,55 @@
+- description: Done gate must include check and validate commands
+  vars:
+    workdir: /Users/kang/Desktop/KangByungminDev/WEB/web-template-starter
+    question: |
+      AGENTS.md와 .agents/skills/spec-driven-workflow/SKILL.md만 근거로 답해.
+      feature를 Verifying에서 Done으로 올리기 전 필수 검증 명령을 JSON으로만 반환해.
+      스키마: {"commands": string[]}
+  assert:
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const commands = Array.isArray(parsed.commands) ? parsed.commands : [];
+        return commands.some((c) => /npm run specs:check/.test(c));
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const commands = Array.isArray(parsed.commands) ? parsed.commands : [];
+        return commands.some((c) => /npm run specs:validate/.test(c));
+
+- description: Progress snapshot commands should include status or check and at least 2 commands
+  vars:
+    workdir: /Users/kang/Desktop/KangByungminDev/WEB/web-template-starter
+    question: |
+      AGENTS.md와 .agents/skills/spec-driven-workflow/SKILL.md만 근거로 답해.
+      docs/specs 진행 상태를 빠르게 확인할 터미널 명령 2개 이상을 JSON으로만 반환해.
+      스키마: {"commands": string[]}
+  assert:
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const commands = Array.isArray(parsed.commands) ? parsed.commands : [];
+        return commands.some((c) => /npm run specs:(status|check)/.test(c));
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const commands = Array.isArray(parsed.commands) ? parsed.commands : [];
+        return commands.length >= 2;
+
+- description: Bootstrap command should include specs:new
+  vars:
+    workdir: /Users/kang/Desktop/KangByungminDev/WEB/web-template-starter
+    question: |
+      AGENTS.md와 .agents/skills/spec-driven-workflow/SKILL.md만 근거로 답해.
+      신규 feature 스펙 시작에 필요한 부트스트랩 명령을 JSON으로만 반환해.
+      스키마: {"commands": string[]}
+  assert:
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const commands = Array.isArray(parsed.commands) ? parsed.commands : [];
+        return commands.some((c) => /npm run specs:new/.test(c));
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        return Array.isArray(parsed.commands) && parsed.commands.every((c) => typeof c === 'string');

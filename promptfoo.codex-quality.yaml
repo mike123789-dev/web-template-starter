@@ -1,0 +1,9 @@
+description: Output quality checks using codex exec against local AGENTS/skills
+
+prompts:
+  - '{{question}}'
+
+providers:
+  - file://scripts/prompt-guard/codex-exec-provider.mjs
+
+tests: prompt-evals/codex-quality-tests.yaml

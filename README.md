@@ -40,6 +40,15 @@ npm run verify
 
 `npm run verify` runs lint + typecheck + unit tests.
 
+## Prompt Governance
+
+Prompt-critical docs (`AGENTS.md`, `.agents/skills/**/SKILL.md`) can be validated locally with static checks and `codex exec` output-quality checks.
+
+- Guide: `docs/engineering/prompt-governance.md`
+- Static checks: `npm run prompt:guard`
+- Output quality checks: `npm run prompt:quality`
+- Full suite: `npm run prompt:all`
+
 ## Full test commands
 
 ```bash

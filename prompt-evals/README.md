@@ -8,10 +8,19 @@ This folder contains local governance checks for prompt-critical docs.
 npm run prompt:guard
 ```
 
-## What it validates
+## Output quality eval (Codex CLI)
 
-- `AGENTS.md`: required sections, title, placeholder ban words
-- `.agents/skills/**/SKILL.md`: frontmatter keys, usage guidance section, sampled local path references
+```bash
+npm run prompt:quality
+```
+
+This runs `codex exec` through a custom provider and checks whether responses include required commands from `AGENTS.md` and `.agents/skills/spec-driven-workflow/SKILL.md`.
+
+## Full suite
+
+```bash
+npm run prompt:all
+```
 
 ## Report
 
