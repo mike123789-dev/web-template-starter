@@ -19,6 +19,8 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 - Set status using fixed flow: `Draft -> Ready -> In Progress -> Verifying -> Done`.
 
 3. Update core feature docs
+- Use Obsidian-style YAML frontmatter at the top of each doc.
+- Follow the exact key/enum rules in `docs/specs/frontmatter-schema.md`.
 - `spec.md`: problem, scenarios, scope, acceptance criteria, edge cases.
 - `plan.md`: technical approach, touched files, risks, validation strategy.
 - `tasks.md`: executable tasks table with `PRD IDs`, `Required Test Command`, `Detail`, `Status`.
@@ -50,4 +52,5 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 ## References
 
 - Use `references/checklist.md` as a quick pre-implementation/pre-merge checklist.
+- Use `docs/specs/frontmatter-schema.md` as the source of truth for metadata keys.
 - Use `docs/specs/task-governance.md` for task split criteria and status rules.

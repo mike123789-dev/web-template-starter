@@ -1,10 +1,16 @@
+---
+doc_type: test-matrix
+title: Project Create Flow
+feature_id: F-001
+status: Ready
+linked_prd_ids:
+  - FR-001
+  - FR-002
+  - NFR-001
+last_updated: 2026-02-09
+---
+
 # Test Matrix: Project Create Flow
-
-## Meta
-
-- Feature ID: `F-001`
-- Status: `Ready`
-- Last Updated: `2026-02-09`
 
 ## Requirement to Test Mapping
 

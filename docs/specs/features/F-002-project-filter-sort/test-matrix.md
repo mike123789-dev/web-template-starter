@@ -1,10 +1,16 @@
+---
+doc_type: "test-matrix"
+title: "Project Filter/Sort"
+feature_id: "F-002"
+status: "Draft"
+linked_prd_ids:
+  - "FR-003"
+  - "FR-004"
+  - "NFR-002"
+last_updated: "2026-02-09"
+---
+
 # Test Matrix: Project Filter/Sort
-
-## Meta
-
-- Feature ID: `F-002`
-- Status: `Draft`
-- Last Updated: `2026-02-09`
 
 ## Requirement to Test Mapping
 

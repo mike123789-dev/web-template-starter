@@ -1,12 +1,17 @@
+---
+doc_type: "spec"
+title: "Project Filter/Sort"
+feature_id: "F-002"
+status: "Draft"
+owner: "unassigned"
+linked_prd_ids:
+  - "FR-003"
+  - "FR-004"
+  - "NFR-002"
+last_updated: "2026-02-09"
+---
+
 # Spec: Project Filter/Sort
-
-## Meta
-
-- Feature ID: `F-002`
-- Status: `Draft`
-- Owner: `unassigned`
-- Linked PRD IDs: `FR-003`, `FR-004`, `NFR-002`
-- Last Updated: `2026-02-09`
 
 ## Problem
 

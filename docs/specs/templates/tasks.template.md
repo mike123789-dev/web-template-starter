@@ -1,11 +1,15 @@
+---
+doc_type: "tasks"
+title: "<Feature Title>"
+feature_id: "F-xxx"
+status: "Draft"
+linked_prd_ids:
+  - "FR-xxx"
+  - "NFR-xxx"
+last_updated: "YYYY-MM-DD"
+---
+
 # Tasks: <Feature Title>
-
-## Meta
-
-- Feature ID: `F-xxx`
-- Status: `Draft`
-- Linked PRD IDs: `FR-xxx`, `NFR-xxx`
-- Last Updated: `YYYY-MM-DD`
 
 ## Task List
 

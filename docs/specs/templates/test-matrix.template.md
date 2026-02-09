@@ -1,10 +1,15 @@
+---
+doc_type: "test-matrix"
+title: "<Feature Title>"
+feature_id: "F-xxx"
+status: "Draft"
+linked_prd_ids:
+  - "FR-xxx"
+  - "NFR-xxx"
+last_updated: "YYYY-MM-DD"
+---
+
 # Test Matrix: <Feature Title>
-
-## Meta
-
-- Feature ID: `F-xxx`
-- Status: `Draft`
-- Last Updated: `YYYY-MM-DD`
 
 ## Requirement to Test Mapping
 

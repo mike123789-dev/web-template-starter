@@ -1,11 +1,16 @@
+---
+doc_type: "plan"
+title: "Project Create Flow"
+feature_id: "F-001"
+status: "Ready"
+linked_prd_ids:
+  - "FR-001"
+  - "FR-002"
+  - "NFR-001"
+last_updated: "2026-02-09"
+---
+
 # Plan: Project Create Flow
-
-## Meta
-
-- Feature ID: `F-001`
-- Status: `Ready`
-- Linked PRD IDs: `FR-001`, `FR-002`, `NFR-001`
-- Last Updated: `2026-02-09`
 
 ## Technical Approach
 

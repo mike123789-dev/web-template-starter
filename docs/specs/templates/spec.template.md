@@ -1,12 +1,16 @@
+---
+doc_type: "spec"
+title: "<Feature Title>"
+feature_id: "F-xxx"
+status: "Draft"
+owner: "<name>"
+linked_prd_ids:
+  - "FR-xxx"
+  - "NFR-xxx"
+last_updated: "YYYY-MM-DD"
+---
+
 # Spec: <Feature Title>
-
-## Meta
-
-- Feature ID: `F-xxx`
-- Status: `Draft`
-- Owner: `<name>`
-- Linked PRD IDs: `FR-xxx`, `NFR-xxx`
-- Last Updated: `YYYY-MM-DD`
 
 ## Problem
 

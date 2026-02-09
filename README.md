@@ -48,11 +48,30 @@ npm run test:e2e
 npm run test:all
 ```
 
-## Spec-driven docs
+## Spec-Driven Development (SDD)
 
-- PRD and feature specs live in `docs/specs/`.
-- Start from `docs/specs/README.md`.
-- For feature work, use `docs/specs/features/F-xxx-*/`.
+This repository uses PRD-linked SDD to reduce regressions when adding or changing features.
+
+### Core idea
+
+- `PRD` defines what must be true.
+- `Spec/Plan/Tasks` defines what to build and in which order.
+- `Test Matrix` proves each acceptance criterion is covered by tests.
+
+### Where to start
+
+- Workspace entry: `docs/specs/README.md`
+- PRD source of truth: `docs/specs/prd.md`
+- Metadata schema (Obsidian YAML): `docs/specs/frontmatter-schema.md`
+- Task split rules: `docs/specs/task-governance.md`
+
+### Feature workflow
+
+1. Create or update `docs/specs/features/F-xxx-<slug>/`.
+2. Update `spec.md`, `plan.md`, `tasks.md`, `test-matrix.md`.
+3. Split large tasks into `tasks/T-xxx.md` when required by governance rules.
+4. Run required gates (`npm run verify`, and `npm run build` for route/api/config impact).
+5. Move status through `Draft -> Ready -> In Progress -> Verifying -> Done`.
 
 ## Production build (local)
 

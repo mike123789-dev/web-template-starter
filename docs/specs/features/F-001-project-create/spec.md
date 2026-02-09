@@ -1,12 +1,17 @@
+---
+doc_type: "spec"
+title: "Project Create Flow"
+feature_id: "F-001"
+status: "Ready"
+owner: "unassigned"
+linked_prd_ids:
+  - "FR-001"
+  - "FR-002"
+  - "NFR-001"
+last_updated: "2026-02-09"
+---
+
 # Spec: Project Create Flow
-
-## Meta
-
-- Feature ID: `F-001`
-- Status: `Ready`
-- Owner: `unassigned`
-- Linked PRD IDs: `FR-001`, `FR-002`, `NFR-001`
-- Last Updated: `2026-02-09`
 
 ## Problem
 

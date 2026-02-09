@@ -1,12 +1,16 @@
+---
+doc_type: "task-detail"
+title: "T-xxx <Short Title>"
+feature_id: "F-xxx"
+task_id: "T-xxx"
+status: "Todo"
+linked_prd_ids:
+  - "FR-xxx"
+  - "NFR-xxx"
+last_updated: "YYYY-MM-DD"
+---
+
 # Task Detail: T-xxx <Short Title>
-
-## Meta
-
-- Feature ID: `F-xxx`
-- Task ID: `T-xxx`
-- Status: `Todo`
-- Linked PRD IDs: `FR-xxx`, `NFR-xxx`
-- Last Updated: `YYYY-MM-DD`
 
 ## Objective
 

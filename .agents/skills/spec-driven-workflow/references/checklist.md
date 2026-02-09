@@ -5,6 +5,7 @@
 - [ ] `docs/specs/prd.md`에서 관련 `FR-*`/`NFR-*`를 확인했다.
 - [ ] 대상 기능 폴더(`docs/specs/features/F-xxx-*/`)가 있다.
 - [ ] `spec.md`에 `[NEEDS CLARIFICATION]`가 없다.
+- [ ] 문서 frontmatter가 `docs/specs/frontmatter-schema.md`를 따른다.
 - [ ] `tasks.md`의 각 항목에 `PRD IDs`와 `Required Test Command`가 있다.
 - [ ] `docs/specs/task-governance.md` 기준으로 상세 task 문서 필요 여부를 판단했다.
 
