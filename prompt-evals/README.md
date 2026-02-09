@@ -55,3 +55,13 @@ npm run prompt:all
 ```bash
 npm run prompt:view
 ```
+
+## Codex SDK collaboration_mode smoke
+
+```bash
+npm run prompt:quality:codex-collab
+```
+
+Notes:
+- Uses `openai:codex-sdk` provider with `collaboration_mode: plan`
+- Requires OpenAI auth context for Promptfoo provider execution

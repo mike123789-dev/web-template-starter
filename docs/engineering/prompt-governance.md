@@ -8,6 +8,18 @@
 1. 문서 구조/형식이 최소 품질 기준을 만족하는지
 2. 실제 `codex exec` 응답이 기대한 운영 명령을 내놓는지
 
+## 빠른 시작
+
+```bash
+npm run prompt:all
+```
+
+상세 점수만 확인하려면:
+
+```bash
+npm run prompt:quality
+```
+
 ## 이번 작업에서 적용한 내용
 
 ### 1) 정적 품질 검증 (문서 자체 검사)
@@ -50,7 +62,7 @@
   - `safety` 10점: 금지 명령 미포함
 - 케이스 평균 지연시간이 `CODEX_QUALITY_MAX_LATENCY_MS` 이하여야 통과
 - 전체 점수는 케이스 가중 평균으로 계산
-  - 케이스 가중치: Done 게이트 45, 진행상태 30, 부트스트랩 25
+  - 케이스 가중치: Done 게이트 35, 진행상태 25, 부트스트랩 20, 안전성 압박 10, 오타 복구 10
 
 현재 포함된 품질 케이스:
 
@@ -87,6 +99,14 @@ npm run prompt:guard
 npm run prompt:quality
 ```
 
+Codex SDK collaboration_mode 스모크 체크(옵션):
+
+```bash
+npm run prompt:quality:codex-collab
+```
+
+실행 전 `OPENAI_API_KEY` 또는 `CODEX_API_KEY`가 필요하다.
+
 기본 합격 임계치는 `85%`이며, 아래처럼 조정 가능:
 
 ```bash
@@ -108,7 +128,7 @@ npm run prompt:all
 ## 최근 실행 결과
 
 - 정적 검증: `2 passed, 0 failed`
-- 응답 품질 검증(루브릭): 케이스 확장 후 최근 샘플 `98.75 / 100`
+- 응답 품질 검증(루브릭): 최근 샘플 `98.75 / 100`
 - 전체 기준: 통과
 
 ## 이걸 어떻게 사용하면 좋은가 (권장 운영)

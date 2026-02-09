@@ -24,12 +24,19 @@
 - [ ] 코드/설정 파일이 변경되지 않았다.
 - [ ] 실행 필수 테스트 없음
 
+### 1-1) 에이전트 운영 문서 변경 (`AGENTS.md`, `.agents/skills/**`, 프롬프트 거버넌스 스크립트/케이스)
+
+- [ ] `npm run prompt:guard`
+- [ ] `npm run prompt:quality`
+- [ ] 또는 `npm run prompt:all`
+
 ### 2) UI 컴포넌트 변경 (`src/components/**`)
 
 - [ ] `npm run lint`
 - [ ] `npm run typecheck`
 - [ ] `npm run test:unit`
 - [ ] `npm run test:storybook` (스토리/컴포넌트 동작 영향 시)
+- [ ] 사용자 플로우 영향 시 `browser-verifier` 실행 (agent-browser 실브라우저 검증)
 
 ### 3) 순수 로직 변경 (`src/lib/**`, 유틸 함수)
 
@@ -42,12 +49,14 @@
 - [ ] `npm run verify`
 - [ ] `npm run test:e2e` (사용자 플로우 영향 시 필수)
 - [ ] `npm run build`
+- [ ] `browser-verifier` 실행 (주요 플로우 open/snapshot/interact/re-snapshot 증적 포함)
 
 ### 5) API 라우트 변경 (`src/app/api/**`)
 
 - [ ] `npm run verify`
 - [ ] `npm run test:e2e` (API를 사용하는 UI 플로우 영향 시)
 - [ ] `npm run build`
+- [ ] UI 의존 API 변경이면 `browser-verifier` 실행
 
 ### 6) 의존성/빌드/설정 변경 (`package.json`, `next.config.ts`, 테스트 설정)
 
