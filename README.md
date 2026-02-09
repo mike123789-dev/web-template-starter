@@ -46,7 +46,8 @@ Prompt-critical docs (`AGENTS.md`, `.agents/skills/**/SKILL.md`) can be validate
 
 - Guide: `docs/engineering/prompt-governance.md`
 - Static checks: `npm run prompt:guard`
-- Output quality checks: `npm run prompt:quality`
+- Output quality checks (weighted score): `npm run prompt:quality`
+- Output quality raw pass/fail (promptfoo): `npm run prompt:quality:raw`
 - Full suite: `npm run prompt:all`
 
 ## Full test commands

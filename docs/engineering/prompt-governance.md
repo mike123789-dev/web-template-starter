@@ -33,14 +33,22 @@
 ### 2) 응답 품질 검증 (`codex exec` 호출)
 
 - 커스텀 provider: `scripts/prompt-guard/codex-exec-provider.mjs`
-- 설정: `promptfoo.codex-quality.yaml`
-- 테스트: `prompt-evals/codex-quality-tests.yaml`
+- 가중치 케이스 정의: `prompt-evals/codex-quality-cases.mjs`
+- 가중치 스코어러: `scripts/prompt-guard/quality-score.mjs`
+- (옵션) raw pass/fail 설정: `promptfoo.codex-quality.yaml`
+- (옵션) raw pass/fail 테스트: `prompt-evals/codex-quality-tests.yaml`
 
 검사 방식:
 
 - `codex exec`로 실제 답변 생성
 - 답변을 JSON(`{"commands": string[]}`)으로 강제
-- assert에서 필수 명령 포함 여부를 채점
+- 케이스별 100점 루브릭으로 채점
+  - `format` 20점: JSON/스키마 준수
+  - `coverage` 50점: 필수 명령 커버리지
+  - `relevance` 20점: 명령 수/주제 관련성
+  - `safety` 10점: 금지 명령 미포함
+- 전체 점수는 케이스 가중 평균으로 계산
+  - 케이스 가중치: Done 게이트 45, 진행상태 30, 부트스트랩 25
 
 현재 포함된 품질 케이스:
 
@@ -55,9 +63,11 @@
 - `promptfoo.codex-quality.yaml`
 - `prompt-evals/README.md`
 - `prompt-evals/tests.yaml`
+- `prompt-evals/codex-quality-cases.mjs`
 - `prompt-evals/codex-quality-tests.yaml`
 - `scripts/prompt-guard/provider.mjs`
 - `scripts/prompt-guard/codex-exec-provider.mjs`
+- `scripts/prompt-guard/quality-score.mjs`
 
 ## 실행 방법
 
@@ -73,6 +83,18 @@ npm run prompt:guard
 npm run prompt:quality
 ```
 
+기본 합격 임계치는 `85%`이며, 아래처럼 조정 가능:
+
+```bash
+CODEX_QUALITY_THRESHOLD=90 npm run prompt:quality
+```
+
+raw pass/fail 리포트가 필요하면:
+
+```bash
+npm run prompt:quality:raw
+```
+
 ### 전체 검증(권장)
 
 ```bash
@@ -82,7 +104,7 @@ npm run prompt:all
 ## 최근 실행 결과
 
 - 정적 검증: `2 passed, 0 failed`
-- 응답 품질 검증: `3 passed, 0 failed`
+- 응답 품질 검증(루브릭): `100.00 / 100`
 - 전체 기준: 통과
 
 ## 이걸 어떻게 사용하면 좋은가 (권장 운영)
@@ -99,11 +121,14 @@ npm run prompt:all
 
 - `CODEX_EVAL_MODEL`: 평가에 사용할 모델 고정
 - `CODEX_EVAL_TIMEOUT_MS`: 케이스별 타임아웃 조정(기본 180000ms)
+- `CODEX_QUALITY_THRESHOLD`: 전체 합격 임계치(기본 85)
+- `CODEX_QUALITY_MIN_CASE_SCORE`: 케이스별 최소 점수(기본 70)
+- `CODEX_QUALITY_RUNS`: 케이스 반복 실행 횟수(기본 1)
 
 예시:
 
 ```bash
-CODEX_EVAL_MODEL=gpt-5.1-codex CODEX_EVAL_TIMEOUT_MS=240000 npm run prompt:quality
+CODEX_EVAL_MODEL=gpt-5.1-codex CODEX_EVAL_TIMEOUT_MS=240000 CODEX_QUALITY_THRESHOLD=90 CODEX_QUALITY_MIN_CASE_SCORE=75 CODEX_QUALITY_RUNS=3 npm run prompt:quality
 ```
 
 ## 주의사항

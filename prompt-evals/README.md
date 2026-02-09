@@ -14,7 +14,27 @@ npm run prompt:guard
 npm run prompt:quality
 ```
 
-This runs `codex exec` through a custom provider and checks whether responses include required commands from `AGENTS.md` and `.agents/skills/spec-driven-workflow/SKILL.md`.
+This runs `codex exec` through a custom provider and calculates a weighted score using a case rubric.
+
+- Each case is scored out of 100 (`format`, `coverage`, `relevance`, `safety`)
+- Final score is weighted across cases
+- Default pass threshold: `85`
+- Default minimum score per case: `70`
+- Default runs per case: `1`
+
+```bash
+CODEX_QUALITY_THRESHOLD=90 npm run prompt:quality
+```
+
+```bash
+CODEX_QUALITY_MIN_CASE_SCORE=75 CODEX_QUALITY_RUNS=3 npm run prompt:quality
+```
+
+Raw promptfoo pass/fail view is still available:
+
+```bash
+npm run prompt:quality:raw
+```
 
 ## Full suite
 
