@@ -1,0 +1,10 @@
+description: Local prompt governance checks for AGENTS.md and skills
+
+prompts:
+  - |
+    Validate prompt governance for {{mode}} target {{target}}.
+
+providers:
+  - file://scripts/prompt-guard/provider.mjs
+
+tests: prompt-evals/tests.yaml

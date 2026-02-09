@@ -1,0 +1,29 @@
+- description: AGENTS.md governance baseline
+  vars:
+    mode: agents
+    target: AGENTS.md
+    minScore: 1
+  assert:
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        return parsed.pass === true;
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        return parsed.score >= Number(context.vars.minScore);
+
+- description: Skills governance baseline
+  vars:
+    mode: skills
+    target: .agents/skills/**/SKILL.md
+    minScore: 0.95
+  assert:
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        return parsed.pass === true;
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        return parsed.score >= Number(context.vars.minScore);
