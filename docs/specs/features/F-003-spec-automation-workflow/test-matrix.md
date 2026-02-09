@@ -2,7 +2,7 @@
 doc_type: "test-matrix"
 title: "Spec Automation Workflow"
 feature_id: "F-003"
-status: "In Progress"
+status: "Done"
 linked_prd_ids:
   - "FR-001"
   - "FR-002"
@@ -23,9 +23,9 @@ last_updated: "2026-02-09"
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |
 | --- | --- | --- | --- | --- | --- |
-| FR-001, FR-002 | AC-001 | Document Validation | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/*.md` | Planned |
-| FR-002, NFR-003 | AC-002 | Progress Snapshot | `npm run specs:check` | `docs/specs/progress.md` | Planned |
-| FR-005 | AC-003 | Traceability Check | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/test-matrix.md` | Planned |
+| FR-001, FR-002 | AC-001 | Document Validation | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/*.md` | Passed |
+| FR-002, NFR-003 | AC-002 | Progress Snapshot | `npm run specs:check` | `docs/specs/progress.md` | Passed |
+| FR-005 | AC-003 | Traceability Check | `npm run specs:validate` | `docs/specs/features/F-003-spec-automation-workflow/test-matrix.md` | Passed |
 
 ## Coverage Check
 

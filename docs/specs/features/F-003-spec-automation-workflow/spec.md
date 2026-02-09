@@ -2,7 +2,7 @@
 doc_type: "spec"
 title: "Spec Automation Workflow"
 feature_id: "F-003"
-status: "In Progress"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-001"

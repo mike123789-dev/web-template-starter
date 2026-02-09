@@ -2,7 +2,7 @@
 doc_type: "plan"
 title: "Spec Automation Workflow"
 feature_id: "F-003"
-status: "In Progress"
+status: "Done"
 linked_prd_ids:
   - "FR-001"
   - "FR-002"
