@@ -80,6 +80,33 @@ function replaceTaskSampleIds(content, prdIds) {
   return content.replaceAll('FR-xxx', firstFr).replaceAll('NFR-xxx', firstNfr);
 }
 
+function parseTaskRows(tasksContent) {
+  const rows = [];
+  for (const line of tasksContent.split('\n')) {
+    if (!line.startsWith('| T-')) continue;
+    const cols = line
+      .split('|')
+      .map((v) => v.trim())
+      .filter((v) => v.length > 0);
+    if (cols.length < 7) continue;
+
+    const [taskId, task, prdIds, , , detail, status] = cols;
+    const parsedPrdIds = prdIds
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean);
+
+    rows.push({
+      taskId,
+      task,
+      prdIds: parsedPrdIds,
+      detail: detail.replaceAll('`', ''),
+      status,
+    });
+  }
+  return rows;
+}
+
 async function fileExists(targetPath) {
   try {
     await fs.access(targetPath);
@@ -200,6 +227,28 @@ async function main() {
   await fs.writeFile(path.join(featureDir, 'changelog.md'), changelog);
   for (const [outputName, content] of Object.entries(rendered)) {
     await fs.writeFile(path.join(featureDir, outputName), content);
+  }
+
+  const taskDetailTemplate = await fs.readFile(path.join(templatesDir, 'task-detail.template.md'), 'utf8');
+  const taskRows = parseTaskRows(rendered['tasks.md']);
+  for (const row of taskRows) {
+    if (row.detail === '-') continue;
+
+    const shortTitle = row.task || 'Task Detail';
+    let detailContent = taskDetailTemplate;
+    detailContent = detailContent
+      .replaceAll('F-xxx', featureId)
+      .replaceAll('T-xxx', row.taskId)
+      .replaceAll('<Short Title>', shortTitle)
+      .replaceAll('YYYY-MM-DD', today)
+      .replace('status: "Todo"', `status: "${row.status}"`);
+
+    const detailPrdIds = row.prdIds.length > 0 ? row.prdIds : prdIds;
+    detailContent = replaceLinkedPrdIds(detailContent, detailPrdIds);
+
+    const detailPath = path.join(featureDir, row.detail);
+    await fs.mkdir(path.dirname(detailPath), { recursive: true });
+    await fs.writeFile(detailPath, detailContent);
   }
 
   console.log(`Created feature scaffold: ${path.relative(repoRoot, featureDir)}`);

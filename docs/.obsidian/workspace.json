@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "specs/obsidian/setup.md",
+                "file": "specs/features/F-002-project-filter-sort/spec.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "setup"
+              "title": "spec"
             }
           }
         ]
@@ -185,12 +185,21 @@
   },
   "active": "22970d681d37be48",
   "lastOpenFiles": [
-    "specs/sdd-playbook.md",
     "specs/obsidian/dashboard.md",
-    "specs/features/F-002-project-filter-sort/spec.md",
-    "specs/obsidian/frontmatter-schema.md",
     "specs/obsidian/setup.md",
     "specs/obsidian/linking-rules.md",
+    "specs/obsidian/frontmatter-schema.md",
+    "specs/features/F-003-spec-automation-workflow/tasks/T-002.md",
+    "specs/features/F-003-spec-automation-workflow/tasks",
+    "specs/features/F-003-spec-automation-workflow/test-matrix.md",
+    "specs/features/F-003-spec-automation-workflow/tasks.md",
+    "specs/features/F-003-spec-automation-workflow/spec.md",
+    "specs/features/F-003-spec-automation-workflow/plan.md",
+    "specs/features/F-003-spec-automation-workflow/changelog.md",
+    "specs/features/F-003-spec-automation-workflow/README.md",
+    "specs/features/F-003-spec-automation-workflow",
+    "specs/sdd-playbook.md",
+    "specs/features/F-002-project-filter-sort/spec.md",
     "specs/frontmatter-schema.md",
     "specs/obsidian",
     "specs/obsidian-setup.md",

@@ -4,7 +4,7 @@
 
 ## 1) Vault Scope
 
-- Recommended: `/Users/kang/Desktop/KangByungminDev/WEB/web-template-starter/docs` 폴더를 별도 Vault로 연다.
+- Recommended:  `docs` 폴더를 별도 Vault로 연다.
 
 ## 2) Templates Plugin
 
