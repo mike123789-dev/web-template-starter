@@ -1,6 +1,6 @@
 # F-001 Project Create Flow
 
-- Status: `In Progress`
+- Status: `Done`
 - Owner: `unassigned`
 - Linked PRD IDs: `FR-001`, `FR-002`, `NFR-001`
 - Last Updated: `2026-02-09`

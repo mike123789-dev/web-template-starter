@@ -2,7 +2,7 @@
 doc_type: "spec"
 title: "Project Create Flow"
 feature_id: "F-001"
-status: "In Progress"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-001"

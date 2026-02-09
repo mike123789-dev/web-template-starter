@@ -1,6 +1,6 @@
 # SDD Progress
 
-Generated: 2026-02-09T13:26:07.010Z
+Generated: 2026-02-09T13:34:27.453Z
 
 This file is the single progress source. Regenerate with `npm run specs:progress`.
 
@@ -8,7 +8,7 @@ This file is the single progress source. Regenerate with `npm run specs:progress
 
 | Feature ID | Title | PRD IDs | Status | Progress | Blocked | Clarification | Last Updated |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| F-001 | Project Create Flow | FR-001, FR-002, NFR-001 | In Progress | 0/6 | 0 | No | 2026-02-09 |
+| F-001 | Project Create Flow | FR-001, FR-002, NFR-001 | Done | 6/6 | 0 | No | 2026-02-09 |
 | F-002 | Project Filter/Sort | FR-003, FR-004, NFR-002 | Ready | 1/5 | 0 | No | 2026-02-09 |
 | F-003 | Spec Automation Workflow | FR-001, FR-002, FR-005, NFR-003 | Done | 3/3 | 0 | No | 2026-02-09 |
 

@@ -25,7 +25,7 @@ const DEFAULT_VALUES: FormValues = {
 
 const API_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
-function validate(values: FormValues): FormErrors {
+export function validateProjectForm(values: FormValues): FormErrors {
   const errors: FormErrors = {};
 
   if (!values.name.trim()) errors.name = 'Name is required.';
@@ -54,7 +54,7 @@ export function NewProjectForm({ className }: { className?: string }) {
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      const nextErrors = validate(values);
+      const nextErrors = validateProjectForm(values);
       if (Object.keys(nextErrors).length > 0) {
         setErrors(nextErrors);
         return;
@@ -251,4 +251,3 @@ export function NewProjectForm({ className }: { className?: string }) {
     </Card>
   );
 }
-
