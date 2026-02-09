@@ -99,13 +99,11 @@ npm run prompt:guard
 npm run prompt:quality
 ```
 
-Codex SDK collaboration_mode 스모크 체크(옵션):
+Subagent 품질 점수(옵션):
 
 ```bash
-npm run prompt:quality:codex-collab
+npm run prompt:quality:subagents
 ```
-
-실행 전 `OPENAI_API_KEY` 또는 `CODEX_API_KEY`가 필요하다.
 
 기본 합격 임계치는 `85%`이며, 아래처럼 조정 가능:
 

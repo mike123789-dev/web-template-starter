@@ -27,7 +27,7 @@
     "prompt:guard": "npm run prompt:eval",
     "prompt:quality:raw": "promptfoo eval -c promptfoo.codex-quality.yaml",
     "prompt:quality": "node scripts/prompt-guard/quality-score.mjs",
-    "prompt:quality:codex-collab": "promptfoo eval -c promptfoo.codex-collab.yaml",
+    "prompt:quality:subagents": "node scripts/prompt-guard/subagent-quality-score.mjs",
     "prompt:all": "npm run prompt:guard && npm run prompt:quality",
     "storybook": "node scripts/storybook-dev.mjs",
     "build-storybook": "storybook build",
@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
-    "@openai/codex-sdk": "^0.98.0",
     "@playwright/test": "^1.58.1",
     "@storybook/addon-vitest": "^10.2.6",
     "@storybook/nextjs-vite": "^10.2.6",

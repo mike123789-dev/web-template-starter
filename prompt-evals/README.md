@@ -56,12 +56,13 @@ npm run prompt:all
 npm run prompt:view
 ```
 
-## Codex SDK collaboration_mode smoke
+
+## Subagent quality score
 
 ```bash
-npm run prompt:quality:codex-collab
+npm run prompt:quality:subagents
 ```
 
-Notes:
-- Uses `openai:codex-sdk` provider with `collaboration_mode: plan`
-- Requires OpenAI auth context for Promptfoo provider execution
+Score model:
+- Static subagent definition quality (40%)
+- Dynamic routing quality to correct subagent (60%)
