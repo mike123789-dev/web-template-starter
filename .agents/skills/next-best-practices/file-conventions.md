@@ -133,8 +133,6 @@ export const proxyConfig = {
 | v14-15 | `middleware.ts` | `middleware()` | `config` |
 | v16+ | `proxy.ts` | `proxy()` | `proxyConfig` |
 
-**Migration**: Run `npx @next/codemod@latest upgrade` to auto-rename.
-
 ## File Conventions Reference
 
 Reference: https://nextjs.org/docs/app/api-reference/file-conventions

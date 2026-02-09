@@ -354,7 +354,7 @@ export async function GET() {
 
 ## Testing Cache Handler
 
-**Critical**: Test your cache handler on every Next.js upgrade:
+**Critical**: Test your cache handler whenever the Next.js version changes:
 
 ```bash
 # Start multiple instances

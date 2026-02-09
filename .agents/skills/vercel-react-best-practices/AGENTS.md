@@ -1244,7 +1244,7 @@ function loadConfig() {
   }
 }
 
-// Migration from v1 to v2
+// Optional schema migration from v1 to v2
 function migrate() {
   try {
     const v1 = localStorage.getItem('userConfig:v1')
@@ -1255,6 +1255,7 @@ function migrate() {
     }
   } catch {}
 }
+
 ```
 
 **Store minimal fields from server responses:**

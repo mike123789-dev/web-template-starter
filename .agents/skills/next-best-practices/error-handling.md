@@ -137,7 +137,7 @@ import { redirect, permanentRedirect } from 'next/navigation'
 // 307 Temporary - use for most cases
 redirect('/new-path')
 
-// 308 Permanent - use for URL migrations (cached by browsers)
+// 308 Permanent - use for long-term URL changes (cached by browsers)
 permanentRedirect('/new-url')
 ```
 

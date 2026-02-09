@@ -7,7 +7,7 @@ description: Build scalable design systems with Tailwind CSS v4, design tokens, 
 
 Build production-ready design systems with Tailwind CSS v4, including CSS-first configuration, design tokens, component variants, responsive patterns, and accessibility.
 
-> **Note**: This skill targets Tailwind CSS v4 (2024+). For v3 projects, refer to the [upgrade guide](https://tailwindcss.com/docs/upgrade-guide).
+> **Note**: This skill targets Tailwind CSS v4 (2024+).
 
 ## When to Use This Skill
 

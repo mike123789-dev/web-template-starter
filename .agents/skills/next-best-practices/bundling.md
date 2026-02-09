@@ -159,9 +159,9 @@ next experimental-analyze --output
 
 Reference: https://nextjs.org/docs/app/guides/package-bundling
 
-## Migrating from Webpack to Turbopack
+## Turbopack Compatibility
 
-Turbopack is the default bundler in Next.js 15+. If you have custom webpack config, migrate to Turbopack-compatible alternatives:
+Turbopack is the default bundler in Next.js 15+. If you have custom webpack config, prefer Turbopack-compatible alternatives:
 
 ```js
 // next.config.js
@@ -170,11 +170,11 @@ module.exports = {
   serverExternalPackages: ['package'],
   transpilePackages: ['package'],
 
-  // Bad: Webpack-only - migrate away from this
+  // Bad: Webpack-only
   webpack: (config) => {
     // custom webpack config
   },
 }
 ```
 
-Reference: https://nextjs.org/docs/app/building-your-application/upgrading/from-webpack-to-turbopack
+Reference: https://nextjs.org/docs/app/guides/package-bundling
