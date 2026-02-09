@@ -6,10 +6,12 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const defaultBasePath = process.env.NODE_ENV === 'production' ? '/web-vibe-template' : '';
 const basePath = process.env.NEXT_BASE_PATH ?? defaultBasePath;
+const allowedDevOrigins = ['127.0.0.1', 'localhost'];
 
 const nextConfig: NextConfig = {
   output: 'standalone',
   reactStrictMode: true,
+  allowedDevOrigins,
   turbopack: {
     root: projectRoot,
   },
@@ -20,4 +22,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
