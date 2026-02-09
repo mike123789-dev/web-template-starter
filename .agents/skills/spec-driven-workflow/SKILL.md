@@ -1,6 +1,6 @@
 ---
 name: spec-driven-workflow
-description: Operate and enforce the repository's PRD-linked spec workflow in docs/specs: scaffold feature docs, keep spec/plan/tasks/test-matrix in sync, update task and feature status via commands, regenerate progress, and validate AC-to-test traceability before completion.
+description: Use this skill when requests match "현재 상태 알려줘", "스펙 만들어", or "스펙 마무리해". It runs the PRD-linked docs/specs workflow end-to-end: scaffold feature docs, sync spec/plan/tasks/test-matrix, update task/feature status via commands, regenerate progress, and validate AC-to-test traceability before Done.
 ---
 
 # Spec Driven Workflow
