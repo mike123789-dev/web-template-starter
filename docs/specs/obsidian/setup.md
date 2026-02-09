@@ -4,7 +4,7 @@
 
 ## 1) Vault Scope
 
-- Recommended:  `docs` 폴더를 별도 Vault로 연다.
+- Recommended: `docs` 폴더를 별도 Vault로 연다.
 
 ## 2) Templates Plugin
 
@@ -13,15 +13,16 @@
 - docs 전용 Vault일 때: `specs/templates`
 - repo 루트 Vault일 때: `docs/specs/templates`
 
-## 3) Dataview Plugin
+## 3) Dataview Plugin (Optional)
 
-- Community plugin `Dataview` 설치/활성화
-- Dataview setting `Enable JavaScript Queries` 활성화
-- 시작 페이지: `docs/specs/obsidian/dashboard.md` 또는 `specs/obsidian/dashboard.md` (Vault 기준에 따라 다름)
+- Community plugin `Dataview`는 선택 사항이다.
+- 이 저장소의 기본 진행판은 Dataview 없이도 동작한다 (`progress.md`).
+- Dataview setting `Enable JavaScript Queries`는 Dataview 대시보드를 따로 쓸 때만 활성화한다.
 
 ## 4) Recommended Notes
 
-- Dashboard: `obsidian/dashboard.md`
+- Progress board (single source): `progress.md`
+- Dashboard wrapper: `obsidian/dashboard.md`
 - Rules: `obsidian/frontmatter-schema.md`, `task-governance.md`, `obsidian/linking-rules.md`
 - Bootstrapping: `templates/feature-bootstrap.template.md`
 
@@ -30,4 +31,4 @@
 1. `feature-bootstrap.template.md`로 feature `README.md` 생성
 2. `spec/plan/tasks/test-matrix` 문서 생성
 3. 템플릿 삽입 후 frontmatter 채우기
-4. `obsidian/dashboard.md`에서 Draft/Blocked/clarification 상태 확인
+4. `npm run specs:check` 실행 후 `obsidian/dashboard.md`에서 진행상황 확인

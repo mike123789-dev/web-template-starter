@@ -57,13 +57,15 @@ This repository uses PRD-linked SDD to reduce regressions when adding or changin
 - `PRD` defines what must be true.
 - `Spec/Plan/Tasks` defines what to build and in which order.
 - `Test Matrix` proves each acceptance criterion is covered by tests.
+- `progress.md` is the single source for current status.
 
 ### Where to start
 
 - Workspace entry: `docs/specs/README.md`
 - PRD source of truth: `docs/specs/prd.md`
+- Progress board (single source): `docs/specs/progress.md`
 - Obsidian setup: `docs/specs/obsidian/setup.md`
-- Dataview dashboard: `docs/specs/obsidian/dashboard.md`
+- Dashboard wrapper: `docs/specs/obsidian/dashboard.md`
 - Metadata schema (Obsidian YAML): `docs/specs/obsidian/frontmatter-schema.md`
 - Task split rules: `docs/specs/task-governance.md`
 
@@ -79,6 +81,9 @@ This repository uses PRD-linked SDD to reduce regressions when adding or changin
 
 ```bash
 npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"
+npm run specs:progress
+npm run specs:status
+npm run specs:check
 npm run specs:validate
 ```
 

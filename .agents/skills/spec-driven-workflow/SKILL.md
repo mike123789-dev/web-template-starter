@@ -13,6 +13,12 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 
 - Bootstrap feature docs from templates:
 - `npm run specs:new -- --feature-id F-003 --slug project-archive --title "Project Archive" --prd "FR-005,NFR-003"`
+- Build single progress board:
+- `npm run specs:progress`
+- Show current progress board:
+- `npm run specs:status`
+- Refresh + show in one command:
+- `npm run specs:check`
 - Validate SDD rules:
 - `npm run specs:validate`
 
@@ -40,15 +46,17 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 - Use only allowed task statuses: `Todo`, `In Progress`, `Blocked`, `Done`.
 
 5. Update progress
-- Reflect feature status and progress ratio in `docs/specs/README.md`.
+- Run `npm run specs:progress` and use `docs/specs/progress.md` as the single progress source.
+- For quick snapshot, run `npm run specs:check`.
 - Keep feature-local `README.md` metadata aligned with task completion.
-- Check `docs/specs/obsidian/dashboard.md` to verify Draft/Blocked/clarification visibility.
+- Use `docs/specs/obsidian/dashboard.md` only as a view wrapper around `progress.md`.
 
 6. Gate completion
 - Do not mark `Done` until all are true:
 - all tasks are complete,
 - each task marked `Done` satisfies task-level done criteria from `task-governance.md`,
 - every AC is mapped in `test-matrix.md`,
+- progress board regenerated (`npm run specs:check` or `npm run specs:progress`),
 - required commands passed (`npm run specs:validate`, `npm run verify`, and `npm run build` for route/api/config impact).
 
 ## Required Guardrails

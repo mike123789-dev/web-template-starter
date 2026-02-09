@@ -5,6 +5,7 @@
 ## Source of Truth
 
 - Product requirement: `docs/specs/prd.md`
+- Progress board: `docs/specs/progress.md`
 - Metadata schema: `docs/specs/obsidian/frontmatter-schema.md`
 - Task split rule: `docs/specs/task-governance.md`
 - Link rule: `docs/specs/obsidian/linking-rules.md`
@@ -29,8 +30,9 @@
 2. `spec/plan/tasks/test-matrix`를 요구사항 기준으로 채움
 3. `tasks/T-xxx.md` 필요 여부를 `task-governance`로 판단
 4. 문서 상태를 `Draft -> Ready -> In Progress -> Verifying -> Done`으로 관리
-5. 완료 전 `npm run specs:validate`, `npm run verify` 실행
-6. 라우트/API/설정 영향이 있으면 `npm run build`까지 실행
+5. `npm run specs:check`로 단일 진행판(`progress.md`) 갱신 + 즉시 확인
+6. 완료 전 `npm run specs:validate`, `npm run verify` 실행
+7. 라우트/API/설정 영향이 있으면 `npm run build`까지 실행
 
 ## Why test-matrix
 
@@ -47,6 +49,24 @@ npm run specs:new -- \
   --slug project-archive \
   --title "Project Archive" \
   --prd "FR-005,NFR-003"
+```
+
+### Build progress board
+
+```bash
+npm run specs:progress
+```
+
+### Show current progress board
+
+```bash
+npm run specs:status
+```
+
+### Refresh + show in one command
+
+```bash
+npm run specs:check
 ```
 
 ### Validate

@@ -19,6 +19,11 @@
 - `npm run test:storybook`: Run Storybook Vitest smoke tests.
 - `npm run test:e2e`: Run Playwright E2E tests.
 - `npm run test:all`: Run unit, storybook, and E2E tests in sequence.
+- `npm run specs:new -- ...`: Bootstrap new SDD feature docs.
+- `npm run specs:progress`: Regenerate single SDD progress board (`docs/specs/progress.md`).
+- `npm run specs:status`: Print current SDD progress board in terminal.
+- `npm run specs:check`: Refresh + print SDD progress board in one command.
+- `npm run specs:validate`: Validate SDD document consistency.
 - `docker compose up --build`: Build and run the app in Docker.
 
 ## Coding Style & Naming Conventions
@@ -34,12 +39,12 @@
 - Place tests near their modules or under a `tests/` folder; follow `*.test.ts` or `*.test.tsx`.
 - For code changes, follow `docs/engineering/testing.md` and the change-to-test checklist in `docs/agent/dod.md`.
 - For new features or behavior changes, create or update specs under `docs/specs/features/F-xxx-*/` and map AC to tests in `test-matrix.md`.
-- Run `npm run specs:validate` for spec-driven document validation before closing feature work.
+- Run `npm run specs:check` and `npm run specs:validate` before closing feature work.
 - Use `npm run verify` as the minimum pre-review gate for non-trivial code changes.
 
 ## Spec-Driven Flow (Short)
 - Use `$spec-driven-workflow` for feature-level requirement/spec/test traceability.
-- Keep flow simple: `PRD IDs 확인 -> (신규는 specs:new) -> feature spec 문서 작성/갱신 -> tasks/test-matrix 동기화 -> task-governance 기준으로 상세 task 분할 -> specs:validate + 검증 게이트 통과 후 Done`.
+- Keep flow simple: `PRD IDs 확인 -> (신규는 specs:new) -> feature spec 문서 작성/갱신 -> tasks/test-matrix 동기화 -> task-governance 기준으로 상세 task 분할 -> specs:check -> specs:validate + 검증 게이트 통과 후 Done`.
 - Detailed workflow lives in `.agents/skills/spec-driven-workflow/SKILL.md`.
 
 ## Commit & Pull Request Guidelines
