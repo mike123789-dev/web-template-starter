@@ -31,8 +31,9 @@ Produce a merge-readiness review with explicit risks, missing tests, and blocker
 5. If no blocker and all tasks are `Done`, sync feature docs status with:
    - `npm run specs:feature:status -- --feature-id <F-xxx> --status "Done"`
 6. For UI-impact changes, capture browser evidence with [`$agent-browser`](../agent-browser/SKILL.md):
-   - run `open -> snapshot -i -> interact -> re-snapshot`
-   - save at least one screenshot (for example `/tmp/premerge-<feature>.png`)
+   - prefer one-shot script: `npm run browser:evidence -- --name premerge-<feature-id>`
+   - this stores a stable file under `docs/artifacts/browser-evidence/`
+   - if manual run is needed, use `open -> snapshot -i -> interact -> re-snapshot -> screenshot --full` and report the resolved saved path
 7. Prioritize findings by severity and report with the required template.
 
 ## Blocker Criteria

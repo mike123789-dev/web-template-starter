@@ -56,6 +56,8 @@
 - **검증 패턴**
   - `open -> snapshot -i -> interact -> re-snapshot`
   - 주요 단계에서 URL/텍스트/스크린샷 증적을 남긴다.
+  - 증적 저장은 `npm run browser:evidence -- --name premerge-<feature-id>`를 우선 사용한다.
+  - 산출물은 `docs/artifacts/browser-evidence/`에 고정 저장되어 PR/리뷰 템플릿에 재사용 가능하다.
 - **예시**
   - `agent-browser open http://127.0.0.1:3000`
   - `agent-browser snapshot -i`

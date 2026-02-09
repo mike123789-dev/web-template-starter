@@ -10,6 +10,7 @@
     "dev": "next dev",
     "dev:open": "node scripts/dev-open.mjs",
     "dev:stop": "lsof -tiTCP:3000 -sTCP:LISTEN | xargs -r kill",
+    "browser:evidence": "node scripts/browser-evidence.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
