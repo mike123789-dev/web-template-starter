@@ -115,7 +115,7 @@
 4. `npm run specs:check && npm run specs:validate`
 5. `npm run verify` (필요 시 `npm run build`)
 6. 트리거 충족 시 `browser-verifier`로 실제 브라우저 플로우 검증
-7. `npm run prompt:all`로 프롬프트 거버넌스 점검
+7. 기본은 `npm run prompt:guard`로 프롬프트 거버넌스 점검 (영향이 큰 변경/PR 최종 게이트는 `npm run prompt:quality` 또는 `npm run prompt:all`)
 8. 필요 시 subagent 팀으로 병렬 검토를 수행하고, 리드가 결과를 통합해 최종 판단
 
 ## 출처

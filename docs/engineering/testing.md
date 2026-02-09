@@ -69,5 +69,6 @@
 - 테스트 도입 시 `package.json` 스크립트와 실행 방법을 이 문서에 추가한다.
 - 변경 유형별 필수 실행 목록은 `docs/agent/dod.md`를 기준으로 따른다.
 - 기능 요구사항과 테스트 추적은 `docs/specs/` 문서를 source로 유지한다.
-- 에이전트 운영 규칙 변경(`AGENTS.md`, `.agents/skills/**`)은 `npm run prompt:all`로 별도 검증한다.
+- 에이전트 운영 규칙 변경(`AGENTS.md`, `.agents/skills/**`)은 기본 `npm run prompt:guard`로 검증한다.
+- `prompt-evals/**`, `scripts/prompt-guard/**`, `promptfoo*.yaml` 변경이나 PR 최종 게이트에서는 `npm run prompt:quality`(또는 `npm run prompt:all`)를 추가한다.
 - UI 고위험 변경은 테스트 스위트와 별개로 browser-verifier 결과를 함께 확인한다.

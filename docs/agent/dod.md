@@ -27,8 +27,9 @@
 ### 1-1) 에이전트 운영 문서 변경 (`AGENTS.md`, `.agents/skills/**`, 프롬프트 거버넌스 스크립트/케이스)
 
 - [ ] `npm run prompt:guard`
-- [ ] `npm run prompt:quality`
-- [ ] 또는 `npm run prompt:all`
+- [ ] 아래 조건 중 하나면 `npm run prompt:quality` 또는 `npm run prompt:all`
+  - `prompt-evals/**`, `scripts/prompt-guard/**`, `promptfoo*.yaml` 변경
+  - PR 최종 게이트(merge 전 최종 점검)
 
 ### 2) UI 컴포넌트 변경 (`src/components/**`)
 

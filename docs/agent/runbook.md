@@ -32,7 +32,8 @@
 
 4. 검증
 - `docs/agent/dod.md`의 변경 유형별 필수 테스트를 실행한다.
-- 에이전트 운영 문서 변경이면 `npm run prompt:all`을 실행한다.
+- 에이전트 운영 문서 변경이면 기본적으로 `npm run prompt:guard`를 실행한다.
+- `prompt-evals/**`, `scripts/prompt-guard/**`, `promptfoo*.yaml` 변경 또는 PR 최종 게이트에서는 `npm run prompt:quality`(또는 `npm run prompt:all`)를 추가 실행한다.
 - 사용자 플로우 고위험 변경이면 `browser-verifier`로 실브라우저 검증 증적을 남긴다.
 - 필요 시 추가 검증을 실행한다(예: `npm run test:all`, `npm run build`).
 
@@ -45,6 +46,6 @@
 
 - 비코드 문서 변경이 아니라면 `npm run verify`를 기본 검증으로 사용한다.
 - 라우팅/API/설정 변경은 `npm run build`까지 확인한다.
-- 에이전트 운영 규칙 변경은 `npm run prompt:all`을 기본 검증으로 사용한다.
+- 에이전트 운영 규칙 변경은 `npm run prompt:guard`를 기본 검증으로 사용하고, 영향이 큰 변경에서만 `prompt:quality` 또는 `prompt:all`로 승격한다.
 - UI/플로우 영향이 있으면 `agent-browser` 기반 검증을 병행한다.
 - CI 설정 변경은 본 저장소 기본 작업 범위에서 제외한다(요청 시 별도 진행).

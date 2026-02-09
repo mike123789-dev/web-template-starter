@@ -11,10 +11,10 @@
 ## 빠른 시작
 
 ```bash
-npm run prompt:all
+npm run prompt:guard
 ```
 
-상세 점수만 확인하려면:
+응답 품질까지 확인하려면:
 
 ```bash
 npm run prompt:quality
@@ -119,7 +119,7 @@ raw pass/fail 리포트가 필요하면:
 npm run prompt:quality:raw
 ```
 
-### 전체 검증(권장)
+### 전체 검증(조건부 권장)
 
 ```bash
 npm run prompt:all
@@ -133,9 +133,9 @@ npm run prompt:all
 
 ## 이걸 어떻게 사용하면 좋은가 (권장 운영)
 
-1. `AGENTS.md` 또는 `.agents/skills/**` 수정 직후 `npm run prompt:all` 실행
-2. 실패 시 문서 수정 후 재실행해 녹색 상태 확인
-3. PR 전 최소 게이트로 `npm run prompt:all` 포함
+1. `AGENTS.md` 또는 `.agents/skills/**` 수정 직후 `npm run prompt:guard` 실행
+2. `prompt-evals/**`, `scripts/prompt-guard/**`, `promptfoo*.yaml` 변경 시 `npm run prompt:quality` 추가
+3. PR 최종 게이트에서 필요 시 `npm run prompt:all` 실행
 4. 규칙/테스트를 바꿀 때는 기존 케이스를 삭제하지 말고 케이스를 추가해 회귀 안정성 확보
 
 ## 모델/실행 설정 팁
@@ -160,4 +160,4 @@ CODEX_EVAL_MODEL=gpt-5.1-codex CODEX_EVAL_TIMEOUT_MS=240000 CODEX_QUALITY_THRESH
 
 - `prompt:quality`는 `codex` CLI 로그인/사용 가능 상태여야 한다.
 - 응답 품질 테스트는 모델 특성상 비결정성이 있으므로, 중요한 규칙은 케이스를 1개가 아니라 여러 케이스로 분산해 안정화하는 것이 좋다.
-- 필요 시 CI에서도 동일 명령(`npm run prompt:all`)을 required check로 걸어 로컬/PR 기준을 일치시킨다.
+- 필요 시 CI에서는 `npm run prompt:all`을 required check로 두고, 로컬 반복 작업은 `prompt:guard` 중심으로 운영해 속도를 유지한다.
