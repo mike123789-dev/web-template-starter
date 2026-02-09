@@ -27,6 +27,21 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 4. `Verifying`: 테스트/검증 중
 5. `Done`: DoD 충족
 
+## Status Transition Guardrails
+
+- `Draft -> Ready`: `spec.md`의 `[NEEDS CLARIFICATION]` 해소, placeholder 제거, 핵심 문서(`spec/plan/tasks/test-matrix`) 작성 완료
+- `Ready -> In Progress`: 실행 가능한 task 목록과 `Required Test Command`가 확정된 상태
+- `In Progress -> Verifying`: `tasks.md`의 모든 task가 `Done`이고 모든 AC가 `test-matrix.md`에 매핑된 상태
+- `Verifying -> Done`: `npm run specs:check`, `npm run specs:validate` 통과, 진행판에 `Blocked/Clarification` 없음
+- 상태 전환은 항상 `npm run specs:feature:status -- --feature-id F-xxx --status "<Status>"` 명령으로 수행
+
+## Command-First Operations
+
+- Task 완료 처리: `npm run specs:task:done -- --feature-id F-xxx --task-id T-xxx`
+- Feature 상태 전환: `npm run specs:feature:status -- --feature-id F-xxx --status "<Status>"`
+- 상태/작업 갱신 직후 `npm run specs:check` 실행
+- 문서 변경이 있으면 `npm run specs:validate`까지 실행
+
 ## Progress (Single Source)
 
 - 생성 파일: `docs/specs/progress.md`
@@ -48,6 +63,8 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 9. 완료 전 `npm run specs:check`, `npm run specs:validate`를 실행한다.
 10. 비문서 변경이면 최소 `npm run verify`를 통과한다.
 11. 라우트/API/설정 변경은 `npm run build`까지 통과한다.
+12. 상태값을 수동 편집으로 바꾸지 말고 `specs:feature:status`를 사용한다.
+13. task 상태를 수동 편집으로 바꾸지 말고 `specs:task:done`을 사용한다.
 
 ## Automation Commands
 

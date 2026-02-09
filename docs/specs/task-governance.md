@@ -44,6 +44,16 @@ Task를 `Done`으로 바꾸려면 다음을 모두 만족해야 한다.
 2. `Required Test Command`가 성공했다. 또는 `N/A (reason)`가 근거를 가진다.
 3. 상세 문서가 있는 task는 해당 문서의 체크리스트가 완료됐다.
 
+## Command-First Task Completion
+
+수동 편집 대신 명령 기반으로 task 상태를 갱신한다.
+
+1. `Required Test Command`를 실행해 성공을 확인한다.
+2. `npm run specs:task:done -- --feature-id F-xxx --task-id T-xxx`를 실행한다.
+3. `npm run specs:check`로 진행판 반영 여부를 확인한다.
+
+Feature 상태 전환은 task 완료 이후 `npm run specs:feature:status -- --feature-id F-xxx --status "<Status>"`를 사용한다.
+
 ## Review Check
 
 - PR 리뷰 전 `tasks.md`와 `tasks/` 폴더 간 불일치가 없어야 한다.
