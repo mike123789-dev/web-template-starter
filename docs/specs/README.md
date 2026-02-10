@@ -39,8 +39,10 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 
 - Task 완료 처리: `npm run specs:task:done -- --feature-id F-xxx --task-id T-xxx`
 - Feature 상태 전환: `npm run specs:feature:status -- --feature-id F-xxx --status "<Status>"`
-- 상태/작업 갱신 직후 `npm run specs:check` 실행
-- 문서 변경이 있으면 `npm run specs:validate`까지 실행
+- 반복 작업 중간 단계는 fast 명령 우선:
+- `npm run specs:task:done:fast -- --feature-id F-xxx --task-id T-xxx`
+- `npm run specs:feature:status:fast -- --feature-id F-xxx --status "<Status>"`
+- 마지막 마감 단계에서만 full gate 실행: `npm run specs:check && npm run specs:validate`
 
 ## Progress (Single Source)
 
@@ -73,4 +75,6 @@ PRD를 source of truth로 두고, 기능 단위 Spec/Plan/Tasks/Test Matrix를 �
 - Show progress: `npm run specs:status`
 - Refresh + show: `npm run specs:check`
 - Validate: `npm run specs:validate`
+- Fast task done: `npm run specs:task:done:fast -- --feature-id F-003 --task-id T-002`
+- Fast feature status: `npm run specs:feature:status:fast -- --feature-id F-003 --status "In Progress"`
 - Full gate: `npm run specs:check && npm run specs:validate && npm run verify`

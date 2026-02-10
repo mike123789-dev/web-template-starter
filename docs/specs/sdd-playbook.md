@@ -34,6 +34,15 @@
 6. 완료 전 `npm run specs:validate`, `npm run verify` 실행
 7. 라우트/API/설정 영향이 있으면 `npm run build`까지 실행
 
+## UI Change Default Gate
+
+- UI 변경(컴포넌트/상호작용/화면 상태)이 포함되면 기본 게이트를 아래 조합으로 고정한다.
+- `npm run verify`
+- `npm run test:e2e`
+- `npm run build`
+- `npm run premerge:check:evidence`
+- 최종 리뷰 공유 시 Browser Evidence 경로와 이미지를 함께 포함한다.
+
 ## Status Transition Checklist
 
 1. `Ready` 전환 전:
@@ -54,8 +63,10 @@
 
 - Task 완료: `npm run specs:task:done -- --feature-id F-xxx --task-id T-xxx`
 - Feature 상태 전환: `npm run specs:feature:status -- --feature-id F-xxx --status "<Status>"`
-- 상태 변경 직후 `npm run specs:check`를 실행한다.
-- 문서 변경이 포함되면 `npm run specs:validate`를 실행한다.
+- 반복 전환 중간 단계는 fast 명령 사용:
+- `npm run specs:task:done:fast -- --feature-id F-xxx --task-id T-xxx`
+- `npm run specs:feature:status:fast -- --feature-id F-xxx --status "<Status>"`
+- 마지막 단계에서만 `npm run specs:check` + `npm run specs:validate`를 실행한다.
 
 ## Why test-matrix
 
@@ -96,4 +107,10 @@ npm run specs:check
 
 ```bash
 npm run specs:validate
+```
+
+### UI pre-merge (report + evidence + PR template injection)
+
+```bash
+npm run premerge:check:evidence:pr -- --feature-id F-xxx
 ```

@@ -32,12 +32,16 @@ Keep `docs/specs` as a single source for requirements, implementation intent, pr
 4. Agent-safe status operations
 - Task done: `npm run specs:task:done -- --feature-id F-003 --task-id T-002`
 - Feature status sync: `npm run specs:feature:status -- --feature-id F-003 --status Verifying`
+- Fast middle-loop mode:
+- `npm run specs:task:done:fast -- --feature-id F-003 --task-id T-002`
+- `npm run specs:feature:status:fast -- --feature-id F-003 --status "In Progress"`
 
 ## Agent Operating Contract
 
 - 문서 상태 변경은 수동 markdown 편집보다 명령 사용을 우선한다.
 - task 완료는 `specs:task:done`으로 처리한다.
 - feature 상태 전환은 `specs:feature:status`로 처리한다.
+- 반복 작업 중간 단계에서는 `*:fast` 명령으로 중복 `check/validate`를 줄인다.
 - 상태 전환 후 반드시 `specs:check`, `specs:validate` 결과를 확인한다.
 - 검증 실패 상태에서 feature를 `Done`으로 두지 않는다.
 

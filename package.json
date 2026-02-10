@@ -18,6 +18,7 @@
     "verify": "npm run lint && npm run typecheck && npm run test:unit",
     "premerge:check": "node scripts/premerge-check.mjs",
     "premerge:check:evidence": "node scripts/premerge-check.mjs --with-browser-evidence",
+    "premerge:check:evidence:pr": "node scripts/premerge-check.mjs --with-browser-evidence --inject-pr-template",
     "specs:test": "node --test .agents/skills/spec-driven-workflow/scripts/common.test.mjs",
     "specs:new": "node .agents/skills/spec-driven-workflow/scripts/bootstrap-feature.mjs",
     "specs:progress": "node .agents/skills/spec-driven-workflow/scripts/build-progress.mjs",
@@ -25,7 +26,9 @@
     "specs:check": "npm run specs:progress && npm run specs:status",
     "specs:validate": "node .agents/skills/spec-driven-workflow/scripts/validate-specs.mjs",
     "specs:task:done": "node .agents/skills/spec-driven-workflow/scripts/task-done.mjs",
+    "specs:task:done:fast": "node .agents/skills/spec-driven-workflow/scripts/task-done.mjs --skip-check --skip-validate",
     "specs:feature:status": "node .agents/skills/spec-driven-workflow/scripts/feature-status.mjs",
+    "specs:feature:status:fast": "node .agents/skills/spec-driven-workflow/scripts/feature-status.mjs --skip-check --skip-validate",
     "prompt:eval": "promptfoo eval -c promptfoo.yaml",
     "prompt:view": "promptfoo view",
     "prompt:guard": "npm run prompt:eval",
@@ -39,7 +42,7 @@
     "test:all": "npm run test:unit && npm run test:storybook && npm run test:e2e",
     "test:unit": "vitest --project unit",
     "test:storybook": "vitest --project storybook",
-    "test:e2e": "playwright test"
+    "test:e2e": "npm run dev:stop && playwright test"
   },
   "dependencies": {
     "next": "16.1.6",

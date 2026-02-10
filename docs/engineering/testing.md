@@ -34,11 +34,11 @@
 
 - **권장 스택**: Playwright
 - **실행**
-  - E2E: `npm run test:e2e` (Playwright 설정의 `webServer`가 기본 포트 `3100`에서 dev 서버를 자동으로 띄운 뒤 실행)
+  - E2E: `npm run test:e2e` (실행 전에 `npm run dev:stop`을 선실행한 뒤 Playwright `webServer`가 기본 포트 `3100`에서 dev 서버를 자동으로 띄운다)
 - **포인트**
   - 일반적으로 별도 서버 수동 실행 없이 `npm run test:e2e`만 실행하면 된다.
-  - 로컬에서 `next dev`를 이미 띄운 상태라면 먼저 `npm run dev:stop` 실행 후 E2E를 시작하는 것을 권장한다.
-  - `.next/dev/lock` 충돌이 나면 실행 중인 `next dev` 프로세스를 종료한 뒤(`npm run dev:stop`), `npm run test:e2e`를 재실행한다.
+  - `.next/dev/lock` 충돌 예방을 위해 `test:e2e` 스크립트에 `dev:stop`이 기본 포함되어 있다.
+  - lock 이슈가 계속되면 수동으로 `npm run dev:stop` 후 재실행한다.
   - 로그인/체크아웃 등 핵심 사용자 경로만 최소한으로 커버한다.
 
 ## 4) Browser Agent Validation (UI 고위험 변경 시)
@@ -57,6 +57,7 @@
   - `open -> snapshot -i -> interact -> re-snapshot`
   - 주요 단계에서 URL/텍스트/스크린샷 증적을 남긴다.
   - pre-merge 원클릭은 `npm run premerge:check:evidence -- --feature-id <F-xxx>`를 우선 사용한다.
+  - PR 템플릿까지 자동 반영하려면 `npm run premerge:check:evidence:pr -- --feature-id <F-xxx>`를 사용한다.
   - 브라우저 증적만 별도 실행 시 `npm run browser:evidence -- --name premerge-<feature-id> [--start-dev]`를 사용한다.
   - 산출물은 `docs/artifacts/browser-evidence/`에 고정 저장되어 PR/리뷰 템플릿에 재사용 가능하다.
   - 게이트 실행 결과는 `docs/artifacts/premerge-report.md`에 기록한다.

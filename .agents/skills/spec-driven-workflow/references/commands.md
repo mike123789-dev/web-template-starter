@@ -61,6 +61,12 @@ Validation checks:
 npm run specs:task:done -- --feature-id F-003 --task-id T-002
 ```
 
+Fast mode (skip repeated checks during middle steps):
+
+```bash
+npm run specs:task:done:fast -- --feature-id F-003 --task-id T-002
+```
+
 Behavior:
 
 - marks target row in `tasks.md` as `Done`
@@ -74,9 +80,20 @@ Behavior:
 npm run specs:feature:status -- --feature-id F-003 --status Verifying
 ```
 
+Fast mode (skip repeated checks during middle steps):
+
+```bash
+npm run specs:feature:status:fast -- --feature-id F-003 --status "In Progress"
+```
+
 Behavior:
 
 - syncs status for `spec.md`, `plan.md`, `tasks.md`, `test-matrix.md`, and feature `README.md`
 - blocks `Verifying/Done` when any task is not `Done`
 - blocks non-`Draft` status if Open Questions contains `[NEEDS CLARIFICATION]`
 - refreshes progress board and validates docs
+
+Recommended operation pattern:
+
+- middle loop: use `*:fast` commands
+- final gate: run `npm run specs:check && npm run specs:validate`

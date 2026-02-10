@@ -7,12 +7,14 @@ import { spawn, spawnSync } from 'node:child_process';
 function parseArgs(argv) {
   const args = {
     withBrowserEvidence: false,
+    injectPrTemplate: false,
     evidenceName: '',
     featureId: '',
     reportPath: 'docs/artifacts/premerge-report.md',
+    prTemplatePath: '.github/pull_request_template.md',
   };
 
-  const booleanFlags = new Set(['with-browser-evidence']);
+  const booleanFlags = new Set(['with-browser-evidence', 'inject-pr-template']);
 
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
@@ -20,7 +22,8 @@ function parseArgs(argv) {
 
     const key = token.slice(2);
     if (booleanFlags.has(key)) {
-      args.withBrowserEvidence = true;
+      if (key === 'with-browser-evidence') args.withBrowserEvidence = true;
+      if (key === 'inject-pr-template') args.injectPrTemplate = true;
       continue;
     }
 
@@ -32,6 +35,7 @@ function parseArgs(argv) {
     if (key === 'feature-id') args.featureId = value;
     if (key === 'evidence-name') args.evidenceName = value;
     if (key === 'report-path') args.reportPath = value;
+    if (key === 'pr-template-path') args.prTemplatePath = value;
     i += 1;
   }
 
@@ -133,6 +137,41 @@ function printChatSnippet(reportPath, evidencePath) {
   }
   lines.push('');
   process.stdout.write(`${lines.join('\n')}\n`);
+}
+
+async function injectPrTemplate(templatePath, reportPath, evidencePath) {
+  const absoluteTemplatePath = path.resolve(templatePath);
+  let template;
+  try {
+    template = await fs.readFile(absoluteTemplatePath, 'utf8');
+  } catch {
+    return '';
+  }
+
+  const startMarker = '<!-- PREMERGE_EVIDENCE_START -->';
+  const endMarker = '<!-- PREMERGE_EVIDENCE_END -->';
+  const start = template.indexOf(startMarker);
+  const end = template.indexOf(endMarker);
+  if (start === -1 || end === -1 || end < start) {
+    return '';
+  }
+
+  const block = [
+    startMarker,
+    '- Browser Evidence:',
+    `  - ${evidencePath || 'none'}`,
+    '- Gate Report:',
+    `  - ${reportPath}`,
+    '',
+    evidencePath ? `![Browser Evidence](${evidencePath})` : '',
+    endMarker,
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  const updated = `${template.slice(0, start)}${block}${template.slice(end + endMarker.length)}`;
+  await fs.writeFile(absoluteTemplatePath, updated, 'utf8');
+  return absoluteTemplatePath;
 }
 
 async function writeReport(reportPath, report) {
@@ -289,6 +328,14 @@ async function main() {
 
   const writtenReport = await writeReport(args.reportPath, report);
   console.log(`Pre-merge report saved: ${writtenReport}`);
+  if (args.injectPrTemplate) {
+    const updatedTemplate = await injectPrTemplate(args.prTemplatePath, writtenReport, report.browserEvidence);
+    if (updatedTemplate) {
+      console.log(`PR template updated: ${updatedTemplate}`);
+    } else {
+      console.log('PR template update skipped: marker or template not found.');
+    }
+  }
   printChatSnippet(writtenReport, report.browserEvidence);
 
   if (report.status !== 'PASS') {

@@ -32,6 +32,7 @@ Produce a merge-readiness review with explicit risks, missing tests, and blocker
    - `npm run specs:feature:status -- --feature-id <F-xxx> --status "Done"`
 6. For UI-impact changes, capture browser evidence with [`$agent-browser`](../agent-browser/SKILL.md):
    - prefer one-shot script: `npm run premerge:check:evidence -- --feature-id <F-xxx>`
+   - if PR 템플릿까지 자동 갱신하려면: `npm run premerge:check:evidence:pr -- --feature-id <F-xxx>`
    - this stores a stable file under `docs/artifacts/browser-evidence/`
    - if manual run is needed, use `open -> snapshot -i -> interact -> re-snapshot -> screenshot --full` and report the resolved saved path
 7. Prioritize findings by severity and report with the required template.
