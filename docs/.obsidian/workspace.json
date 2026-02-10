@@ -185,6 +185,15 @@
   },
   "active": "9ce8a555ae0ece67",
   "lastOpenFiles": [
+    "specs/features/F-006-project-list-ui-states/tasks/T-002.md",
+    "specs/features/F-006-project-list-ui-states/test-matrix.md",
+    "specs/features/F-006-project-list-ui-states/tasks.md",
+    "specs/features/F-006-project-list-ui-states/tasks",
+    "specs/features/F-006-project-list-ui-states/spec.md",
+    "specs/features/F-006-project-list-ui-states/plan.md",
+    "specs/features/F-006-project-list-ui-states/changelog.md",
+    "specs/features/F-006-project-list-ui-states/README.md",
+    "specs/features/F-006-project-list-ui-states",
     "artifacts/browser-evidence/2026-02-10T14-28-48-197Z-premerge-f005.png",
     "specs/progress.md",
     "specs/README.md",
@@ -209,21 +218,13 @@
     "specs/features/F-004-spec-status-workflow-guardrails/plan.md",
     "specs/features/F-004-spec-status-workflow-guardrails/README.md",
     "specs/features/F-004-spec-status-workflow-guardrails",
-    "artifacts/premerge-report.md",
     "artifacts/browser-evidence/2026-02-09T14-21-43-502Z-premerge-f-003.png",
     "artifacts/browser-evidence/2026-02-09T14-20-56-725Z-flow-check.png",
     "artifacts/browser-evidence/2026-02-09T14-14-56-717Z-premerge-smoke.png",
     "artifacts/browser-evidence",
     "artifacts",
-    "2026-02-09.md",
     "Untitled.canvas",
-    "specs/decisions/ADR-001-prd-feature-co-location.md",
-    "specs/obsidian/setup.md",
-    "specs/obsidian/linking-rules.md",
-    "specs/features/F-001-project-create/plan.md",
     "specs/obsidian/weekly-review",
-    "specs/decisions",
-    "specs/features/F-003-spec-automation-workflow/tasks",
-    "specs/features/F-003-spec-automation-workflow"
+    "specs/decisions"
   ]
 }
