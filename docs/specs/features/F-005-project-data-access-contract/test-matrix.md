@@ -2,14 +2,14 @@
 doc_type: "test-matrix"
 title: "Project Data Access Contract"
 feature_id: "F-005"
-status: "Ready"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-003"
   - "FR-004"
   - "FR-005"
   - "NFR-002"
-last_updated: "2026-02-09"
+last_updated: "2026-02-10"
 ---
 
 # Test Matrix: Project Data Access Contract
@@ -24,11 +24,11 @@ last_updated: "2026-02-09"
 
 | PRD ID | AC ID | Test Type | Test Command | Test Location | Status |
 | --- | --- | --- | --- | --- | --- |
-| FR-003 | AC-001 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Planned |
-| FR-003 | AC-002 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Planned |
-| FR-004 | AC-003 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Planned |
-| FR-004 | AC-004 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Planned |
-| NFR-002 | AC-001, AC-002, AC-003, AC-004 | Verify Gate | `npm run verify` | `package.json#scripts.verify` | Planned |
+| FR-003 | AC-001 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Done |
+| FR-003 | AC-002 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Done |
+| FR-004 | AC-003 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Done |
+| FR-004 | AC-004 | Unit | `npm run test:unit` | `src/lib/projects-data-access.test.ts` | Done |
+| NFR-002 | AC-001, AC-002, AC-003, AC-004 | Verify Gate | `npm run verify` | `package.json#scripts.verify` | Done |
 
 ## Coverage Check
 

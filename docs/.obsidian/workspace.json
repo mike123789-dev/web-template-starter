@@ -185,6 +185,7 @@
   },
   "active": "9ce8a555ae0ece67",
   "lastOpenFiles": [
+    "artifacts/browser-evidence/2026-02-10T14-28-48-197Z-premerge-f005.png",
     "specs/progress.md",
     "specs/README.md",
     "specs/obsidian/dashboard.md",
@@ -220,7 +221,6 @@
     "specs/obsidian/setup.md",
     "specs/obsidian/linking-rules.md",
     "specs/features/F-001-project-create/plan.md",
-    "specs/features/F-001-project-create/changelog.md",
     "specs/obsidian/weekly-review",
     "specs/decisions",
     "specs/features/F-003-spec-automation-workflow/tasks",

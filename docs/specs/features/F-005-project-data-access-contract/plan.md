@@ -2,14 +2,14 @@
 doc_type: "plan"
 title: "Project Data Access Contract"
 feature_id: "F-005"
-status: "Ready"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-003"
   - "FR-004"
   - "FR-005"
   - "NFR-002"
-last_updated: "2026-02-09"
+last_updated: "2026-02-10"
 ---
 
 # Plan: Project Data Access Contract

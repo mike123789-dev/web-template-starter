@@ -7,6 +7,30 @@ cssclasses:
 
 진행상황은 `docs/specs/progress.md` 하나만 소스로 사용한다.
 
+
+## Dataview: Ready To Start
+
+```dataview
+TABLE
+  doc_type AS "Type",
+  feature_id AS "Feature",
+  choice(status = "Done", "🟩 Done",
+    choice(status = "Ready", "🟦 Ready",
+      choice(status = "In Progress", "🟨 In Progress",
+        choice(status = "Blocked", "🟥 Blocked",
+          choice(status = "Draft", "⬜ Draft", "▫ " + status)
+        )
+      )
+    )
+  ) AS "Status",
+  last_updated AS "Last Updated"
+FROM ""
+WHERE contains(file.path, "specs/features/")
+  AND status = "Ready"
+  AND contains(list("spec", "plan", "tasks", "test-matrix"), doc_type)
+SORT last_updated DESC
+```
+
 ## Dataview: In Progress
 
 ```dataview
@@ -53,29 +77,6 @@ WHERE contains(file.path, "specs/features/")
 SORT last_updated DESC
 ```
 
-## Dataview: Recently Updated
-
-```dataview
-TABLE
-  doc_type AS "Type",
-  feature_id AS "Feature",
-  task_id AS "Task",
-  choice(status = "Done", "🟩 Done",
-    choice(status = "Ready", "🟦 Ready",
-      choice(status = "In Progress", "🟨 In Progress",
-        choice(status = "Blocked", "🟥 Blocked",
-          choice(status = "Draft", "⬜ Draft", "▫ " + status)
-        )
-      )
-    )
-  ) AS "Status",
-  last_updated AS "Last Updated"
-FROM ""
-WHERE contains(file.path, "specs/features/")
-SORT last_updated DESC
-LIMIT 12
-```
-
 ## Dataview: Needs Clarification
 
 ```dataviewjs
@@ -103,12 +104,13 @@ dv.table(
 );
 ```
 
-## Dataview: Ready To Start
+## Dataview: Recently Updated
 
 ```dataview
 TABLE
   doc_type AS "Type",
   feature_id AS "Feature",
+  task_id AS "Task",
   choice(status = "Done", "🟩 Done",
     choice(status = "Ready", "🟦 Ready",
       choice(status = "In Progress", "🟨 In Progress",
@@ -121,10 +123,10 @@ TABLE
   last_updated AS "Last Updated"
 FROM ""
 WHERE contains(file.path, "specs/features/")
-  AND status = "Ready"
-  AND contains(list("spec", "plan", "tasks", "test-matrix"), doc_type)
 SORT last_updated DESC
+LIMIT 12
 ```
+
 
 ## Single Board
 
