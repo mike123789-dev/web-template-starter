@@ -5,7 +5,7 @@ cssclasses:
 
 # SDD Progress
 
-Generated: 2026-02-10T14:28:11.488Z
+Generated: 2026-02-10T14:41:54.285Z
 
 This file is the single progress source. Regenerate with `npm run specs:progress`.
 
@@ -18,6 +18,7 @@ This file is the single progress source. Regenerate with `npm run specs:progress
 | F-003 | Spec Automation Workflow | FR-001, FR-002, FR-005, NFR-003 | <span class="sdd-status sdd-status--done">🟩 Done</span> | 3/3 | 0 | <span class="sdd-flag sdd-flag--no">✅ No</span> | 2026-02-09 |
 | F-004 | Spec Status Workflow Guardrails | FR-006, NFR-001 | <span class="sdd-status sdd-status--done">🟩 Done</span> | 3/3 | 0 | <span class="sdd-flag sdd-flag--no">✅ No</span> | 2026-02-09 |
 | F-005 | Project Data Access Contract | FR-003, FR-004, FR-005, NFR-002 | <span class="sdd-status sdd-status--done">🟩 Done</span> | 3/3 | 0 | <span class="sdd-flag sdd-flag--no">✅ No</span> | 2026-02-10 |
+| F-006 | Project List UI States | FR-001, FR-002, FR-005, NFR-001, NFR-002 | <span class="sdd-status sdd-status--done">🟩 Done</span> | 3/3 | 0 | <span class="sdd-flag sdd-flag--no">✅ No</span> | 2026-02-10 |
 
 ## Blocked Tasks
 

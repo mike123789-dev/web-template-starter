@@ -14,6 +14,7 @@ export function ProjectsFilters({ className }: { className?: string }) {
 
   const status = useMemo(() => normalizeStatusFilter(searchParams.get('status')), [searchParams]);
   const sort = useMemo(() => normalizeSortOption(searchParams.get('sort')), [searchParams]);
+  const hasActiveFilters = status !== 'all' || sort !== 'updated';
 
   const updateParam = useCallback(
     (key: 'status' | 'sort', value: string) => {
@@ -61,6 +62,15 @@ export function ProjectsFilters({ className }: { className?: string }) {
           <option value="name">Name</option>
         </select>
       </label>
+      {hasActiveFilters ? (
+        <button
+          type="button"
+          onClick={() => router.push(pathname)}
+          className="inline-flex h-9 items-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-medium text-slate-900 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50 dark:hover:bg-slate-900 dark:focus-visible:ring-slate-50/20"
+        >
+          Reset filters
+        </button>
+      ) : null}
     </div>
   );
 }

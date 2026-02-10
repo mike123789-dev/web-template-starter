@@ -39,6 +39,11 @@ test('filter/sort query and invalid fallback work consistently', async ({ page }
   ]);
   await expect(page.getByText('Billing cleanup')).toHaveCount(0);
   await expect(page.getByText('Design tokens')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reset filters' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Reset filters' }).click();
+  await expect(page).toHaveURL('/');
+  await expect(page.getByRole('button', { name: 'Reset filters' })).toHaveCount(0);
 
   await page.goto('/?status=invalid&sort=invalid');
   await expect(page).toHaveURL('/?status=invalid&sort=invalid');

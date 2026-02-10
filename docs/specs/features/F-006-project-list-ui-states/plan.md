@@ -2,7 +2,7 @@
 doc_type: "plan"
 title: "Project List UI States"
 feature_id: "F-006"
-status: "Draft"
+status: "Done"
 owner: "unassigned"
 linked_prd_ids:
   - "FR-001"

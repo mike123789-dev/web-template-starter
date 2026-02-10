@@ -117,6 +117,24 @@ function formatDuration(ms) {
   return `${(ms / 1000).toFixed(1)}s`;
 }
 
+function printChatSnippet(reportPath, evidencePath) {
+  const lines = [];
+  lines.push('');
+  lines.push('---');
+  lines.push('Chat Snippet (copy/paste)');
+  lines.push('');
+  lines.push('- Browser Evidence:');
+  lines.push(`  - ${evidencePath || 'none'}`);
+  lines.push('- Gate Report:');
+  lines.push(`  - ${reportPath}`);
+  if (evidencePath) {
+    lines.push('');
+    lines.push(`![Browser Evidence](${evidencePath})`);
+  }
+  lines.push('');
+  process.stdout.write(`${lines.join('\n')}\n`);
+}
+
 async function writeReport(reportPath, report) {
   const absoluteReportPath = path.resolve(reportPath);
   await fs.mkdir(path.dirname(absoluteReportPath), { recursive: true });
@@ -164,6 +182,10 @@ async function writeReport(reportPath, report) {
   lines.push('  - <absolute screenshot path>');
   lines.push('- Gate Report:');
   lines.push(`  - ${absoluteReportPath}`);
+  if (report.browserEvidence) {
+    lines.push('');
+    lines.push('![Browser Evidence](' + report.browserEvidence + ')');
+  }
   lines.push('```');
 
   await fs.writeFile(absoluteReportPath, `${lines.join('\n')}\n`, 'utf8');
@@ -267,6 +289,7 @@ async function main() {
 
   const writtenReport = await writeReport(args.reportPath, report);
   console.log(`Pre-merge report saved: ${writtenReport}`);
+  printChatSnippet(writtenReport, report.browserEvidence);
 
   if (report.status !== 'PASS') {
     process.exit(1);

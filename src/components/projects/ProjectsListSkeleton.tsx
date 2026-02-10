@@ -3,7 +3,8 @@ import { Skeleton } from '@/components/ui/Skeleton';
 
 export function ProjectsListSkeleton({ count = 6 }: { count?: number }) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2" aria-busy="true" aria-live="polite">
+      <p className="sr-only">Loading projects</p>
       {Array.from({ length: count }).map((_, idx) => (
         <Card key={idx}>
           <CardHeader className="flex flex-col gap-3">
@@ -31,4 +32,3 @@ export function ProjectsListSkeleton({ count = 6 }: { count?: number }) {
     </div>
   );
 }
-
